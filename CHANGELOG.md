@@ -7,7 +7,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.25.0] - 2025-12-04
+
+### Changed
+- **FAQ Search** - Updated selectors from UAGB FAQ block to WordPress 6.9+ core accordion block (`assets/js/faq-search.js`, `assets/css/faq-search.css`)
+  - `.uagb-faq-item` changed to `.wp-block-accordion-item`
+  - `.uagb-question` changed to `.wp-block-accordion-heading__toggle-title`
+  - `.uagb-faq-content` changed to `.wp-block-accordion-panel`
+  - `.wp-block-uagb-faq` changed to `.wp-block-accordion`
+  - CSS transitions updated for new block structure
+
+## [2.24.0] - 2025-12-03
+
 ### Added
+- **CSS Animations** - Scroll-triggered animations replacing blocks-animation plugin (`assets/css/animations.css`, `assets/js/animations.js`)
+  - 10 animations available: fadeIn, fadeInUp, fadeInDown, fadeInLeft, fadeInRight, bounceIn, zoomIn, slideInUp, slideInDown, pulse
+  - Apply via block editor "Additional CSS class(es)" field (e.g., `animated fadeIn`)
+  - Intersection Observer triggers animations when elements scroll into view
+  - Elements above the fold animate immediately on page load
+  - Supports `prefers-reduced-motion` for accessibility
+  - Eliminates blocks-animation plugin dependency
 - **FAQ Schema Support** - Automatically generates FAQPage structured data for pages using WordPress core accordion blocks (`includes/schema.php`)
   - New `extract_faqs_from_accordion()` function parses accordion-item blocks for Q&A pairs
   - Extracts questions from accordion-heading toggle-title spans
@@ -18,6 +37,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Registers `uagb/separator` block for WordPress block editor recognition
   - Displays code icon with horizontal lines in editor preview
   - Deprecated save function matches original UAGB markup for seamless migration
+- **Async CSS Loader** - Non-blocking stylesheet loading for improved performance (`includes/performance.php`)
 
 ## [2.23.0] - 2025-12-02
 ### Added

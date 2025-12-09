@@ -1,6 +1,7 @@
 /**
  * FAQ Search Styles
  * Accessible search interface for FAQ filtering
+ * Updated for WordPress 6.9+ core accordion block
  */
 
 .faq-search-wrapper {
@@ -106,18 +107,18 @@
 }
 
 
-/* FAQ item transition when filtering */
-.uagb-faq-item {
+/* FAQ item transition when filtering - WordPress 6.9+ core accordion */
+.wp-block-accordion-item {
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-.uagb-faq-item[aria-hidden="true"] {
+.wp-block-accordion-item[aria-hidden="true"] {
   opacity: 0;
   transform: scale(0.98);
 }
 
-/* Ensure proper spacing between search and FAQ blocks */
-.faq-search-wrapper + .wp-block-uagb-faq {
+/* Ensure proper spacing between search and accordion blocks */
+.faq-search-wrapper + .wp-block-accordion {
   margin-top: 0;
 }
 
@@ -179,7 +180,7 @@
   .faq-search-input,
   .faq-search-clear,
   .faq-search-clear svg,
-  .uagb-faq-item {
+  .wp-block-accordion-item {
     transition: none;
   }
 }

@@ -1,6 +1,7 @@
 /**
  * FAQ Search Filter with Highlighting
  * Filters FAQ accordions based on search input with WCAG 2.1 accessibility
+ * Updated for WordPress 6.9+ core accordion block
  */
 
 (function() {
@@ -127,9 +128,10 @@
 
 	/**
 	 * Filter FAQ items based on search query
+	 * Works with WordPress 6.9+ core accordion block
 	 */
 	function filterFAQs(query) {
-		const faqItems = document.querySelectorAll('.uagb-faq-item');
+		const faqItems = document.querySelectorAll('.wp-block-accordion-item');
 		const summary = document.getElementById('faq-search-results-summary');
 
 		if (!faqItems.length) {
@@ -141,10 +143,10 @@
 		const totalCount = faqItems.length;
 
 		faqItems.forEach(item => {
-			const question = item.querySelector('.uagb-question');
-			const content = item.querySelector('.uagb-faq-content');
+			const questionTitle = item.querySelector('.wp-block-accordion-heading__toggle-title');
+			const panel = item.querySelector('.wp-block-accordion-panel');
 
-			if (!question || !content) {
+			if (!questionTitle) {
 				return;
 			}
 
@@ -155,13 +157,13 @@
 				return;
 			}
 
-			// Get original text content
-			const questionText = question.textContent.toLowerCase();
-			const contentText = content.textContent.toLowerCase();
+			// Get text content for searching
+			const questionText = questionTitle.textContent.toLowerCase();
+			const panelText = panel ? panel.textContent.toLowerCase() : '';
 
-			// Check if query matches
+			// Check if query matches question or answer content
 			const matches = questionText.includes(normalizedQuery) ||
-			                contentText.includes(normalizedQuery);
+			                panelText.includes(normalizedQuery);
 
 			if (matches) {
 				item.style.display = '';
@@ -194,10 +196,10 @@
 			let hasVisibleFAQs = false;
 			let nextElement = heading.nextElementSibling;
 
-			// Find the next FAQ block (skip text nodes and empty elements)
+			// Find the next accordion block (skip text nodes and empty elements)
 			while (nextElement) {
-				if (nextElement.classList && nextElement.classList.contains('wp-block-uagb-faq')) {
-					const faqItems = nextElement.querySelectorAll('.uagb-faq-item');
+				if (nextElement.classList && nextElement.classList.contains('wp-block-accordion')) {
+					const faqItems = nextElement.querySelectorAll('.wp-block-accordion-item');
 					hasVisibleFAQs = Array.from(faqItems).some(item =>
 						item.style.display !== 'none' && item.getAttribute('aria-hidden') !== 'true'
 					);

@@ -56,9 +56,11 @@ Files in `includes/` directory provide modular functionality:
 - `open-graph-images.php` - Open Graph image management with fallback logic
 
 **UI & Navigation:**
-- `enqueue.php` - Script/style enqueuing for sticky header, modal search, case study filters
+- `enqueue.php` - Script/style enqueuing for sticky header, modal search, case study filters, animations
 - `block-styles.php` - Custom block style registration
 - `block-stylesheets.php` - Block-specific stylesheet loading
+- `animations.css` - CSS animations for block editor (replaces blocks-animation plugin)
+- `animations.js` - Intersection Observer for scroll-triggered animations
 
 **Analytics & Performance:**
 - `ip-utils.php` - IP detection, bot user agent detection (75+ patterns), session opt-out via `?notrack`
@@ -180,6 +182,16 @@ add_shortcode( 'case_study_filters', 'EightyFourEM\CaseStudyFilters\render_filte
   - Verify both Instrument Sans and Jost fonts load correctly
   - Test on slow 3G connection to ensure fonts load without flash
   - Confirm `font-display: optional` prevents layout shifts
+
+- **CSS Animations** (`assets/css/animations.css`, `assets/js/animations.js`)
+  - Add animation classes via block editor's "Additional CSS class(es)" field
+  - Use base class `animated` with animation name (e.g., `animated fadeIn`)
+  - Available animations: `fadeIn`, `fadeInUp`, `fadeInDown`, `fadeInLeft`, `fadeInRight`, `bounceIn`, `zoomIn`, `slideInUp`, `slideInDown`, `pulse`
+  - Elements above the fold animate immediately on page load
+  - Elements below the fold animate when scrolled into view (Intersection Observer)
+  - Test `prefers-reduced-motion` support (elements should appear immediately without animation delay)
+  - Verify `.animate-visible` class is added when elements enter viewport
+  - Confirm no console errors related to animation styles or scripts
 
 ## Release Process
 When preparing a release with version bump:

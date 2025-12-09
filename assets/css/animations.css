@@ -1,0 +1,226 @@
+/**
+ * CSS Animations for Block Editor
+ *
+ * Apply animations via the "Additional CSS class(es)" field in the block editor.
+ * Use the base class .animated with the desired animation class.
+ *
+ * Example: animated fadeIn
+ *
+ * Animations are scroll-triggered via animations.js using Intersection Observer.
+ * Elements remain hidden until they scroll into view and receive .animate-visible.
+ *
+ * @package EightyFourEM
+ */
+
+/* Base animation class - initially hidden until in viewport */
+.animated {
+	opacity: 0;
+}
+
+/* Trigger animations when element scrolls into view */
+.animated.animate-visible {
+	animation-duration: 1s;
+	animation-fill-mode: both;
+}
+
+/* Reduced motion support - show immediately without animation delay */
+@media (prefers-reduced-motion: reduce) {
+	.animated {
+		opacity: 1;
+	}
+
+	.animated.animate-visible {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+	}
+}
+
+/* Fade In */
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+.fadeIn.animate-visible {
+	animation-name: fadeIn;
+}
+
+/* Fade In Up */
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translate3d(0, 30px, 0);
+	}
+	to {
+		opacity: 1;
+		transform: translate3d(0, 0, 0);
+	}
+}
+
+.fadeInUp.animate-visible {
+	animation-name: fadeInUp;
+}
+
+/* Fade In Down */
+@keyframes fadeInDown {
+	from {
+		opacity: 0;
+		transform: translate3d(0, -30px, 0);
+	}
+	to {
+		opacity: 1;
+		transform: translate3d(0, 0, 0);
+	}
+}
+
+.fadeInDown.animate-visible {
+	animation-name: fadeInDown;
+}
+
+/* Fade In Left */
+@keyframes fadeInLeft {
+	from {
+		opacity: 0;
+		transform: translate3d(-30px, 0, 0);
+	}
+	to {
+		opacity: 1;
+		transform: translate3d(0, 0, 0);
+	}
+}
+
+.fadeInLeft.animate-visible {
+	animation-name: fadeInLeft;
+}
+
+/* Fade In Right */
+@keyframes fadeInRight {
+	from {
+		opacity: 0;
+		transform: translate3d(30px, 0, 0);
+	}
+	to {
+		opacity: 1;
+		transform: translate3d(0, 0, 0);
+	}
+}
+
+.fadeInRight.animate-visible {
+	animation-name: fadeInRight;
+}
+
+/* Bounce In */
+@keyframes bounceIn {
+	from,
+	20%,
+	40%,
+	60%,
+	80%,
+	to {
+		animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+	}
+
+	0% {
+		opacity: 0;
+		transform: scale3d(0.3, 0.3, 0.3);
+	}
+
+	20% {
+		transform: scale3d(1.1, 1.1, 1.1);
+	}
+
+	40% {
+		transform: scale3d(0.9, 0.9, 0.9);
+	}
+
+	60% {
+		opacity: 1;
+		transform: scale3d(1.03, 1.03, 1.03);
+	}
+
+	80% {
+		transform: scale3d(0.97, 0.97, 0.97);
+	}
+
+	to {
+		opacity: 1;
+		transform: scale3d(1, 1, 1);
+	}
+}
+
+.bounceIn.animate-visible {
+	animation-duration: 0.75s;
+	animation-name: bounceIn;
+}
+
+/* Zoom In */
+@keyframes zoomIn {
+	from {
+		opacity: 0;
+		transform: scale3d(0.3, 0.3, 0.3);
+	}
+
+	50% {
+		opacity: 1;
+	}
+}
+
+.zoomIn.animate-visible {
+	animation-name: zoomIn;
+}
+
+/* Slide In Up */
+@keyframes slideInUp {
+	from {
+		transform: translate3d(0, 100%, 0);
+		visibility: visible;
+	}
+
+	to {
+		transform: translate3d(0, 0, 0);
+	}
+}
+
+.slideInUp.animate-visible {
+	animation-name: slideInUp;
+}
+
+/* Slide In Down */
+@keyframes slideInDown {
+	from {
+		transform: translate3d(0, -100%, 0);
+		visibility: visible;
+	}
+
+	to {
+		transform: translate3d(0, 0, 0);
+	}
+}
+
+.slideInDown.animate-visible {
+	animation-name: slideInDown;
+}
+
+/* Pulse */
+@keyframes pulse {
+	from {
+		transform: scale3d(1, 1, 1);
+	}
+
+	50% {
+		transform: scale3d(1.05, 1.05, 1.05);
+	}
+
+	to {
+		transform: scale3d(1, 1, 1);
+	}
+}
+
+.pulse.animate-visible {
+	animation-name: pulse;
+	animation-timing-function: ease-in-out;
+}

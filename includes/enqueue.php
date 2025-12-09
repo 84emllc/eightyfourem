@@ -43,6 +43,23 @@ defined( 'ABSPATH' ) || exit;
             ver: $version
 		);
 
+		\wp_enqueue_style(
+			handle: 'eightyfourem-animations',
+			src: \get_theme_file_uri( "assets/css/animations{$suffix}.css" ),
+			ver: $version
+		);
+
+		// Enqueue animations JavaScript (defer for better performance)
+		\wp_enqueue_script(
+			handle: 'eightyfourem-animations',
+			src: \get_theme_file_uri( "assets/js/animations{$suffix}.js" ),
+			ver: $version,
+			args: [
+				'strategy'  => 'defer',
+				'in_footer' => true,
+			]
+		);
+
 		// Enqueue sticky header CSS
 		\wp_enqueue_style(
             handle: 'eightyfourem-sticky-header',
