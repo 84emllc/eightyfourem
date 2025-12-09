@@ -8,11 +8,6 @@
 
 namespace EightyFourEM;
 
-use UAGB_Scripts_Utils;
-use function EightyFourEM\IPUtils\is_ip_excluded;
-use function EightyFourEM\IPUtils\is_session_excluded;
-use function EightyFourEM\IPUtils\is_ua_excluded;
-
 defined( 'ABSPATH' ) || exit;
 
 /**
@@ -114,16 +109,27 @@ defined( 'ABSPATH' ) || exit;
 			]
 		);
 
-		// Simple Analytics script (defer for better performance)
-        \wp_enqueue_script(
-            handle: 'eightyfourem-simple-analytics',
-            src: \get_theme_file_uri( "assets/js/simple-analytics{$suffix}.js" ),
-            ver: $version,
-            args: [
-                'strategy'  => 'defer',
-                'in_footer' => true,
-            ]
-        );
+		// Simple Analytics script
+		\wp_enqueue_script(
+			handle: 'eightyfourem-simple-analytics',
+			src: 'https://scripts.simpleanalyticscdn.com/latest.js',
+			ver: null,
+			args: [
+				'strategy'  => 'defer',
+				'in_footer' => true,
+			]
+		);
+
+		// Simple Analytics auto-events script
+		\wp_enqueue_script(
+			handle: 'eightyfourem-simple-analytics-events',
+			src: 'https://scripts.simpleanalyticscdn.com/auto-events.js',
+			ver: null,
+			args: [
+				'strategy'  => 'defer',
+				'in_footer' => true,
+			]
+		);
 	}
 );
 
