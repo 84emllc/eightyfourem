@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.26.0] - 2025-12-09
+
+### Changed
+- **Simple Analytics** - Replaced custom lazy-loading script with direct CDN enqueuing (`includes/enqueue.php`)
+  - Scripts now load directly from `scripts.simpleanalyticscdn.com` with defer strategy
+  - Removed `assets/js/simple-analytics.js` custom loader
+  - Removed `gulpfile.js` entry for simple-analytics build
+
+### Removed
+- **Analytics Exclusions** - Removed IP, user agent, and login status exclusion checks (`includes/enqueue.php`)
+  - All visitors now tracked consistently without exclusions
+  - Removed dead imports (UAGB_Scripts_Utils, IPUtils functions)
+- **IP Utils** - Removed `includes/ip-utils.php` and its require from `functions.php`
+  - Bot detection and session opt-out functionality no longer needed
+- **UAGB Scripts** - Removed page-specific UAGB script enqueuing (commit 8760e22)
+
 ## [2.25.0] - 2025-12-04
 
 ### Changed
