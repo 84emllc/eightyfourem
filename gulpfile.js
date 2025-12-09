@@ -46,7 +46,6 @@ const paths = {
       './assets/js/case-study-filter.js',
       './assets/js/modal-search.js',
       './assets/js/faq-search.js',
-      './assets/js/simple-analytics.js',
       './assets/js/animations.js'
     ],
     googleReviews: './blocks/google-reviews/index.js',
