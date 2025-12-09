@@ -114,18 +114,16 @@ defined( 'ABSPATH' ) || exit;
 			]
 		);
 
-		// Only enqueue analytics if not excluded by IP, UA, login status, or session opt-out
-		if ( ! is_ip_excluded() && ! is_ua_excluded() && ! is_session_excluded() && ! \is_user_logged_in() ) {
-			\wp_enqueue_script(
-				handle: 'eightyfourem-simple-analytics',
-				src: \get_theme_file_uri( "assets/js/simple-analytics{$suffix}.js" ),
-				ver: $version,
-				args: [
-					'strategy'  => 'defer',
-					'in_footer' => true,
-				]
-			);
-		}
+		// Simple Analytics script (defer for better performance)
+        \wp_enqueue_script(
+            handle: 'eightyfourem-simple-analytics',
+            src: \get_theme_file_uri( "assets/js/simple-analytics{$suffix}.js" ),
+            ver: $version,
+            args: [
+                'strategy'  => 'defer',
+                'in_footer' => true,
+            ]
+        );
 	}
 );
 
@@ -239,29 +237,6 @@ defined( 'ABSPATH' ) || exit;
 			src: \get_theme_file_uri( "assets/css/related-case-studies{$suffix}.css" ),
 			ver: $version
 		);
-	}
-);
-
-/**
- * Enqueue UAGB scripts for specific pages
- * Loads on local pages and USA services page
- */
-\add_action(
-	hook_name: 'wp_enqueue_scripts',
-	callback: function () {
-		if ( ! \is_singular( 'local' ) && ! \is_page( 'wordpress-development-services-usa' ) ) {
-			return;
-		}
-
-		if ( ! \class_exists( 'UAGB_Scripts_Utils' ) ) {
-			return;
-		}
-
-		if ( ! \method_exists( 'UAGB_Scripts_Utils', 'enqueue_blocks_styles' ) ) {
-			return;
-		}
-
-		UAGB_Scripts_Utils::enqueue_blocks_styles();
 	}
 );
 
