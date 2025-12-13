@@ -38,13 +38,11 @@ defined( 'ABSPATH' ) || exit;
             ver: $version
 		);
 
-        if ( is_page( 986 ) ) {
-            \wp_enqueue_style(
-                handle: 'eightyfourem-testimonials',
-                src: \get_theme_file_uri( "assets/css/testimonials{$suffix}.css" ),
-                ver: $version
-            );
-        }
+        \wp_enqueue_style(
+            handle: 'eightyfourem-testimonials',
+            src: \get_theme_file_uri( "assets/css/testimonials{$suffix}.css" ),
+            ver: $version
+        );
 
 		\wp_enqueue_style(
 			handle: 'eightyfourem-animations',
