@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.28.0] - 2025-12-13
+
+### Fixed
+- **Testimonials CSS Selectors** - Fixed invalid CSS selectors in testimonials stylesheet (`assets/css/testimonials.css`)
+  - Corrected missing leading dot in `.testimonials-blocks *` selector
+  - Fixed selector line break issue in `.testimonials-blocks .has-contrast-background-color`
+  - Renamed class references from `.testimonials-blocks` (plural) to `.testimonial-block` (singular) for consistency with block markup
+  - Updated font styling for `.testimonial-block .has-x-large-font-size` with Jost font family and adjusted size (1.8rem)
+
+### Changed
+- **Testimonials CSS Loading** - Changed from page-specific to global loading (`includes/enqueue.php`)
+  - Removed conditional loading restricted to testimonials page (ID: 986)
+  - Testimonials styles now load on all pages to support testimonial blocks embedded anywhere
+  - Enables testimonial reusable blocks on homepage and other pages
+
 ## [2.27.0] - 2025-12-13
 
 ### Added
