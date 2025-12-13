@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.27.0] - 2025-12-13
+
+### Added
+- **Testimonials Page Styles** - Custom styling for testimonials blocks on testimonials page (`assets/css/testimonials.css`)
+  - Overrides block colors to white background and black text for testimonials sections
+  - Normalizes font sizes: x-large (2rem) for quotes, small (1rem) for attributions
+  - Removes italic styling from emphasized quote text
+  - Constrains content width to 1080px with auto margins
+  - Only loads on testimonials page (ID: 986) for optimal performance
+- **Build Process** - Added `testimonials.css` to gulpfile.js theme styles array (`gulpfile.js`)
+- **Asset Enqueuing** - Added conditional enqueuing for testimonials CSS in `includes/enqueue.php`
+
 ## [2.26.0] - 2025-12-09
 
 ### Changed

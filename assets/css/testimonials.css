@@ -1,0 +1,36 @@
+/**
+ * Testimonials
+ */
+.testimonials-blocks,
+testimonials-blocks *,
+.testimonials-blocks
+.has-contrast-background-color {
+    background-color: #fff !important;
+}
+
+.testimonials-blocks,
+.testimonials-blocks *,
+.testimonials-blocks
+.has-contrast-background-color,
+.testimonials-blocks .has-base-color {
+    color: #000 !important;
+}
+
+.testimonials-blocks .has-x-large-font-size {
+    font-size: 2rem !important;
+}
+
+.testimonials-blocks .has-x-large-font-size em {
+    font-style: normal !important;
+}
+
+.testimonials-blocks .has-small-font-size {
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+}
+
+.testimonials-blocks .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 1080px !important;
+}
