@@ -81,7 +81,7 @@ function render(): string {
 
 	// Get noindex page IDs to exclude.
 	$noindex_ids = $wpdb->get_col(
-		"SELECT DISTINCT post_id FROM {$wpdb->postmeta} WHERE meta_key = '_genesis_noindex' AND meta_value != '0'"
+		"SELECT DISTINCT post_id FROM {$wpdb->postmeta} WHERE meta_key = '_84em_noindex' AND meta_value != '0'"
 	);
 
 	// Get local page IDs to exclude from regular pages section.

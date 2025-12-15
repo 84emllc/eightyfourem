@@ -148,8 +148,8 @@ function process_sitemap_batch_84em( array $args ): void {
 
     foreach ( $posts as $post ) {
         // Skip posts marked as noindex
-        $_genesis_noindex = (int) \get_post_meta( $post->ID, '_genesis_noindex', true );
-        if ( $_genesis_noindex === 1 ) {
+        $_84em_noindex = (int) \get_post_meta( $post->ID, '_84em_noindex', true );
+        if ( $_84em_noindex === 1 ) {
             continue;
         }
 

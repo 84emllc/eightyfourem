@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.29.0] - 2025-12-15
+
+### Changed
+- **SEO Meta Keys Migration** - Migrated from legacy Genesis meta keys to 84EM-branded meta keys
+  - `_genesis_title` renamed to `_84em_seo_title` (`includes/document-title.php`)
+  - `_genesis_description` renamed to `_84em_seo_description` (`includes/meta-tags.php`, `includes/schema.php`)
+  - `_genesis_noindex` renamed to `_84em_noindex` (`includes/meta-tags.php`, `includes/search.php`, `includes/html-sitemap.php`, `includes/xml-sitemap.php`)
+  - Removes dependency on Genesis theme naming conventions
+  - No functional changes to SEO behavior
+
+### Added
+- **ACF Field Group Export** - Added ACF JSON export for SEO meta fields (`acf-json/group_62a4b11a0eaf7.json`)
+
 ## [2.28.0] - 2025-12-13
 
 ### Fixed
