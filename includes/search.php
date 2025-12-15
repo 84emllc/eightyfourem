@@ -202,7 +202,7 @@ function get_posts_by_type_filter( string $type ): ?array {
 				'compare' => 'NOT EXISTS',
 			],
 			[
-				'key'     => '_genesis_noindex',
+				'key'     => '_84em_noindex',
 				'compare' => '!=',
 				'value'   => '1',
 			],

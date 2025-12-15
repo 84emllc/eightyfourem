@@ -207,7 +207,7 @@ function extract_testimonials_from_page( int $page_id ): array {
             '@id'           => $post_url . '#webpage',
             'url'           => $post_url,
             'name'          => \get_the_title( $post_id ),
-            'description'   => \get_post_meta( $post_id, '_genesis_description', true ) ?: \wp_trim_words( \strip_tags( $post->post_content ), 25 ),
+            'description'   => \get_post_meta( $post_id, '_84em_seo_description', true ) ?: \wp_trim_words( \strip_tags( $post->post_content ), 25 ),
             'inLanguage'    => 'en-US',
             'datePublished' => \get_the_date( 'c', $post_id ),
             'dateModified'  => \get_the_modified_date( 'c', $post_id ),
