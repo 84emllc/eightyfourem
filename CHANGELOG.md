@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.30.0] - 2025-12-18
+
+### Changed
+- **Related Case Studies Algorithm** - Improved relevance scoring for related case studies (`includes/related-case-studies.php`)
+  - Added `get_weighted_categories()` helper function to distinguish title vs body keyword matches
+  - Scoring now weights matches based on where categories appear in both current and candidate studies
+  - Title-to-title category matches score 9 points (highest relevance)
+  - Title-to-body matches score 3 points
+  - Body-to-title matches score 2 points
+  - Body-to-body matches score 1 point (lowest relevance)
+  - Fixes issue where incidental keyword mentions in body content caused irrelevant related case studies
+
 ## [2.29.0] - 2025-12-15
 
 ### Changed

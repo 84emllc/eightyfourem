@@ -11,6 +11,62 @@ namespace EightyFourEM\RelatedCaseStudies;
 defined( 'ABSPATH' ) || exit;
 
 /**
+ * Get weighted category matches for a case study
+ *
+ * Determines which categories match from title vs body content,
+ * returning separate arrays for weighted scoring.
+ *
+ * @param int $post_id Post ID
+ * @return array{title: array, body: array} Categories matched in title and body-only
+ */
+function get_weighted_categories( int $post_id ): array {
+	$post = \get_post( $post_id );
+	if ( ! $post ) {
+		return [ 'title' => [], 'body' => [] ];
+	}
+
+	$title_text   = \strtolower( $post->post_title );
+	$content_text = \strtolower( $post->post_content );
+	$filters      = \EightyFourEM\CaseStudyFilters\get_filters();
+
+	$title_categories = [];
+	$body_categories  = [];
+
+	foreach ( $filters as $key => $filter ) {
+		if ( 'all' === $key || empty( $filter['keywords'] ) ) {
+			continue;
+		}
+
+		$found_in_title = false;
+		$found_in_body  = false;
+
+		foreach ( $filter['keywords'] as $keyword ) {
+			$keyword_lower = \strtolower( $keyword );
+
+			if ( false !== \strpos( $title_text, $keyword_lower ) ) {
+				$found_in_title = true;
+				break;
+			}
+
+			if ( false !== \strpos( $content_text, $keyword_lower ) ) {
+				$found_in_body = true;
+			}
+		}
+
+		if ( $found_in_title ) {
+			$title_categories[] = $key;
+		} elseif ( $found_in_body ) {
+			$body_categories[] = $key;
+		}
+	}
+
+	return [
+		'title' => $title_categories,
+		'body'  => $body_categories,
+	];
+}
+
+/**
  * Get related case studies for a given post
  *
  * @param int $post_id Current case study post ID
@@ -25,9 +81,10 @@ function get_related_case_studies( int $post_id, int $limit = 6 ): array {
 		return $cached;
 	}
 
-	$current_categories = \EightyFourEM\CaseStudyFilters\get_case_study_categories( $post_id );
+	$current_weighted = get_weighted_categories( $post_id );
+	$current_all      = \array_merge( $current_weighted['title'], $current_weighted['body'] );
 
-	if ( empty( $current_categories ) ) {
+	if ( empty( $current_all ) ) {
 		return [];
 	}
 
@@ -44,18 +101,43 @@ function get_related_case_studies( int $post_id, int $limit = 6 ): array {
 
 	$scored_studies = [];
 
-	foreach ( $all_case_studies as $study ) {
-		$study_categories  = \EightyFourEM\CaseStudyFilters\get_case_study_categories( $study->ID );
-		$shared_categories = \array_intersect( $current_categories, $study_categories );
-		$score             = \count( $shared_categories );
+	// Scoring weights:
+	// - Current title category matched in candidate title: 9 points (most relevant)
+	// - Current title category matched in candidate body: 3 points
+	// - Current body category matched in candidate title: 2 points
+	// - Current body category matched in candidate body: 1 point (least relevant)
 
-		if ( $score > 0 ) {
-			$scored_studies[] = [
-				'post'       => $study,
-				'score'      => $score,
-				'categories' => $study_categories,
-			];
+	foreach ( $all_case_studies as $study ) {
+		$study_weighted    = get_weighted_categories( $study->ID );
+		$study_all         = \array_merge( $study_weighted['title'], $study_weighted['body'] );
+		$shared_categories = \array_intersect( $current_all, $study_all );
+
+		if ( empty( $shared_categories ) ) {
+			continue;
 		}
+
+		// Calculate weighted score based on where matches occur in BOTH studies
+		$score = 0;
+		foreach ( $shared_categories as $category ) {
+			$in_current_title = \in_array( $category, $current_weighted['title'], true );
+			$in_study_title   = \in_array( $category, $study_weighted['title'], true );
+
+			if ( $in_current_title && $in_study_title ) {
+				$score += 9; // Both have this category in title - highly relevant
+			} elseif ( $in_current_title ) {
+				$score += 3; // Current's title category found in candidate's body
+			} elseif ( $in_study_title ) {
+				$score += 2; // Current's body category found in candidate's title
+			} else {
+				$score += 1; // Both have category in body only
+			}
+		}
+
+		$scored_studies[] = [
+			'post'       => $study,
+			'score'      => $score,
+			'categories' => $study_all,
+		];
 	}
 
 	\usort(
