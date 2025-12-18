@@ -103,7 +103,7 @@ The build process handles:
   - Minification
   - Sourcemaps
 - **JavaScript files**:
-  - Theme: `sticky-header.js`, `highlight.js`, `modal-search.js`, `case-study-filter.js`, `faq-search.js`, `simple-analytics.js`
+  - Theme: `sticky-header.js`, `highlight.js`, `modal-search.js`, `case-study-filter.js`, `faq-search.js`, `animations.js`
   - Blocks: Google Reviews (`index.js`), Calendly Booking Details (`index.js`)
   - Minification with terser
   - Sourcemaps
@@ -131,8 +131,8 @@ eightyfourem/
 │   ├── document-title.php   # Document title filters
 │   ├── enqueue.php          # Script/style enqueuing
 │   ├── google-reviews.php   # Google Reviews block
-│   ├── ip-utils.php         # IP detection, bot exclusion, analytics opt-out
 │   ├── meta-tags.php        # SEO meta tags
+│   ├── related-case-studies.php # Related case studies display
 │   ├── open-graph-images.php # Open Graph image handling
 │   ├── pattern-categories.php # Pattern categories
 │   ├── performance.php      # Performance optimizations
