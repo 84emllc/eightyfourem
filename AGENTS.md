@@ -11,7 +11,7 @@ The 84EM Block Theme is a custom WordPress FSE theme optimized for business webs
 - **Custom 404 Handling** - Automatic redirects for legacy URLs (`includes/404.php`)
 - **Modal Search** - Accessible modal search with keyboard navigation and ARIA support
 - **FAQ Search** - On-page filtering for FAQ page with WCAG 2.1 accessibility support
-- **Simple Analytics** - Privacy-focused analytics with bot exclusion and session opt-out
+- **Simple Analytics** - Privacy-focused analytics via external CDN (scripts.simpleanalyticscdn.com)
 
 ## Project Structure & Module Organization
 - `assets/css|js|fonts/` hold front-end sources; compiled files inherit the same path with `.min.(css|js)` suffixes. Keep Google Reviews block assets inside `assets/google-reviews-block/`.
@@ -47,7 +47,8 @@ Files in `includes/` directory provide modular functionality:
 - `performance.php` - Font preloading, critical font-face inlining, resource hints to eliminate FOUT/FOIT
 
 **SEO & Content:**
-- `meta-tags.php` - SEO meta tags (title, description, Open Graph, Twitter Cards)
+- `document-title.php` - Custom SEO title filter using `_84em_seo_title` meta key
+- `meta-tags.php` - SEO description and robots meta tags using `_84em_seo_description` and `_84em_noindex` meta keys
 - `schema.php` - Schema.org structured data generation for pages and posts; testimonials schema extracts reviews from reusable blocks
 - `xml-sitemap.php` - XML sitemap with batch processing via Action Scheduler
 - `html-sitemap.php` - Card-based HTML sitemap with collapsible sections
@@ -62,14 +63,22 @@ Files in `includes/` directory provide modular functionality:
 - `animations.css` - CSS animations for block editor (replaces blocks-animation plugin)
 - `animations.js` - Intersection Observer for scroll-triggered animations
 
-**Analytics & Performance:**
-- `ip-utils.php` - IP detection, bot user agent detection (75+ patterns), session opt-out via `?notrack`
-- `simple-analytics.js` - Simple Analytics loader with auto-events for outbound links, downloads, email clicks
-
 **Integrations:**
 - `cli.php` - WP-CLI commands for schema regeneration
 - `calendly-booking-details.php` - Calendly booking details block
 - `shortcodes.php` - Shortcode registry (delegates to feature modules)
+
+**Content Display:**
+- `related-case-studies.php` - Displays related case studies on individual case study pages with weighted relevance scoring
+- `author-pages.php` - Author page customizations
+- `testimonials.css` - Custom styling for testimonials blocks (loaded globally via enqueue.php)
+
+**Site Configuration:**
+- `dequeue.php` - Script/style dequeuing for unused assets
+- `disable-comments.php` - Disables comments site-wide
+- `pattern-categories.php` - Block pattern category registration
+- `permalinks.php` - Custom permalink handling
+- `shortlinks.php` - Shortlink functionality
 
 **Code Quality:**
 - All functions include proper type hints (PHP 8.0+)
@@ -158,6 +167,13 @@ add_shortcode( 'case_study_filters', 'EightyFourEM\CaseStudyFilters\render_filte
   - Verify fallback search with corrected query when no results found
   - Test "Did You Mean" functionality
 
+- **Related Case Studies** (`includes/related-case-studies.php`, `assets/css/related-case-studies.css`)
+  - Verify related case studies section appears at bottom of individual case study pages
+  - Check that related studies share relevant categories (title matches weighted higher than body)
+  - Test transient caching by viewing page twice (second load should be faster)
+  - Clear cache via WP-CLI: `wp transient delete related_cs_{post_id}`
+  - Verify cache clears automatically when any case study is saved
+
 - **FAQ Search** (`assets/js/faq-search.js`, `assets/css/faq-search.css`)
   - Navigate to FAQ page (ID: 6908) to test search functionality
   - Type in search box and verify live filtering with 300ms debounce
@@ -167,11 +183,10 @@ add_shortcode( 'case_study_filters', 'EightyFourEM\CaseStudyFilters\render_filte
   - Test clear button functionality
   - Check reduced motion support in animations
 
-- **Simple Analytics** (`includes/ip-utils.php`, `includes/enqueue.php`, `assets/js/simple-analytics.js`)
-  - Verify analytics script loads for regular visitors (check Network tab for simple-analytics requests)
-  - Test `?notrack` parameter sets session cookie and excludes tracking
+- **Simple Analytics** (`includes/enqueue.php`)
+  - Verify analytics script loads from external CDN (scripts.simpleanalyticscdn.com)
+  - Check Network tab for simple-analytics requests on page load
   - Verify logged-in WordPress users are excluded from tracking
-  - Test bot exclusion by checking user agent patterns in `is_ua_excluded()`
   - Confirm auto-events track outbound links, file downloads, and mailto links
 
 - **Font Loading Performance** (`includes/performance.php`)
