@@ -103,9 +103,9 @@ function extract_faqs_from_accordion( int $page_id ): array {
 }
 
 /**
- * Extract testimonials from a page's reusable blocks.
+ * Extract testimonials from a page's Easy Testimonial Blocks (ETB) or reusable blocks.
  *
- * Parses page content to find reusable block references, fetches each block,
+ * Parses page content to find ETB grid-item blocks or reusable block references,
  * and extracts quote/attribution data from testimonial blocks.
  *
  * @param int $page_id The page ID containing testimonial blocks.
@@ -118,58 +118,44 @@ function extract_testimonials_from_page( int $page_id ): array {
 		return [];
 	}
 
-	// Find all reusable block references.
-	$pattern = '/<!-- wp:block \{"ref":(\d+)\}/';
-	\preg_match_all( $pattern, $page->post_content, $matches );
-
-	if ( empty( $matches[1] ) ) {
-		return [];
-	}
-
 	$testimonials = [];
-	$block_ids    = \array_map( 'intval', $matches[1] );
+	$content      = $page->post_content;
 
-	// Fetch all blocks in one query.
-	$blocks = \get_posts( [
-		'post_type'      => 'wp_block',
-		'post__in'       => $block_ids,
-		'posts_per_page' => -1,
-		'orderby'        => 'post__in',
-	] );
+	// Try ETB (Easy Testimonial Blocks) grid-item blocks first.
+	$etb_pattern = '/<!-- wp:etb\/grid-item \{([^}]+)}/';
+	if ( \preg_match_all( $etb_pattern, $content, $etb_matches ) ) {
+		foreach ( $etb_matches[1] as $json_attrs ) {
+			// Parse the JSON attributes from the block comment.
+			$attrs = \json_decode( '{' . $json_attrs . '}', true );
+			if ( ! $attrs ) {
+				continue;
+			}
 
-	foreach ( $blocks as $block ) {
-		// Skip non-testimonial blocks (check title contains "Testimonial").
-		if ( \stripos( $block->post_title, 'testimonial' ) === false ) {
-			continue;
-		}
+			$quote = $attrs['testimonial'] ?? '';
+			// Clean HTML tags from testimonial text (e.g., <br> tags).
+			$quote = \wp_strip_all_tags( $quote );
 
-		$content = $block->post_content;
+			// Build attribution from available fields.
+			$attribution_parts = [];
+			if ( ! empty( $attrs['reviewerName'] ) ) {
+				$attribution_parts[] = $attrs['reviewerName'];
+			}
+			if ( ! empty( $attrs['reviewerTitle'] ) ) {
+				$attribution_parts[] = $attrs['reviewerTitle'];
+			}
+			if ( ! empty( $attrs['reviewerCompany'] ) ) {
+				$attribution_parts[] = $attrs['reviewerCompany'];
+			}
+			$attribution = \implode( ', ', $attribution_parts );
 
-		// Extract quote: look for text inside <em> tags.
-		$quote = '';
-		if ( \preg_match( '/<em[^>]*>(.+?)<\/em>/is', $content, $quote_match ) ) {
-			// Clean up the quote - remove HTML and surrounding quotes.
-			$quote = \wp_strip_all_tags( $quote_match[1] );
-			// Remove all types of quotation marks from start and end.
-			$quote = \preg_replace( '/^[\s\x{0022}\x{0027}\x{2018}\x{2019}\x{201C}\x{201D}]+/u', '', $quote );
-			$quote = \preg_replace( '/[\s\x{0022}\x{0027}\x{2018}\x{2019}\x{201C}\x{201D}]+$/u', '', $quote );
-		}
-
-		// Extract attribution: look for text in small font paragraph.
-		$attribution = '';
-		if ( \preg_match( '/has-small-font-size[^>]*>([^<]+)</is', $content, $attr_match ) ) {
-			$attribution = \wp_strip_all_tags( $attr_match[1] );
-			$attribution = \trim( $attribution );
-		}
-
-		// Only add if we have both quote and attribution.
-		if ( ! empty( $quote ) && ! empty( $attribution ) ) {
-			$testimonials[] = [
-				'quote'       => $quote,
-				'attribution' => $attribution,
-				'date'        => \get_the_date( 'c', $block ),
-				'rating'      => 5,
-			];
+			if ( ! empty( $quote ) && ! empty( $attribution ) ) {
+				$testimonials[] = [
+					'quote'       => $quote,
+					'attribution' => $attribution,
+					'date'        => \get_the_date( 'c', $page ),
+					'rating'      => 5,
+				];
+			}
 		}
 	}
 

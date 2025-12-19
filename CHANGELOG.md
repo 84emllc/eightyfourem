@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.31.1] - 2025-12-19
+
+### Fixed
+- **Testimonials Schema** - Updated `extract_testimonials_from_page()` in `includes/schema.php` to parse Easy Testimonial Blocks (`etb/grid-item`) instead of legacy reusable blocks
+  - Extracts `testimonial`, `reviewerName`, `reviewerTitle`, and `reviewerCompany` from ETB block attributes
+  - Removed legacy reusable block fallback code
+
 ## [2.31.0] - 2025-12-19
 
 ### Changed
