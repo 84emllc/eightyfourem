@@ -13,9 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Testimonials Page Migration** - Replaced legacy synced pattern testimonials with Easy Testimonial Blocks plugin
   - Migrated 8 client testimonials to single `etb/grid` block with `etb/grid-item` children
   - First testimonial (Pinnacle Group) spans 2 columns for prominence
-  - Dark theme styling with `#1a1a1a` background on grid items
   - Removed legacy synced pattern references from page
-  - Updated `assets/css/testimonials.css` with Easy Testimonial Blocks styling
+  - Styling handled entirely by Easy Testimonial Blocks plugin
 
 - **Font Loading Improvements** - Fixed FOUT (Flash of Unstyled Text) issues site-wide
   - Changed `font-display` from `optional` to `swap` in `theme.json` and `includes/performance.php`
@@ -24,7 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Ensures consistent font rendering across page loads
 
 ### Removed
-- **Legacy Testimonials CSS** - Removed `.legacy-testimonials-hidden` rule from `assets/css/testimonials.css`
+- **Testimonials CSS** - Deleted `assets/css/testimonials.css` and removed enqueue from `includes/enqueue.php`
 
 ## [2.30.0] - 2025-12-18
 
