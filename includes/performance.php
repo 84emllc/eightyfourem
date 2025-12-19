@@ -27,6 +27,12 @@ defined( 'ABSPATH' ) || exit;
 			\esc_url( $theme_uri )
 		) . PHP_EOL;
 
+		// Preload Instrument Sans (body font) - italic weight
+		echo sprintf(
+			'<link rel="preload" href="%s/assets/fonts/instrument-sans/InstrumentSans-Italic-VariableFont_wdth,wght.woff2" as="font" type="font/woff2" crossorigin="anonymous" fetchpriority="high">',
+			\esc_url( $theme_uri )
+		) . PHP_EOL;
+
 		// Preload Jost (heading font) - regular weight
 		echo sprintf(
 			'<link rel="preload" href="%s/assets/fonts/jost/Jost-VariableFont_wght.woff2" as="font" type="font/woff2" crossorigin="anonymous" fetchpriority="high">',
@@ -62,15 +68,23 @@ defined( 'ABSPATH' ) || exit;
 				font-family: 'Instrument Sans';
 				font-style: normal;
 				font-weight: 400 700;
-				font-display: optional;
+				font-display: swap;
 				src: url('<?php echo \esc_url( $theme_uri ); ?>/assets/fonts/instrument-sans/InstrumentSans-VariableFont_wdth,wght.woff2') format('woff2');
+			}
+
+			@font-face {
+				font-family: 'Instrument Sans';
+				font-style: italic;
+				font-weight: 400 700;
+				font-display: swap;
+				src: url('<?php echo \esc_url( $theme_uri ); ?>/assets/fonts/instrument-sans/InstrumentSans-Italic-VariableFont_wdth,wght.woff2') format('woff2');
 			}
 
 			@font-face {
 				font-family: 'Jost';
 				font-style: normal;
 				font-weight: 100 900;
-				font-display: optional;
+				font-display: swap;
 				src: url('<?php echo \esc_url( $theme_uri ); ?>/assets/fonts/jost/Jost-VariableFont_wght.woff2') format('woff2');
 			}
 		</style>

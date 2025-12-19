@@ -37,3 +37,39 @@
     max-width: 1080px !important;
 }
 
+/**
+ * Easy Testimonial Blocks - Dark Theme Styling
+ */
+.testimonials-section .wp-block-etb-grid {
+    width: 100%;
+}
+
+.testimonials-section .wp-block-etb-grid-item {
+    background: #1a1a1a !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.testimonials-section .testimonial-message {
+    color: #ffffff !important;
+    font-style: italic;
+    line-height: 1.6;
+}
+
+.testimonials-section .reviewer-info {
+    margin-top: 1.5rem;
+}
+
+.testimonials-section .reviewer-name {
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+.testimonials-section .reviewer-title,
+.testimonials-section .reviewer-company {
+    color: #999999 !important;
+}
+
+.testimonials-section .quote-icon svg {
+    fill: #0E5A8B !important;
+    opacity: 0.6;
+}
