@@ -71,7 +71,6 @@ Files in `includes/` directory provide modular functionality:
 **Content Display:**
 - `related-case-studies.php` - Displays related case studies on individual case study pages with weighted relevance scoring
 - `author-pages.php` - Author page customizations
-- `testimonials.css` - Custom styling for testimonials blocks (loaded globally via enqueue.php)
 
 **Site Configuration:**
 - `dequeue.php` - Script/style dequeuing for unused assets
