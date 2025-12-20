@@ -788,7 +788,7 @@
 				},
 				"typography": {
 					"fontFamily": "var(--wp--preset--font-family--body)",
-					"fontSize": "1.2rem",
+					"fontSize": "1.02rem",
 					"fontStyle": "normal",
 					"fontWeight": "400"
 				}
@@ -859,7 +859,7 @@
 				},
 				"typography": {
 					"fontFamily": "var(--wp--preset--font-family--heading)",
-					"fontSize": "0.8rem"
+					"fontSize": "0.68rem"
 				}
 			},
 			"h1": {
@@ -880,7 +880,7 @@
 			},
 			"h4": {
 				"typography": {
-					"fontSize": "clamp(1.1rem, 1.1rem + ((1vw - 0.2rem) * 0.767), 1.5rem)"
+					"fontSize": "clamp(0.94rem, 0.94rem + ((1vw - 0.2rem) * 0.767), 1.28rem)"
 				}
 			},
 			"h5": {
