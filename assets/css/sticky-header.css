@@ -298,7 +298,11 @@ header .header-2.ef-sticky-toc-active .ef-sticky-toc {
 .ef-sticky-toc__link:hover,
 .ef-sticky-toc__link:focus {
     background-color: rgba(255, 255, 255, 0.1);
-    outline: none;
+}
+
+.ef-sticky-toc__link:focus {
+    outline: 2px solid #004C7E;
+    outline-offset: -2px;
 }
 
 .ef-sticky-toc-active {
