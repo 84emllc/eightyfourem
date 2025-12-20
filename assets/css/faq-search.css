@@ -14,7 +14,7 @@
 
 .faq-search-label {
   display: block;
-  font-size: 1.125rem;
+  font-size: 0.96rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
   color: var(--wp--preset--color--contrast);
@@ -39,7 +39,7 @@
 .faq-search-input {
   width: 100%;
   padding: 0.75rem 3rem 0.75rem 3rem;
-  font-size: 1rem;
+  font-size: 0.85rem;
   line-height: 1.5;
   border: 2px solid var(--wp--preset--color--contrast-2);
   border-radius: 0.5rem;
@@ -101,7 +101,7 @@
 
 .faq-search-results-summary {
   margin-top: 0.75rem;
-  font-size: 0.9375rem;
+  font-size: 0.8rem;
   color: var(--wp--preset--color--contrast-2);
   min-height: 1.5rem;
 }
@@ -138,11 +138,11 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .faq-search-label {
-    font-size: 1rem;
+    font-size: 0.85rem;
   }
 
   .faq-search-input {
-    font-size: 0.9375rem;
+    font-size: 0.8rem;
     padding: 0.625rem 2.5rem 0.625rem 2.75rem;
   }
 
