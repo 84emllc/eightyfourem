@@ -103,7 +103,7 @@ header .header-2.ef-sticky-toc-active .ef-sticky-toc {
     cursor: pointer;
     padding: 0;
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 0.85rem;
     font-family: Jost, sans-serif;
 }
 
@@ -201,7 +201,7 @@ header .header-2.ef-sticky-toc-active .ef-sticky-toc {
     position: absolute;
     bottom: 8px;
     right: 10px;
-    font-size: 2rem;
+    font-size: 1.7rem;
     font-weight:bold;
     color: #4f7606;
     pointer-events: none;
@@ -271,7 +271,7 @@ header .header-2.ef-sticky-toc-active .ef-sticky-toc {
     text-decoration: none;
     transition: background-color 0.2s ease;
     font-weight: 500;
-    font-size: 1rem;
+    font-size: 0.85rem;
 }
 
 /* Mobile: Full width with no side padding/margins */
@@ -296,7 +296,7 @@ header .header-2.ef-sticky-toc-active .ef-sticky-toc {
 
 @media screen and (min-width: 768px) {
     .ef-sticky-toc__link {
-        font-size: 1.5rem;
+        font-size: 1.28rem;
     }
 }
 
