@@ -68,11 +68,11 @@ $title_style = '';
 if ( ! empty( $title_font_size ) ) {
 	$title_class .= ' has-' . $title_font_size . '-font-size';
 	$preset_sizes = [
-		'small'    => '0.9rem',
-		'medium'   => '1.05rem',
-		'large'    => '1.85rem',
-		'x-large'  => '2.5rem',
-		'xx-large' => '3.27rem',
+		'small'    => '0.77rem',
+		'medium'   => '0.9rem',
+		'large'    => '1.57rem',
+		'x-large'  => '2.1rem',
+		'xx-large' => '2.8rem',
 	];
 	if ( isset( $preset_sizes[ $title_font_size ] ) ) {
 		$title_style .= 'font-size: ' . esc_attr( $preset_sizes[ $title_font_size ] ) . '; ';
@@ -94,11 +94,11 @@ $rating_text_style = '';
 if ( ! empty( $rating_text_font_size ) ) {
 	$rating_text_class .= ' has-' . $rating_text_font_size . '-font-size';
 	$preset_sizes = [
-		'small'    => '0.9rem',
-		'medium'   => '1.05rem',
-		'large'    => '1.85rem',
-		'x-large'  => '2.5rem',
-		'xx-large' => '3.27rem',
+		'small'    => '0.77rem',
+		'medium'   => '0.9rem',
+		'large'    => '1.57rem',
+		'x-large'  => '2.1rem',
+		'xx-large' => '2.8rem',
 	];
 	if ( isset( $preset_sizes[ $rating_text_font_size ] ) ) {
 		$rating_text_style .= 'font-size: ' . esc_attr( $preset_sizes[ $rating_text_font_size ] ) . '; ';
@@ -120,11 +120,11 @@ $reviews_style = '';
 if ( ! empty( $reviews_font_size ) ) {
 	$reviews_class .= ' has-' . $reviews_font_size . '-font-size';
 	$preset_sizes = [
-		'small'    => '0.9rem',
-		'medium'   => '1.05rem',
-		'large'    => '1.85rem',
-		'x-large'  => '2.5rem',
-		'xx-large' => '3.27rem',
+		'small'    => '0.77rem',
+		'medium'   => '0.9rem',
+		'large'    => '1.57rem',
+		'x-large'  => '2.1rem',
+		'xx-large' => '2.8rem',
 	];
 	if ( isset( $preset_sizes[ $reviews_font_size ] ) ) {
 		$reviews_style .= 'font-size: ' . esc_attr( $preset_sizes[ $reviews_font_size ] ) . '; ';
@@ -146,11 +146,11 @@ $review_time_style = '';
 if ( ! empty( $review_time_font_size ) ) {
 	$review_time_class .= ' has-' . $review_time_font_size . '-font-size';
 	$preset_sizes = [
-		'small'    => '0.9rem',
-		'medium'   => '1.05rem',
-		'large'    => '1.85rem',
-		'x-large'  => '2.5rem',
-		'xx-large' => '3.27rem',
+		'small'    => '0.77rem',
+		'medium'   => '0.9rem',
+		'large'    => '1.57rem',
+		'x-large'  => '2.1rem',
+		'xx-large' => '2.8rem',
 	];
 	if ( isset( $preset_sizes[ $review_time_font_size ] ) ) {
 		$review_time_style .= 'font-size: ' . esc_attr( $preset_sizes[ $review_time_font_size ] ) . '; ';
@@ -172,11 +172,11 @@ $stars_style = '';
 if ( ! empty( $stars_font_size ) ) {
 	$stars_class .= ' has-' . $stars_font_size . '-font-size';
 	$preset_sizes = [
-		'small'    => '0.9rem',
-		'medium'   => '1.05rem',
-		'large'    => '1.85rem',
-		'x-large'  => '2.5rem',
-		'xx-large' => '3.27rem',
+		'small'    => '0.77rem',
+		'medium'   => '0.9rem',
+		'large'    => '1.57rem',
+		'x-large'  => '2.1rem',
+		'xx-large' => '2.8rem',
 	];
 	if ( isset( $preset_sizes[ $stars_font_size ] ) ) {
 		$stars_style .= 'font-size: ' . esc_attr( $preset_sizes[ $stars_font_size ] ) . '; ';

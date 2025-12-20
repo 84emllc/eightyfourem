@@ -139,7 +139,7 @@
 					"slug": "custom-color-1"
 				},
 				{
-					"color": "#4f7705",
+					"color": "#3d5c04",
 					"name": "Brand Green",
 					"slug": "brand-green"
 				},
@@ -266,40 +266,40 @@
 				{
 					"fluid": false,
 					"name": "Small",
-					"size": "0.9rem",
+					"size": "0.77rem",
 					"slug": "small"
 				},
 				{
 					"fluid": false,
 					"name": "Medium",
-					"size": "1.05rem",
+					"size": "0.9rem",
 					"slug": "medium"
 				},
 				{
 					"fluid": {
-						"max": "1.85rem",
-						"min": "1.39rem"
+						"max": "1.57rem",
+						"min": "1.18rem"
 					},
 					"name": "Large",
-					"size": "1.85rem",
+					"size": "1.57rem",
 					"slug": "large"
 				},
 				{
 					"fluid": {
-						"max": "2.5rem",
-						"min": "1.85rem"
+						"max": "2.1rem",
+						"min": "1.57rem"
 					},
 					"name": "Extra Large",
-					"size": "2.5rem",
+					"size": "2.1rem",
 					"slug": "x-large"
 				},
 				{
 					"fluid": {
-						"max": "3.27rem",
-						"min": "2.5rem"
+						"max": "2.8rem",
+						"min": "2.1rem"
 					},
 					"name": "Extra Extra Large",
-					"size": "3.27rem",
+					"size": "2.8rem",
 					"slug": "xx-large"
 				}
 			],
@@ -788,7 +788,7 @@
 				},
 				"typography": {
 					"fontFamily": "var(--wp--preset--font-family--body)",
-					"fontSize": "1.2rem",
+					"fontSize": "1.02rem",
 					"fontStyle": "normal",
 					"fontWeight": "400"
 				}
@@ -859,7 +859,7 @@
 				},
 				"typography": {
 					"fontFamily": "var(--wp--preset--font-family--heading)",
-					"fontSize": "0.8rem"
+					"fontSize": "0.68rem"
 				}
 			},
 			"h1": {
@@ -880,7 +880,7 @@
 			},
 			"h4": {
 				"typography": {
-					"fontSize": "clamp(1.1rem, 1.1rem + ((1vw - 0.2rem) * 0.767), 1.5rem)"
+					"fontSize": "clamp(0.94rem, 0.94rem + ((1vw - 0.2rem) * 0.767), 1.28rem)"
 				}
 			},
 			"h5": {

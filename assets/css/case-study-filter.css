@@ -63,7 +63,7 @@
   color: var(--wp--preset--color--contrast, #111);
   cursor: pointer;
   font-family: var(--wp--preset--font-family--heading, inherit);
-  font-size: 0.875rem; /* Reduced from 1rem */
+  font-size: 0.74rem; /* Reduced by 15% */
   font-weight: 600;
   padding: 0.5rem 0.875rem; /* Reduced from 0.75rem */
   text-decoration: none;
@@ -84,7 +84,7 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .case-study-filter-btn {
-    font-size: 0.8125rem; /* 13px - slightly smaller for mobile */
+    font-size: 0.69rem; /* Reduced by 15% */
     padding: 0.625rem 0.75rem; /* 10px top/bottom, 12px left/right - maintains touch target ~40px */
     line-height: 1.2;
   }

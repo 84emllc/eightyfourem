@@ -27,11 +27,11 @@ body.search-results .wp-block-query h2 a {
 
 /* Case studies template - heading sizes */
 body.page-template-wp-custom-template-case-studies main h2 {
-  font-size: 40px !important;
+  font-size: 34px !important;
 }
 
 @media screen and (max-width: 767px) {
   body.page-template-wp-custom-template-case-studies main h2 {
-    font-size: 30px !important;
+    font-size: 26px !important;
   }
 }
