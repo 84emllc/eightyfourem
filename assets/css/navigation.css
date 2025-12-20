@@ -12,7 +12,7 @@
 
 /* Header navigation font size */
 header .wp-block-navigation .wp-block-navigation-item__label {
-  font-size: 1.5rem !important;
+  font-size: 1.28rem !important;
 }
 
 /* Mobile navigation - remove padding in header */
@@ -31,13 +31,13 @@ header .wp-block-navigation .wp-block-navigation-item__label {
   }
 
   .wp-block-navigation .wp-block-navigation-item__label {
-    font-size: 1rem !important;
+    font-size: 0.85rem !important;
   }
 }
 
 /* Desktop navigation - larger font size (exclude footer) */
 @media screen and (min-width: 768px) {
   .wp-block-navigation:not(.footer-secondary) .wp-block-navigation-item__label {
-    font-size: 1.5rem !important;
+    font-size: 1.28rem !important;
   }
 }
