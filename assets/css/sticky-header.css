@@ -319,3 +319,17 @@ header .header-2.ef-sticky-toc-active .ef-sticky-toc {
 .ef-sticky-toc-active .ef-sticky-toc {
     width: 100%;
 }
+
+/* Reduced motion support for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    header,
+    .header-1,
+    .header-2,
+    .ef-sticky-toc__icon,
+    .ef-sticky-toc__icon::before,
+    .ef-sticky-toc__icon::after,
+    .ef-sticky-toc__menu,
+    .ef-sticky-toc__link {
+        transition: none;
+    }
+}
