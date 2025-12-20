@@ -125,6 +125,11 @@ header .header-2.ef-sticky-toc-active .ef-sticky-toc {
     color: inherit;
 }
 
+.ef-sticky-toc__toggle:focus {
+    outline: 2px solid #004C7E;
+    outline-offset: 2px;
+}
+
 .ef-sticky-toc__icon {
     width: 24px;
     height: 2px;
