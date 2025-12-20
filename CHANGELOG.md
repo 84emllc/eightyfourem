@@ -5,7 +5,7 @@ All notable changes to the 84EM Block Theme will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [2.32.0] - 2025-12-20
 
 ### Changed
 - **WCAG 2.2 Accessibility Improvements** - Multiple fixes for better accessibility compliance
@@ -18,6 +18,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Affected: theme.json, navigation, sticky-header, modal-search, faq-search, case-study-filter, page-specific, related-case-studies, search, Google Reviews block CSS and PHP
 
 ### Added
+- **Client Logo Gallery Styles** - Uniform sizing with WCAG-compliant contrast (`assets/css/utilities.css`)
+  - Square aspect ratio containers with flexbox centering
+  - Grayscale filter with enhanced brightness/contrast for visibility
+
 - **Focus Indicators** - Visible focus states for keyboard navigation (`assets/css/sticky-header.css`)
   - Added 2px solid outline to `.ef-sticky-toc__link:focus` (was `outline: none`)
   - Added focus indicator to `.ef-sticky-toc__toggle` button
