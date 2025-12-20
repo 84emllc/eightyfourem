@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Link hover color changed from #999999 (2.85:1) to #595959 (7:1) for WCAG AAA compliance (`assets/css/utilities.css`)
   - Brand Green color darkened from #4f7705 (4.2:1) to #3d5c04 (5.9:1) for WCAG AA compliance (`theme.json`)
 
+- **Site-Wide Font Size Reduction (15%)** - Reduced all font sizes for improved readability
+  - Font presets: small (0.77rem), medium (0.9rem), large (1.57rem), x-large (2.1rem), xx-large (2.8rem)
+  - Updated 13 files with ~55 font-size value changes
+  - Affected: theme.json, navigation, sticky-header, modal-search, faq-search, case-study-filter, page-specific, related-case-studies, search, Google Reviews block CSS and PHP
+
 ### Added
 - **Focus Indicators** - Visible focus states for keyboard navigation (`assets/css/sticky-header.css`)
   - Added 2px solid outline to `.ef-sticky-toc__link:focus` (was `outline: none`)
