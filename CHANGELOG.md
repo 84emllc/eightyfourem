@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- **WCAG 2.2 Accessibility Improvements** - Multiple fixes for better accessibility compliance
+  - Link hover color changed from #999999 (2.85:1) to #595959 (7:1) for WCAG AAA compliance (`assets/css/utilities.css`)
+  - Brand Green color darkened from #4f7705 (4.2:1) to #3d5c04 (5.9:1) for WCAG AA compliance (`theme.json`)
+
+### Added
+- **Focus Indicators** - Visible focus states for keyboard navigation (`assets/css/sticky-header.css`)
+  - Added 2px solid outline to `.ef-sticky-toc__link:focus` (was `outline: none`)
+  - Added focus indicator to `.ef-sticky-toc__toggle` button
+
+- **Reduced Motion Support** - Added `prefers-reduced-motion` media query to sticky header (`assets/css/sticky-header.css`)
+  - Disables transitions for users who prefer reduced motion
+
 ## [2.31.1] - 2025-12-19
 
 ### Fixed
