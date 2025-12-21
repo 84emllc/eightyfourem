@@ -5,6 +5,13 @@ All notable changes to the 84EM Block Theme will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.32.2] - 2025-12-21
+
+### Fixed
+- **Client Logo Gallery FOUC** - Fixed flash of unstyled content where logos appeared in color before grayscale filter applied (`includes/performance.php`)
+  - Inlined critical client logo styles in `<head>` at priority 3
+  - Prevents race condition between HTML rendering and CSS loading
+
 ## [2.32.1] - 2025-12-21
 
 ### Added

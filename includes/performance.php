@@ -94,6 +94,38 @@ defined( 'ABSPATH' ) || exit;
 );
 
 /**
+ * Inline critical client logo gallery styles
+ * Prevents FOUC where logos appear in color before grayscale filter is applied
+ * Must load before images start rendering to avoid visual flash
+ */
+\add_action(
+	hook_name: 'wp_head',
+	callback: function () {
+		?>
+		<style id="critical-client-logos">
+			/* Critical client logo styles to prevent FOUC */
+			.client-logo-gallery .wp-block-image {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				aspect-ratio: 1 / 1;
+				padding: 0.75rem;
+			}
+			.client-logo-gallery .wp-block-image img {
+				max-width: 100%;
+				max-height: 100%;
+				width: auto;
+				height: auto;
+				object-fit: contain;
+				filter: grayscale(100%) brightness(.88) contrast(1.5);
+			}
+		</style>
+		<?php
+	},
+	priority: 3
+);
+
+/**
  * Convert async-loaded stylesheets from print to all media
  * Stylesheets loaded with media="print" are non-blocking but need to be
  * switched to media="all" after page load to apply to screen
