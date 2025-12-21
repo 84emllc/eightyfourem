@@ -5,6 +5,13 @@ All notable changes to the 84EM Block Theme will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.32.1] - 2025-12-21
+
+### Added
+- **Client Logo Gallery Styles** - Uniform sizing with WCAG-compliant contrast (`assets/css/utilities.css`)
+  - Square aspect ratio containers with flexbox centering
+  - Grayscale filter with enhanced brightness/contrast for visibility
+
 ## [2.32.0] - 2025-12-20
 
 ### Changed
