@@ -5,13 +5,6 @@ All notable changes to the 84EM Block Theme will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2.32.3] - 2025-12-21
-
-### Fixed
-- **Client Logo Gallery FOUC (FlyingPress)** - Fixed flash on mouse movement caused by FlyingPress deferring utilities.css (`includes/performance.php`)
-  - Added `flying_press_optimization:after` filter to restore `href` on utilities CSS
-  - Prevents FlyingPress from converting stylesheet to interaction-triggered loading
-
 ## [2.32.2] - 2025-12-21
 
 ### Fixed

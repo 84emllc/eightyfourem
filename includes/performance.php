@@ -126,31 +126,6 @@ defined( 'ABSPATH' ) || exit;
 );
 
 /**
- * Exclude utilities.css from FlyingPress unused CSS deferral
- * FlyingPress converts href to data-href and loads CSS on user interaction
- * This causes FOUC for client logos (grayscale filter applied on mouse move)
- * Restore href immediately to load utilities.css synchronously
- */
-\add_filter(
-	hook_name: 'flying_press_optimization:after',
-	callback: function ( string $html ): string {
-		// Match utilities CSS link tag with data-href (deferred by FlyingPress)
-		$pattern = '/<link[^>]*id=[\'"]eightyfourem-utilities-css[\'"][^>]*data-href=[\'"]([^\'"]+)[\'"][^>]*>/i';
-
-		if ( preg_match( $pattern, $html, $matches ) ) {
-			$deferred_tag = $matches[0];
-			$href_value   = $matches[1];
-
-			// Restore href and remove data-href to load synchronously
-			$restored_tag = preg_replace( '/\sdata-href=/', ' href=', $deferred_tag );
-			$html         = str_replace( $deferred_tag, $restored_tag, $html );
-		}
-
-		return $html;
-	}
-);
-
-/**
  * Convert async-loaded stylesheets from print to all media
  * Stylesheets loaded with media="print" are non-blocking but need to be
  * switched to media="all" after page load to apply to screen
