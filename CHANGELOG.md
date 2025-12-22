@@ -5,6 +5,14 @@ All notable changes to the 84EM Block Theme will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.32.4] - 2025-12-22
+
+### Fixed
+- **Asset Versioning** - Fixed cache busting for enqueued assets (`includes/enqueue.php`)
+  - Converted positional parameters to named parameters for `wp_enqueue_style` and `wp_enqueue_script` calls
+  - Fixed `case-study-filter.css`, `search.css`, `highlight.css`, and `highlight.js` which were missing version parameter
+  - Assets now correctly use theme version instead of WordPress version for cache busting
+
 ## [2.32.3] - 2025-12-22
 
 ### Added

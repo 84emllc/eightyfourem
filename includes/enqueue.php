@@ -77,6 +77,7 @@ defined( 'ABSPATH' ) || exit;
         \wp_enqueue_script(
             handle: 'eightyfourem-highlight',
             src: \get_theme_file_uri( "assets/js/highlight{$suffix}.js" ),
+            ver: $version,
             args: [
                 'strategy' => 'defer',
                 'in_footer' => true,
@@ -87,6 +88,7 @@ defined( 'ABSPATH' ) || exit;
         \wp_enqueue_style(
             handle: 'eightyfourem-highlighter',
             src: \get_theme_file_uri( "assets/css/highlight{$suffix}.css" ),
+            ver: $version,
             media: 'print'
         );
 
@@ -148,9 +150,9 @@ defined( 'ABSPATH' ) || exit;
 		$version = \wp_get_theme()->get( 'Version' );
 
 		\wp_enqueue_style(
-			'eightyfourem-search',
-            \get_theme_file_uri( "assets/css/search{$suffix}.css" ),
-			$version
+			handle: 'eightyfourem-search',
+			src: \get_theme_file_uri( "assets/css/search{$suffix}.css" ),
+			ver: $version
 		);
 	}
 );
@@ -170,9 +172,9 @@ defined( 'ABSPATH' ) || exit;
 		$version = \wp_get_theme()->get( 'Version' );
 
 		\wp_enqueue_style(
-			'eightyfourem-case-study-filter',
-            \get_theme_file_uri( "assets/css/case-study-filter{$suffix}.css" ),
-			$version
+			handle: 'eightyfourem-case-study-filter',
+			src: \get_theme_file_uri( "assets/css/case-study-filter{$suffix}.css" ),
+			ver: $version
 		);
 
         \wp_enqueue_script(
