@@ -5,6 +5,16 @@ All notable changes to the 84EM Block Theme will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.32.3] - 2025-12-22
+
+### Added
+- **Case Studies Lazy Load Animations** - Fade-in animations for case studies grid items (`assets/css/case-study-filter.css`, `assets/js/case-study-filter.js`)
+  - Items start hidden with `opacity: 0` and `translateY(20px)` transform
+  - Intersection Observer triggers smooth transition when items enter viewport
+  - Staggered delays using `nth-child(3n+1/2/3)` for cascading effect across 3-column grid
+  - Items already visible on page load animate immediately
+  - `prefers-reduced-motion` support for accessibility
+
 ## [2.32.2] - 2025-12-21
 
 ### Fixed

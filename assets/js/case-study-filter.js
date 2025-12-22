@@ -19,6 +19,9 @@
 
 		if (!filterButtons.length || !caseStudyItems.length) return;
 
+		// Initialize lazy load animations
+		initLazyLoadAnimations(caseStudyItems);
+
 		// Function to update result counter
 		function updateCounter(visibleCount) {
 			if (resultCounter) {
@@ -163,4 +166,65 @@
 		// Initialize
 		checkUrlHash();
 	});
+
+	/**
+	 * Initialize lazy load fade-in animations for case study grid items
+	 * Uses Intersection Observer to trigger animations when items enter viewport
+	 */
+	function initLazyLoadAnimations(items) {
+		// Check for reduced motion preference
+		var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+		// If user prefers reduced motion, show all items immediately
+		if (prefersReducedMotion) {
+			items.forEach(function (item) {
+				item.classList.add('lazy-visible');
+			});
+			return;
+		}
+
+		// Check if Intersection Observer is supported
+		if (!('IntersectionObserver' in window)) {
+			// Fallback: show all items immediately
+			items.forEach(function (item) {
+				item.classList.add('lazy-visible');
+			});
+			return;
+		}
+
+		// Add lazy-animate class to all items
+		items.forEach(function (item) {
+			item.classList.add('lazy-animate');
+		});
+
+		// Create observer with 15% threshold
+		var observer = new IntersectionObserver(
+			function (entries) {
+				entries.forEach(function (entry) {
+					if (entry.isIntersecting) {
+						entry.target.classList.add('lazy-visible');
+						observer.unobserve(entry.target);
+					}
+				});
+			},
+			{
+				threshold: 0.15,
+				rootMargin: '0px 0px -30px 0px',
+			}
+		);
+
+		// Observe each item
+		items.forEach(function (item) {
+			var rect = item.getBoundingClientRect();
+			var windowHeight = window.innerHeight || document.documentElement.clientHeight;
+
+			if (rect.top < windowHeight && rect.bottom > 0) {
+				// Element is already in viewport, animate immediately
+				item.classList.add('lazy-visible');
+			} else {
+				// Element is below viewport, observe it
+				observer.observe(item);
+			}
+		});
+	}
 })();
