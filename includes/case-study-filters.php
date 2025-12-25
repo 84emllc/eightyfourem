@@ -43,7 +43,7 @@ function get_filters(): array {
             ],
             'security'   => [
                     'label'    => 'Security & Identity',
-                    'keywords' => [ 'security', 'authentication', 'identity', 'verification', 'saml', 'two factor', '2fa', 'two-factor', 'headers', 'persona', 'idology', 'integrity checker' ],
+                    'keywords' => [ 'security', 'authentication', 'identity', 'verification', 'saml', 'two factor', '2fa', 'two-factor', 'headers', 'persona', 'idology', 'integrity checker', 'single sign-on', 'oidc', 'sso', 'identity provider' ],
             ],
             'integrations' => [
                     'label'    => 'Data & Integrations',
