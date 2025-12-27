@@ -38,8 +38,13 @@ function get_reading_time( int $post_id ): int {
 	$content    = $post->post_content;
 	$word_count = \str_word_count( \wp_strip_all_tags( $content ) );
 	$minutes    = (int) ceil( $word_count / WORDS_PER_MINUTE );
-
-	return max( 1, $minutes );
+    $return_val = max( 1, $minutes );
+    if(1 === $return_val) {
+        return 2;
+    }
+    else {
+        return $return_val;
+    }
 }
 
 /**
@@ -74,15 +79,10 @@ function get_reading_time( int $post_id ): int {
 				$text      = $matches[2];
 				$close_tag = $matches[3];
 
-				// Insert reading time before the arrow
-				// Original: "Read more→"
-				// New: "Read more (5 min)→"
 				if ( preg_match( '/^(.+?)(→|->|&rarr;)$/', $text, $text_parts ) ) {
-					$base_text = trim( $text_parts[1] );
 					$arrow     = $text_parts[2];
 					$new_text  = sprintf( '%d min read %s', $reading_time, $arrow );
 				} else {
-					// Fallback if no arrow found
 					$new_text = sprintf( '%d min read', $reading_time );
 				}
 
