@@ -5,6 +5,25 @@ All notable changes to the 84EM Block Theme will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.33.0] - 2025-12-27
+
+### Added
+- **Reading Time** - Displays estimated reading time on case studies (`includes/reading-time.php`)
+  - Minimum reading time set to 2 minutes
+  - Added to case studies list view
+
+- **HTML Separator Block** - Lightweight UAGB separator replacement for block editor (`assets/js/html-separator.js`, `includes/enqueue.php`)
+  - Registers `uagb/separator` block type with code icon SVG
+  - Matches existing UAGB separator markup for seamless transition
+  - Enqueued only in block editor context
+
+### Changed
+- **Brand Green Color** - Updated from #3d5c04 to #9ff400 for better visibility (`theme.json`)
+
+- **Case Study Filter Keywords** - Refined keyword matching (`includes/case-study-filters.php`)
+  - Expanded security filter with additional keywords
+  - Removed "assessment" from healthcare keywords
+
 ## [2.32.4] - 2025-12-22
 
 ### Fixed
