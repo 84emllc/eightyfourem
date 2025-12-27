@@ -31,7 +31,7 @@ function get_filters(): array {
             ],
             'healthcare' => [
                     'label'    => 'Healthcare',
-                    'keywords' => [ 'healthcare', 'medical', 'health', 'senior living', 'wellness', 'assessment' ],
+                    'keywords' => [ 'healthcare', 'medical', 'health', 'senior living', 'wellness' ],
             ],
             'marketing'  => [
                     'label'    => 'Marketing & CRM',
@@ -51,7 +51,7 @@ function get_filters(): array {
             ],
             'education'  => [
                     'label'    => 'Education',
-                    'keywords' => [ 'education', 'learndash', 'lms', 'learning', 'course', 'training', 'e-learning', 'student' ],
+                    'keywords' => [ 'education', 'learndash', 'lms', 'learning', 'course', 'training', 'e-learning', 'student', 'learning management', 'sensei', 'moodle' ],
             ],
             'ai'         => [
                     'label'    => 'AI & Automation',
