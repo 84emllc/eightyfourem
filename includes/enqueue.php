@@ -289,3 +289,23 @@ defined( 'ABSPATH' ) || exit;
 		);
 	}
 );
+
+// html separator in editor
+\add_action(
+    hook_name: 'enqueue_block_editor_assets',
+    callback: function() {
+
+        $suffix  = ( ! \defined( 'WP_DEBUG' ) || ! WP_DEBUG ) ? '.min' : '';
+        $version = \wp_get_theme()->get( 'Version' );
+
+        \wp_enqueue_script(
+            handle: 'eightyfourem-html-separator',
+            src: \get_theme_file_uri( "assets/js/html-separator{$suffix}.js" ),
+            ver: $version,
+            args: [
+                'strategy' => 'defer',
+                'in_footer' => true,
+            ]
+        );
+    }
+);
