@@ -38,13 +38,8 @@ function get_reading_time( int $post_id ): int {
 	$content    = $post->post_content;
 	$word_count = \str_word_count( \wp_strip_all_tags( $content ) );
 	$minutes    = (int) ceil( $word_count / WORDS_PER_MINUTE );
-    $return_val = max( 1, $minutes );
-    if(1 === $return_val) {
-        return 2;
-    }
-    else {
-        return $return_val;
-    }
+
+	return max( 1, $minutes );
 }
 
 /**
