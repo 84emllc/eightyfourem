@@ -18,6 +18,7 @@ require_once get_template_directory() . '/includes/block-stylesheets.php';
 require_once get_template_directory() . '/includes/calendly-booking-details.php';
 require_once get_template_directory() . '/includes/case-study-filters.php';
 require_once get_template_directory() . '/includes/cli.php';
+require_once get_template_directory() . '/includes/code-separator.php';
 require_once get_template_directory() . '/includes/related-case-studies.php';
 require_once get_template_directory() . '/includes/dequeue.php';
 require_once get_template_directory() . '/includes/disable-comments.php';

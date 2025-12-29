@@ -609,6 +609,176 @@ class ThemeCLI {
 	}
 
 	/**
+	 * Migrate uagb/separator blocks to eightyfourem/code-separator blocks
+	 *
+	 * ## OPTIONS
+	 *
+	 * [--dry-run]
+	 * : Preview changes without saving
+	 *
+	 * ## EXAMPLES
+	 *
+	 *     # Preview migration
+	 *     wp 84em migrate-separators --dry-run
+	 *
+	 *     # Execute migration
+	 *     wp 84em migrate-separators
+	 *
+	 * @when after_wp_load
+	 *
+	 * @param array $_args       Positional arguments (unused).
+	 * @param array $assoc_args  Associative arguments.
+	 */
+	public function migrate_separators( $_args, $assoc_args ) {
+		$dry_run      = isset( $assoc_args['dry-run'] );
+		$total_blocks = 0;
+		$total_items  = 0;
+
+		if ( $dry_run ) {
+			\WP_CLI::log( 'DRY RUN: No changes will be saved.' );
+		}
+
+		\WP_CLI::log( 'Migrating uagb/separator blocks to eightyfourem/code-separator...' );
+
+		// The replacement block markup (static - always the same)
+		$new_block = '<!-- wp:eightyfourem/code-separator -->' . "\n" .
+			'<div class="wp-block-eightyfourem-code-separator"><div class="code-separator-inner"><div class="code-separator-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M414.8 40.79L286.8 488.8C281.9 505.8 264.2 515.6 247.2 510.8C230.2 505.9 220.4 488.2 225.2 471.2L353.2 23.21C358.1 6.216 375.8-3.624 392.8 1.232C409.8 6.087 419.6 23.8 414.8 40.79H414.8zM518.6 121.4L630.6 233.4C643.1 245.9 643.1 266.1 630.6 278.6L518.6 390.6C506.1 403.1 485.9 403.1 473.4 390.6C460.9 378.1 460.9 357.9 473.4 345.4L562.7 256L473.4 166.6C460.9 154.1 460.9 133.9 473.4 121.4C485.9 108.9 506.1 108.9 518.6 121.4V121.4zM166.6 166.6L77.25 256L166.6 345.4C179.1 357.9 179.1 378.1 166.6 390.6C154.1 403.1 133.9 403.1 121.4 390.6L9.372 278.6C-3.124 266.1-3.124 245.9 9.372 233.4L121.4 121.4C133.9 108.9 154.1 108.9 166.6 121.4C179.1 133.9 179.1 154.1 166.6 166.6V166.6z"></path></svg></div></div></div>' . "\n" .
+			'<!-- /wp:eightyfourem/code-separator -->';
+
+		// Regex to match uagb/separator blocks
+		// Matches: <!-- wp:uagb/separator {JSON} --> ... <!-- /wp:uagb/separator -->
+		$pattern = '/<!-- wp:uagb\/separator \{[^}]*\} -->\s*.*?\s*<!-- \/wp:uagb\/separator -->/s';
+
+		// Find all posts, pages, and templates with the block
+		$items = $this->find_items_with_separator_blocks();
+
+		if ( empty( $items ) ) {
+			\WP_CLI::success( 'No uagb/separator blocks found. Nothing to migrate.' );
+			return;
+		}
+
+		\WP_CLI::log( sprintf( 'Found %d items with uagb/separator blocks.', count( $items ) ) );
+
+		$current = 0;
+		foreach ( $items as $item ) {
+			$current++;
+			$content       = $item['content'];
+			$blocks_found  = \preg_match_all( $pattern, $content );
+			$new_content   = \preg_replace( $pattern, $new_block, $content );
+
+			if ( $new_content !== $content && $blocks_found > 0 ) {
+				$total_blocks += $blocks_found;
+				$total_items++;
+
+				$label = $item['type'] === 'template' ? 'template' : 'post ID';
+				$title = $item['title'];
+
+				if ( $dry_run ) {
+					\WP_CLI::log( sprintf(
+						'[%d/%d] Would migrate %s %s "%s"... %d block(s)',
+						$current,
+						count( $items ),
+						$label,
+						$item['id'],
+						$title,
+						$blocks_found
+					) );
+				} else {
+					// Update the content
+					if ( $item['type'] === 'template' ) {
+						\wp_update_post(
+							[
+								'ID'           => $item['id'],
+								'post_content' => $new_content,
+							]
+						);
+					} else {
+						\wp_update_post(
+							[
+								'ID'           => $item['id'],
+								'post_content' => $new_content,
+							]
+						);
+					}
+
+					\WP_CLI::log( sprintf(
+						'[%d/%d] Migrated %s %s "%s"... %d block(s) migrated',
+						$current,
+						count( $items ),
+						$label,
+						$item['id'],
+						$title,
+						$blocks_found
+					) );
+				}
+			}
+		}
+
+		if ( $dry_run ) {
+			\WP_CLI::success( sprintf(
+				'DRY RUN complete. Would migrate %d block(s) across %d item(s).',
+				$total_blocks,
+				$total_items
+			) );
+		} else {
+			\WP_CLI::success( sprintf(
+				'Migration complete. %d block(s) migrated across %d item(s).',
+				$total_blocks,
+				$total_items
+			) );
+		}
+	}
+
+	/**
+	 * Find all items containing uagb/separator blocks
+	 *
+	 * @return array Array of items with id, title, content, and type
+	 */
+	private function find_items_with_separator_blocks() {
+		global $wpdb;
+
+		$items = [];
+
+		// Search in posts and pages
+		$posts = $wpdb->get_results(
+			"SELECT ID, post_title, post_content, post_type
+			FROM {$wpdb->posts}
+			WHERE post_status IN ('publish', 'draft', 'private')
+			AND post_type IN ('post', 'page')
+			AND post_content LIKE '%wp:uagb/separator%'"
+		);
+
+		foreach ( $posts as $post ) {
+			$items[] = [
+				'id'      => $post->ID,
+				'title'   => $post->post_title,
+				'content' => $post->post_content,
+				'type'    => $post->post_type,
+			];
+		}
+
+		// Search in wp_template and wp_template_part
+		$templates = $wpdb->get_results(
+			"SELECT ID, post_title, post_content, post_type, post_name
+			FROM {$wpdb->posts}
+			WHERE post_status IN ('publish', 'draft')
+			AND post_type IN ('wp_template', 'wp_template_part')
+			AND post_content LIKE '%wp:uagb/separator%'"
+		);
+
+		foreach ( $templates as $template ) {
+			$items[] = [
+				'id'      => $template->ID,
+				'title'   => $template->post_name,
+				'content' => $template->post_content,
+				'type'    => 'template',
+			];
+		}
+
+		return $items;
+	}
+
+	/**
 	 * Clean up test posts and attachments
 	 */
 	private function cleanup_og_tests() {
@@ -655,3 +825,4 @@ class ThemeCLI {
 // Register the commands
 \WP_CLI::add_command( '84em regenerate-schema', [ new ThemeCLI(), 'regenerate_schema' ] );
 \WP_CLI::add_command( '84em test-og-images', [ new ThemeCLI(), 'test_og_images' ] );
+\WP_CLI::add_command( '84em migrate-separators', [ new ThemeCLI(), 'migrate_separators' ] );

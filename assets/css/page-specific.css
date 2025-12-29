@@ -9,7 +9,8 @@ body.page-id-357 .global-cta {
 }
 
 /* Hide separators on local pages template */
-body.page-template-wp-custom-template-local-pages-2 main .wp-block-uagb-separator {
+body.page-template-wp-custom-template-local-pages-2 main .wp-block-uagb-separator,
+body.page-template-wp-custom-template-local-pages-2 main .wp-block-eightyfourem-code-separator {
   display: none !important;
 }
 

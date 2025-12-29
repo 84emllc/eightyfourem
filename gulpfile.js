@@ -37,6 +37,10 @@ const paths = {
       './blocks/calendly-booking-details/style.css',
       './blocks/calendly-booking-details/editor.css'
     ],
+    codeSeparator: [
+      './blocks/code-separator/style.css',
+      './blocks/code-separator/editor.css'
+    ],
     highlight: './assets/css/highlight.css',
     dest: './assets/css/',
   },
@@ -46,11 +50,11 @@ const paths = {
       './assets/js/case-study-filter.js',
       './assets/js/modal-search.js',
       './assets/js/faq-search.js',
-      './assets/js/animations.js',
-      './assets/js/html-separator.js'
+      './assets/js/animations.js'
     ],
     googleReviews: './blocks/google-reviews/index.js',
     calendlyBooking: './blocks/calendly-booking-details/index.js',
+    codeSeparator: './blocks/code-separator/index.js',
     highlight: './assets/js/highlight.js',
     dest: './assets/js/'
   }
@@ -70,7 +74,11 @@ function clean() {
     './blocks/calendly-booking-details/*.min.css',
     './blocks/calendly-booking-details/*.min.css.map',
     './blocks/calendly-booking-details/*.min.js',
-    './blocks/calendly-booking-details/*.min.js.map'
+    './blocks/calendly-booking-details/*.min.js.map',
+    './blocks/code-separator/*.min.css',
+    './blocks/code-separator/*.min.css.map',
+    './blocks/code-separator/*.min.js',
+    './blocks/code-separator/*.min.js.map'
   ]);
 }
 
@@ -146,8 +154,25 @@ function stylesCalendlyBooking() {
     .pipe(gulp.dest('./blocks/calendly-booking-details/'));
 }
 
+// CSS optimization task - Code Separator
+function stylesCodeSeparator() {
+  return gulp.src(paths.styles.codeSeparator)
+    .pipe(sourcemaps.init())
+    .pipe(cleanCSS({
+      compatibility: 'ie8',
+      level: {
+        1: {
+          specialComments: 0
+        }
+      }
+    }))
+    .pipe(rename({ suffix: '.min' }))
+    .pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest('./blocks/code-separator/'));
+}
+
 // Combined styles task
-const styles = parallel(stylesTheme, stylesGoogleReviews, stylesHighlight, stylesCalendlyBooking);
+const styles = parallel(stylesTheme, stylesGoogleReviews, stylesHighlight, stylesCalendlyBooking, stylesCodeSeparator);
 
 // JavaScript optimization task - Theme files
 function scriptsTheme() {
@@ -205,8 +230,22 @@ function scriptsCalendlyBooking() {
     .pipe(gulp.dest('./blocks/calendly-booking-details/'));
 }
 
+// JavaScript optimization task - Code Separator
+function scriptsCodeSeparator() {
+  return gulp.src(paths.scripts.codeSeparator)
+    .pipe(sourcemaps.init())
+    .pipe(terser({
+      compress: {
+        drop_console: true
+      }
+    }))
+    .pipe(rename({ suffix: '.min' }))
+    .pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest('./blocks/code-separator/'));
+}
+
 // Combined scripts task
-const scripts = parallel(scriptsTheme, scriptsGoogleReviews, scriptsHighlight, scriptsCalendlyBooking);
+const scripts = parallel(scriptsTheme, scriptsGoogleReviews, scriptsHighlight, scriptsCalendlyBooking, scriptsCodeSeparator);
 
 // Watch task for development
 function watchFiles() {
@@ -214,10 +253,12 @@ function watchFiles() {
   watch(paths.styles.googleReviews, stylesGoogleReviews);
   watch(paths.styles.highlight, stylesHighlight);
   watch(paths.styles.calendlyBooking, stylesCalendlyBooking);
+  watch(paths.styles.codeSeparator, stylesCodeSeparator);
   watch(paths.scripts.theme, scriptsTheme);
   watch(paths.scripts.googleReviews, scriptsGoogleReviews);
   watch(paths.scripts.highlight, scriptsHighlight);
   watch(paths.scripts.calendlyBooking, scriptsCalendlyBooking);
+  watch(paths.scripts.codeSeparator, scriptsCodeSeparator);
 }
 
 // Define complex tasks

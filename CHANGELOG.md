@@ -5,6 +5,24 @@ All notable changes to the 84EM Block Theme will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.34.0] - 2025-12-29
+
+### Added
+- **Code Separator Block** - New 84EM-branded Gutenberg block (`blocks/code-separator/`, `includes/code-separator.php`)
+  - Replaces legacy UAGB separator with native theme block
+  - Block name: `eightyfourem/code-separator`
+  - Supports alignment and spacing controls
+  - Block transforms for automatic migration from `uagb/separator`
+
+- **Migration CLI Command** - Bulk convert legacy separators (`includes/cli.php`)
+  - Command: `wp 84em migrate-separators`
+  - Supports `--dry-run` flag for preview
+
+### Removed
+- **Legacy Separator Files** - Removed in favor of new code-separator block
+  - Deleted `assets/js/html-separator.js`
+  - Deleted `mu-plugins/uagb-separator.php`
+
 ## [2.33.1] - 2025-12-28
 
 ### Changed
