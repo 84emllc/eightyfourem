@@ -1,0 +1,23 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "eightyfourem/code-separator",
+	"version": "1.0.0",
+	"title": "Code Separator",
+	"category": "design",
+	"icon": "minus",
+	"description": "A decorative separator with a code icon",
+	"keywords": ["separator", "divider", "code", "84em"],
+	"textdomain": "eightyfourem",
+	"editorScript": "file:./index.min.js",
+	"editorStyle": "file:./editor.min.css",
+	"style": "file:./style.min.css",
+	"supports": {
+		"html": false,
+		"align": true,
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	}
+}
