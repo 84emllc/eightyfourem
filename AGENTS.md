@@ -63,8 +63,13 @@ Files in `includes/` directory provide modular functionality:
 - `animations.css` - CSS animations for block editor (replaces blocks-animation plugin)
 - `animations.js` - Intersection Observer for scroll-triggered animations
 
+**Dynamic Content:**
+- `dynamic-years.php` - Shortcodes for dynamic year calculations: `[dev_years]` (programming since 1995), `[wp_years]` (WordPress since 2012), `[years_since year="XXXX"]` (custom year)
+- `cli-dynamic-years.php` - WP-CLI commands for migrating hardcoded year values to shortcodes
+
 **Integrations:**
 - `cli.php` - WP-CLI commands for schema regeneration
+- `cli-dynamic-years.php` - WP-CLI commands for dynamic years migration
 - `calendly-booking-details.php` - Calendly booking details block
 - `shortcodes.php` - Shortcode registry (delegates to feature modules)
 
@@ -206,6 +211,19 @@ add_shortcode( 'case_study_filters', 'EightyFourEM\CaseStudyFilters\render_filte
   - Test `prefers-reduced-motion` support (elements should appear immediately without animation delay)
   - Verify `.animate-visible` class is added when elements enter viewport
   - Confirm no console errors related to animation styles or scripts
+
+- **Dynamic Years** (`includes/dynamic-years.php`, `includes/cli-dynamic-years.php`)
+  - Test shortcodes via WP-CLI: `wp 84em dynamic-years test`
+  - View migration statistics: `wp 84em dynamic-years stats`
+  - Preview migration changes: `wp 84em dynamic-years migrate --dry-run`
+  - Execute migration: `wp 84em dynamic-years migrate`
+  - Shortcodes available:
+    - `[dev_years]` - Years since 1995 (programming experience)
+    - `[wp_years]` - Years since 2012 (WordPress experience)
+    - `[years_since year="XXXX"]` - Years since custom year
+  - After migration, verify pages display correct calculated years
+  - Edit a migrated page in block editor to confirm shortcode appears as text
+  - Clear caches after migration (FlyingPress, Cloudflare)
 
 ## Release Process
 When preparing a release with version bump:
