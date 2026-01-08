@@ -28,7 +28,7 @@ defined( 'ABSPATH' ) || exit;
 
         $_84em_seo_title = \get_post_meta( \get_the_ID(), '_84em_seo_title', true );
         if ( ! empty( $_84em_seo_title ) ) {
-            $title = \wp_strip_all_tags( $_84em_seo_title );
+            $title = \wp_strip_all_tags( \do_shortcode( $_84em_seo_title ) );
         }
 
         return $title;

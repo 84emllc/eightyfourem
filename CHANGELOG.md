@@ -5,6 +5,14 @@ All notable changes to the 84EM Block Theme will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.35.1] - 2026-01-08
+
+### Fixed
+- **SEO Title Shortcodes** - Dynamic years shortcodes now process correctly in HTML document titles (`includes/document-title.php`)
+
+### Changed
+- **Dynamic Years Migration CLI** - Extended to also migrate `_84em_seo_title` meta fields (`includes/cli-dynamic-years.php`)
+
 ## [2.35.0] - 2026-01-08
 
 ### Added
