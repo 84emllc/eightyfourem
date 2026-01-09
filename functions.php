@@ -19,6 +19,7 @@ require_once get_template_directory() . '/includes/calendly-booking-details.php'
 require_once get_template_directory() . '/includes/case-study-filters.php';
 require_once get_template_directory() . '/includes/cli.php';
 require_once get_template_directory() . '/includes/cli-dynamic-years.php';
+require_once get_template_directory() . '/includes/cli-pattern-categories.php';
 require_once get_template_directory() . '/includes/code-separator.php';
 require_once get_template_directory() . '/includes/dynamic-years.php';
 require_once get_template_directory() . '/includes/related-case-studies.php';

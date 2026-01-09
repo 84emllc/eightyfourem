@@ -5,6 +5,24 @@ All notable changes to the 84EM Block Theme will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.36.0] - 2026-01-09
+
+### Added
+- **Pattern Categories CLI** - WP-CLI commands for synced pattern categorization (`includes/cli-pattern-categories.php`)
+  - Command: `wp 84em pattern-categories list` - List all synced patterns with categories
+  - Command: `wp 84em pattern-categories sync` - Assign categories based on naming rules with `--dry-run` support
+  - Auto-creates categories: Heroes, Testimonials, CTAs, Logos, Utility, Deprecated
+
+### Changed
+- **Pattern Categories Cleanup** - Unregister 19 unused WordPress core pattern categories (`includes/pattern-categories.php`)
+  - Theme now only registers `query` and `page` categories
+  - Reduces clutter in Block Editor pattern picker
+
+### Removed
+- **Remote Patterns** - Disabled WordPress.org pattern directory (`includes/pattern-categories.php`)
+  - Remote patterns no longer appear in Block Editor inserter
+  - Eliminates unwanted patterns like "Clients Section" in testimonials category
+
 ## [2.35.1] - 2026-01-08
 
 ### Fixed
