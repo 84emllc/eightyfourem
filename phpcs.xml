@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<ruleset name="84EM Theme">
+	<description>PHP Coding Standards for 84EM Theme (WordPress with modern PHP 8 features)</description>
+
+	<!-- Scan PHP files only -->
+	<arg name="extensions" value="php"/>
+
+	<!-- Exclude node_modules -->
+	<exclude-pattern>/node_modules/*</exclude-pattern>
+
+	<!-- Use WordPress-Extra as base (less strict than WordPress) -->
+	<rule ref="WordPress-Extra">
+		<!-- Allow short array syntax [] -->
+		<exclude name="Universal.Arrays.DisallowShortArraySyntax"/>
+		<exclude name="Generic.Arrays.DisallowShortArraySyntax"/>
+
+		<!-- Allow non-Yoda conditions (modern PHP style) -->
+		<exclude name="WordPress.PHP.YodaConditions"/>
+
+		<!-- Allow named parameters formatting -->
+		<exclude name="PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket"/>
+		<exclude name="PEAR.Functions.FunctionCallSignature.CloseBracketLine"/>
+		<exclude name="PEAR.Functions.FunctionCallSignature.MultipleArguments"/>
+
+		<!-- Allow inline comments without punctuation -->
+		<exclude name="Squiz.Commenting.InlineComment.InvalidEndChar"/>
+	</rule>
+
+	<!-- WordPress security checks -->
+	<rule ref="WordPress.Security"/>
+
+	<!-- WordPress database rules -->
+	<rule ref="WordPress.DB"/>
+</ruleset>
