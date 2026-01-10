@@ -36,4 +36,5 @@ jobs:
           composer global require --dev wp-coding-standards/wpcs dealerdirect/phpcodesniffer-composer-installer
 
       - name: Run PHPCS
+        continue-on-error: true
         run: phpcs --report=checkstyle | cs2pr

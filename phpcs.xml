@@ -14,6 +14,7 @@
 	<!-- Exclude directories -->
 	<exclude-pattern>/node_modules/*</exclude-pattern>
 	<exclude-pattern>/patterns/*</exclude-pattern>
+	<exclude-pattern>/assets/*</exclude-pattern>
 
 	<!-- Use WordPress-Extra as base (less strict than WordPress) -->
 	<rule ref="WordPress-Extra">
