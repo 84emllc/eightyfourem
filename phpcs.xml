@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<ruleset name="84EM Theme">
+	<description>PHP Coding Standards for 84EM Theme (WordPress with modern PHP 8 features)</description>
+
+	<!-- Scan these paths -->
+	<file>.</file>
+
+	<!-- Scan PHP files only -->
+	<arg name="extensions" value="php"/>
+
+	<!-- Show only errors, not warnings -->
+	<arg name="warning-severity" value="0"/>
+
+	<!-- Exclude directories -->
+	<exclude-pattern>/node_modules/*</exclude-pattern>
+	<exclude-pattern>/patterns/*</exclude-pattern>
+	<exclude-pattern>/assets/*</exclude-pattern>
+
+	<!-- Use WordPress-Extra as base (less strict than WordPress) -->
+	<rule ref="WordPress-Extra">
+		<!-- Allow short array syntax [] -->
+		<exclude name="Universal.Arrays.DisallowShortArraySyntax"/>
+		<exclude name="Generic.Arrays.DisallowShortArraySyntax"/>
+
+		<!-- Allow non-Yoda conditions (modern PHP style) -->
+		<exclude name="WordPress.PHP.YodaConditions"/>
+
+		<!-- Allow named parameters formatting -->
+		<exclude name="PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket"/>
+		<exclude name="PEAR.Functions.FunctionCallSignature.CloseBracketLine"/>
+		<exclude name="PEAR.Functions.FunctionCallSignature.MultipleArguments"/>
+
+		<!-- Allow inline comments without punctuation -->
+		<exclude name="Squiz.Commenting.InlineComment.InvalidEndChar"/>
+
+		<!-- Allow short ternaries -->
+		<exclude name="Universal.Operators.DisallowShortTernary"/>
+	</rule>
+
+	<!-- WordPress security checks - but allow pre-escaped block attributes -->
+	<rule ref="WordPress.Security">
+		<exclude name="WordPress.Security.EscapeOutput.OutputNotEscaped"/>
+	</rule>
+</ruleset>
