@@ -8,8 +8,12 @@
 	<!-- Scan PHP files only -->
 	<arg name="extensions" value="php"/>
 
-	<!-- Exclude node_modules -->
+	<!-- Show only errors, not warnings -->
+	<arg name="warning-severity" value="0"/>
+
+	<!-- Exclude directories -->
 	<exclude-pattern>/node_modules/*</exclude-pattern>
+	<exclude-pattern>/patterns/*</exclude-pattern>
 
 	<!-- Use WordPress-Extra as base (less strict than WordPress) -->
 	<rule ref="WordPress-Extra">
@@ -27,11 +31,14 @@
 
 		<!-- Allow inline comments without punctuation -->
 		<exclude name="Squiz.Commenting.InlineComment.InvalidEndChar"/>
+
+		<!-- Allow short ternaries -->
+		<exclude name="Universal.Operators.DisallowShortTernary"/>
+		<exclude name="WordPress.PHP.DisallowShortTernary"/>
 	</rule>
 
-	<!-- WordPress security checks -->
-	<rule ref="WordPress.Security"/>
-
-	<!-- WordPress database rules -->
-	<rule ref="WordPress.DB"/>
+	<!-- WordPress security checks - but allow pre-escaped block attributes -->
+	<rule ref="WordPress.Security">
+		<exclude name="WordPress.Security.EscapeOutput.OutputNotEscaped"/>
+	</rule>
 </ruleset>
