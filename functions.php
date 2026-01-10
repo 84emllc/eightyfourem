@@ -9,7 +9,7 @@
  */
 
 /**
- * Include files from includes directory
+ * Include files from includes directory.
  */
 require_once get_template_directory() . '/includes/404.php';
 require_once get_template_directory() . '/includes/author-pages.php';

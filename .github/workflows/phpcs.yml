@@ -6,11 +6,13 @@ on:
       - main
     paths:
       - '**/*.php'
+      - 'phpcs.xml'
   pull_request:
     branches:
       - main
     paths:
       - '**/*.php'
+      - 'phpcs.xml'
   workflow_dispatch:
 
 jobs:
