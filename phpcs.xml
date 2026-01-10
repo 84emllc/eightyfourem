@@ -34,7 +34,6 @@
 
 		<!-- Allow short ternaries -->
 		<exclude name="Universal.Operators.DisallowShortTernary"/>
-		<exclude name="WordPress.PHP.DisallowShortTernary"/>
 	</rule>
 
 	<!-- WordPress security checks - but allow pre-escaped block attributes -->
