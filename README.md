@@ -5,6 +5,7 @@
 [![PHP Coding Standards](https://github.com/84emllc/eightyfourem/actions/workflows/phpcs.yml/badge.svg)](https://github.com/84emllc/eightyfourem/actions/workflows/phpcs.yml)
 [![Check Internal Links](https://github.com/84emllc/eightyfourem/actions/workflows/check-links.yml/badge.svg)](https://github.com/84emllc/eightyfourem/actions/workflows/check-links.yml)
 [![Check External Links](https://github.com/84emllc/eightyfourem/actions/workflows/check-external-links.yml/badge.svg)](https://github.com/84emllc/eightyfourem/actions/workflows/check-external-links.yml)
+[![Security Review](https://github.com/84emllc/eightyfourem/actions/workflows/security-review.yml/badge.svg)](https://github.com/84emllc/eightyfourem/actions/workflows/security-review.yml)
 
 A modern WordPress block theme for 84EM, based on Twenty Twenty-Four with custom enhancements and styling.
 
