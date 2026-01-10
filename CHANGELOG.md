@@ -5,6 +5,14 @@ All notable changes to the 84EM Block Theme will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.39.0] - 2026-01-10
+
+### Added
+- **Security Review Workflow** - Claude-powered security analysis on PRs (`security-review.yml`)
+  - Automated code review for security vulnerabilities
+  - Comments findings directly on pull requests
+  - Triggers on PHP, JS, YAML, and config file changes
+
 ## [2.38.0] - 2026-01-10
 
 ### Added
