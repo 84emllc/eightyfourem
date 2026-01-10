@@ -2,6 +2,9 @@
 <ruleset name="84EM Theme">
 	<description>PHP Coding Standards for 84EM Theme (WordPress with modern PHP 8 features)</description>
 
+	<!-- Scan these paths -->
+	<file>.</file>
+
 	<!-- Scan PHP files only -->
 	<arg name="extensions" value="php"/>
 
