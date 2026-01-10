@@ -132,6 +132,20 @@ defined( 'ABSPATH' ) || exit;
 				'in_footer' => true,
 			]
 		);
+
+		// Hero lazy load JS - only on front page
+		// Note: CSS is inline in wp_head via hero-lazy-load.php for critical rendering
+		if ( \is_front_page() ) {
+			\wp_enqueue_script(
+				handle: 'eightyfourem-hero-lazy-load',
+				src: \get_theme_file_uri( "assets/js/hero-lazy-load{$suffix}.js" ),
+				ver: $version,
+				args: [
+					'strategy'  => 'defer',
+					'in_footer' => true,
+				]
+			);
+		}
 	}
 );
 

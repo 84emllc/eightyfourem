@@ -50,7 +50,8 @@ const paths = {
       './assets/js/case-study-filter.js',
       './assets/js/modal-search.js',
       './assets/js/faq-search.js',
-      './assets/js/animations.js'
+      './assets/js/animations.js',
+      './assets/js/hero-lazy-load.js'
     ],
     googleReviews: './blocks/google-reviews/index.js',
     calendlyBooking: './blocks/calendly-booking-details/index.js',
