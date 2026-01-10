@@ -5,6 +5,15 @@ All notable changes to the 84EM Block Theme will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.37.0] - 2026-01-10
+
+### Added
+- **GitHub Actions Workflows** - CI/CD automation for code quality and deployment
+  - `php-syntax.yml` - PHP syntax validation on push/PR
+  - `check-links.yml` - Internal link checking with PR comments
+  - `check-external-links.yml` - Weekly external link validation with auto-issue creation
+- **Status Badges** - GitHub Actions workflow status badges in README.md
+
 ## [2.36.0] - 2026-01-09
 
 ### Added
