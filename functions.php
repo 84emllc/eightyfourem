@@ -12,6 +12,7 @@
  * Include files from includes directory
  */
 require_once get_template_directory() . '/includes/404.php';
+require_once get_template_directory() . '/includes/accessibility.php';
 require_once get_template_directory() . '/includes/author-pages.php';
 require_once get_template_directory() . '/includes/block-styles.php';
 require_once get_template_directory() . '/includes/block-stylesheets.php';
@@ -20,6 +21,7 @@ require_once get_template_directory() . '/includes/case-study-filters.php';
 require_once get_template_directory() . '/includes/cli.php';
 require_once get_template_directory() . '/includes/cli-dynamic-years.php';
 require_once get_template_directory() . '/includes/cli-pattern-categories.php';
+require_once get_template_directory() . '/includes/cli-v2.40.0-migration.php';
 require_once get_template_directory() . '/includes/code-separator.php';
 require_once get_template_directory() . '/includes/dynamic-years.php';
 require_once get_template_directory() . '/includes/related-case-studies.php';

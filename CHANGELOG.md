@@ -5,6 +5,24 @@ All notable changes to the 84EM Block Theme will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.40.0] - 2026-01-10
+
+### Added
+- **Accessibility Module** - New `includes/accessibility.php` with filters for improved accessibility
+  - Logo link: adds `aria-label="Home"` and sets image `alt=""` (decorative)
+  - Search icon: adds `aria-label="Search"` to link
+  - Navigation links: removes empty `title=""` attributes from output
+- **v2.40.0 Migration CLI** - WP-CLI command for database migrations (`wp 84em migrate v2-40-0`)
+  - Updates Footer Secondary navigation (ID 3102) to remove link title attributes
+  - Updates Front Page (ID 2) with new hero design using laptop-desk background image
+  - Updates Reusable Hero Block (ID 2918) with laptop-desk background image
+
+### Changed
+- **Home Page Hero** - Redesigned hero section with laptop-desk background image (ID 639)
+  - Full-width background image with semi-transparent dark overlay on text content
+  - Text content constrained to 1280px max-width
+- **Footer Navigation** - Removed title attributes from LinkedIn, Github, and Legal links
+
 ## [2.39.1] - 2026-01-10
 
 ### Changed
