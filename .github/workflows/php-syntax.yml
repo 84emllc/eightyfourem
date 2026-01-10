@@ -1,0 +1,32 @@
+name: PHP Syntax Check
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '**/*.php'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '**/*.php'
+  workflow_dispatch:
+
+jobs:
+  syntax-check:
+    name: PHP Syntax Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+
+      - name: Check PHP syntax
+        run: |
+          find . -name "*.php" -not -path "./node_modules/*" -print0 | xargs -0 -n1 php -l

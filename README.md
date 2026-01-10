@@ -1,5 +1,10 @@
 # 84EM Block Theme
 
+[![Deploy Theme to Production](https://github.com/84emllc/eightyfourem/actions/workflows/deploy-theme.yml/badge.svg)](https://github.com/84emllc/eightyfourem/actions/workflows/deploy-theme.yml)
+[![PHP Syntax Check](https://github.com/84emllc/eightyfourem/actions/workflows/php-syntax.yml/badge.svg)](https://github.com/84emllc/eightyfourem/actions/workflows/php-syntax.yml)
+[![Check Internal Links](https://github.com/84emllc/eightyfourem/actions/workflows/check-links.yml/badge.svg)](https://github.com/84emllc/eightyfourem/actions/workflows/check-links.yml)
+[![Check External Links](https://github.com/84emllc/eightyfourem/actions/workflows/check-external-links.yml/badge.svg)](https://github.com/84emllc/eightyfourem/actions/workflows/check-external-links.yml)
+
 A modern WordPress block theme for 84EM, based on Twenty Twenty-Four with custom enhancements and styling.
 
 ## Overview
