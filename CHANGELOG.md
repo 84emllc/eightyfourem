@@ -5,6 +5,16 @@ All notable changes to the 84EM Block Theme will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.41.0] - 2026-01-10
+
+### Added
+- **Hero Lazy Load** - Deferred hero background image loading for improved performance (`includes/hero-lazy-load.php`)
+  - Shows gradient placeholder on initial load: `linear-gradient(185deg, rgb(17, 17, 17) 0%, rgb(51, 51, 51) 100%)`
+  - Loads actual background image after user interaction (scroll, click, mousemove, touchstart, keydown)
+  - Smooth 0.5s fade transition when image loads
+  - Self-destructs event listeners after loading to prevent memory leaks
+  - Only loads on front page for optimal performance
+
 ## [2.40.0] - 2026-01-10
 
 ### Added

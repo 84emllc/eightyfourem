@@ -30,6 +30,7 @@ require_once get_template_directory() . '/includes/disable-comments.php';
 require_once get_template_directory() . '/includes/document-title.php';
 require_once get_template_directory() . '/includes/enqueue.php';
 require_once get_template_directory() . '/includes/google-reviews.php';
+require_once get_template_directory() . '/includes/hero-lazy-load.php';
 require_once get_template_directory() . '/includes/meta-tags.php';
 require_once get_template_directory() . '/includes/open-graph-images.php';
 require_once get_template_directory() . '/includes/pattern-categories.php';
