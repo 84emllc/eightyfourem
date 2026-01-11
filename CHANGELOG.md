@@ -5,6 +5,13 @@ All notable changes to the 84EM Block Theme will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.43.1] - 2026-01-11
+
+### Fixed
+- **Deploy Script** - Fixed heredoc syntax error in `deploy-ai-integration-page.sh`
+  - Split content into separate HTML file (`deploy-ai-integration-content.html`)
+  - Script now reads content from external file to avoid shell escaping issues
+
 ## [2.43.0] - 2026-01-11
 
 ### Added
