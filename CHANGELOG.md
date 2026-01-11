@@ -5,6 +5,15 @@ All notable changes to the 84EM Block Theme will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.48.0] - 2026-01-11
+
+### Added
+- **WP-CLI Add H2 Command** - Bulk add H2 taglines to hero blocks from CSV (`includes/cli-hero-update.php`)
+  - `wp 84em hero-update add-h2 <csv-file>` - Add H2s from CSV with columns: page_id,tagline
+  - `wp 84em hero-update add-h2 <csv-file> --dry-run` - Preview changes without saving
+  - Skips pages that already have H2 in hero
+  - Added taglines to 8 service pages: Contact, Pricing, Services, Case Studies, Testimonials, Data Migrations, Security, Code Cleanup
+
 ## [2.47.0] - 2026-01-11
 
 ### Changed
