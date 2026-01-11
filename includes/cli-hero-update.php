@@ -646,6 +646,172 @@ HERO;
 			\WP_CLI::log( sprintf( '  - Preserved button: %s', $hero_info['button_text'] ) );
 		}
 	}
+
+	/**
+	 * Add H2 taglines to hero blocks from a CSV file.
+	 *
+	 * ## OPTIONS
+	 *
+	 * <file>
+	 * : Path to CSV file with columns: page_id,tagline
+	 *
+	 * [--dry-run]
+	 * : Preview changes without saving.
+	 *
+	 * ## EXAMPLES
+	 *
+	 *     # Preview adding H2s from CSV
+	 *     wp 84em hero-update add-h2 hero-h2-taglines.csv --dry-run
+	 *
+	 *     # Add H2s from CSV
+	 *     wp 84em hero-update add-h2 hero-h2-taglines.csv
+	 *
+	 * @subcommand add-h2
+	 * @when after_wp_load
+	 *
+	 * @param array $args       Positional arguments.
+	 * @param array $assoc_args Associative arguments.
+	 */
+	public function add_h2( $args, $assoc_args ): void {
+		$file    = $args[0] ?? '';
+		$dry_run = isset( $assoc_args['dry-run'] );
+
+		if ( ! $file || ! file_exists( $file ) ) {
+			\WP_CLI::error( "CSV file not found: {$file}" );
+			return;
+		}
+
+		if ( $dry_run ) {
+			\WP_CLI::log( 'DRY RUN: No changes will be saved.' );
+			\WP_CLI::log( '' );
+		}
+
+		\WP_CLI::log( '=== Add H2 Taglines to Heroes ===' );
+		\WP_CLI::log( '' );
+
+		// Parse CSV.
+		$handle = fopen( $file, 'r' );
+		if ( ! $handle ) {
+			\WP_CLI::error( "Could not open file: {$file}" );
+			return;
+		}
+
+		$header        = fgetcsv( $handle );
+		$updated_count = 0;
+		$skipped_count = 0;
+		$error_count   = 0;
+
+		while ( ( $row = fgetcsv( $handle ) ) !== false ) {
+			$page_id = (int) $row[0];
+			$tagline = $row[1] ?? '';
+
+			if ( ! $page_id || ! $tagline ) {
+				\WP_CLI::warning( "Skipping invalid row: " . implode( ',', $row ) );
+				$skipped_count++;
+				continue;
+			}
+
+			$page = \get_post( $page_id );
+			if ( ! $page ) {
+				\WP_CLI::warning( "[ERROR] Page not found: {$page_id}" );
+				$error_count++;
+				continue;
+			}
+
+			// Check if page already has H2 in hero.
+			if ( strpos( $page->post_content, 'is-glow is-style-default' ) !== false ) {
+				\WP_CLI::log( sprintf( '[SKIP] Page ID %d: %s (already has H2)', $page_id, $page->post_title ) );
+				$skipped_count++;
+				continue;
+			}
+
+			// Add H2 after post-title block.
+			$h2_block    = $this->build_h2_block( $tagline );
+			$new_content = $this->insert_h2_after_title( $page->post_content, $h2_block );
+
+			if ( $new_content === $page->post_content ) {
+				\WP_CLI::warning( sprintf( '[ERROR] Page ID %d: %s (could not insert H2)', $page_id, $page->post_title ) );
+				$error_count++;
+				continue;
+			}
+
+			if ( $dry_run ) {
+				\WP_CLI::log( sprintf( '[WOULD ADD] Page ID %d: %s', $page_id, $page->post_title ) );
+				\WP_CLI::log( sprintf( '  H2: %s', $tagline ) );
+			} else {
+				$result = \wp_update_post(
+					[
+						'ID'           => $page_id,
+						'post_content' => $new_content,
+					],
+					true
+				);
+
+				if ( \is_wp_error( $result ) ) {
+					\WP_CLI::warning( sprintf( '[ERROR] Page ID %d: %s - %s', $page_id, $page->post_title, $result->get_error_message() ) );
+					$error_count++;
+					continue;
+				}
+
+				\WP_CLI::log( sprintf( '[ADDED] Page ID %d: %s', $page_id, $page->post_title ) );
+				\WP_CLI::log( sprintf( '  H2: %s', $tagline ) );
+			}
+
+			$updated_count++;
+		}
+
+		fclose( $handle );
+
+		\WP_CLI::log( '' );
+		if ( $dry_run ) {
+			\WP_CLI::success( sprintf(
+				'DRY RUN complete. Would add H2 to %d page(s), skip %d, errors %d.',
+				$updated_count,
+				$skipped_count,
+				$error_count
+			) );
+		} else {
+			\WP_CLI::success( sprintf(
+				'Complete. Added H2 to %d page(s), skipped %d, errors %d.',
+				$updated_count,
+				$skipped_count,
+				$error_count
+			) );
+		}
+	}
+
+	/**
+	 * Build H2 block markup.
+	 *
+	 * @param string $text H2 text content.
+	 *
+	 * @return string H2 block markup.
+	 */
+	private function build_h2_block( string $text ): string {
+		$escaped = \esc_html( $text );
+
+		return <<<BLOCK
+<!-- wp:heading {"className":"is-glow is-style-default","style":{"elements":{"link":{"color":{"text":"var(--hero-text-color, #ffffff)"}}},"typography":{"fontStyle":"normal","fontWeight":"600","lineHeight":"1.3"},"color":{"text":"var(--hero-text-color, #ffffff)"},"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|10"}}},"fontSize":"large","fontFamily":"heading"} -->
+<h2 class="wp-block-heading is-glow is-style-default has-text-color has-link-color has-heading-font-family has-large-font-size" style="color:var(--hero-text-color, #ffffff);padding-top:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--10);font-style:normal;font-weight:600;line-height:1.3">{$escaped}</h2>
+<!-- /wp:heading -->
+BLOCK;
+	}
+
+	/**
+	 * Insert H2 block after post-title block in hero.
+	 *
+	 * @param string $content  Post content.
+	 * @param string $h2_block H2 block markup.
+	 *
+	 * @return string Updated content.
+	 */
+	private function insert_h2_after_title( string $content, string $h2_block ): string {
+		// Find the post-title block and insert H2 after it.
+		$pattern     = '/(<!-- wp:post-title [^>]+\/-->)/';
+		$replacement = '$1' . "\n" . $h2_block;
+
+		return preg_replace( $pattern, $replacement, $content, 1 );
+	}
 }
 
 // Register the command.
