@@ -5,6 +5,14 @@ All notable changes to the 84EM Block Theme will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.48.1] - 2026-01-11
+
+### Fixed
+- **Screenshot Script** - Fix hero background not capturing due to deferred loading (`update-screenshot.sh`)
+  - Replaced Puppeteer CLI with Node.js script for proper event dispatching
+  - Dispatches synthetic mousemove event to trigger hero lazy load
+  - Waits for `data-lazy-hero` attribute removal before capturing
+
 ## [2.48.0] - 2026-01-11
 
 ### Added
