@@ -5,6 +5,14 @@ All notable changes to the 84EM Block Theme will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.45.0] - 2026-01-11
+
+### Changed
+- **Hero Lazy Load Site-Wide** - Extended hero lazy load to use centralized background image (`includes/hero-lazy-load.php`)
+  - All hero blocks now use the same homepage hero image (378267091-huge.jpg)
+  - Hero detection expanded to match any block name containing "hero" (case-insensitive)
+  - Background URL is filterable via `eightyfourem_hero_background_url` filter
+
 ## [2.44.0] - 2026-01-11
 
 ### Added
