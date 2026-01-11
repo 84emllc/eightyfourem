@@ -117,7 +117,7 @@ defined( 'ABSPATH' ) || exit;
 				width: auto;
 				height: auto;
 				object-fit: contain;
-				filter: grayscale(100%) brightness(.88) contrast(1.5);
+				/*filter: grayscale(100%) brightness(.88) contrast(1.5);*/
 			}
 		</style>
 		<?php

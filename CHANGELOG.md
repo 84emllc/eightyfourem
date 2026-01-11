@@ -5,6 +5,12 @@ All notable changes to the 84EM Block Theme will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.42.2] - 2026-01-11
+
+### Fixed
+- **Client Logo Image Filter** - Disabled grayscale/brightness/contrast filter on client logo images (`includes/performance.php`)
+  - Logo images now display in original colors instead of forced grayscale treatment
+
 ## [2.42.1] - 2026-01-11
 
 ### Added
