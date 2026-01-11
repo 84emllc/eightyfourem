@@ -5,6 +5,18 @@ All notable changes to the 84EM Block Theme will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.46.0] - 2026-01-11
+
+### Added
+- **WP-CLI Hero Update Command** - New command to standardize hero styling site-wide (`includes/cli-hero-update.php`)
+  - `wp 84em hero-update scan` - Find all pages with hero blocks and check status
+  - `wp 84em hero-update run` - Execute updates on all hero blocks
+  - `wp 84em hero-update run --dry-run` - Preview changes without saving
+  - `wp 84em hero-update run --post-id=123` - Update specific page
+  - Applies homepage hero styling: background image, 500px height, #1e1e1e8c overlay, 1280px content width
+  - Preserves page-specific H2 text and button content
+  - Automatically skips homepage
+
 ## [2.45.0] - 2026-01-11
 
 ### Changed
