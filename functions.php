@@ -20,6 +20,7 @@ require_once get_template_directory() . '/includes/calendly-booking-details.php'
 require_once get_template_directory() . '/includes/case-study-filters.php';
 require_once get_template_directory() . '/includes/cli.php';
 require_once get_template_directory() . '/includes/cli-dynamic-years.php';
+require_once get_template_directory() . '/includes/cli-hero-update.php';
 require_once get_template_directory() . '/includes/cli-pattern-categories.php';
 require_once get_template_directory() . '/includes/cli-v2.40.0-migration.php';
 require_once get_template_directory() . '/includes/code-separator.php';
