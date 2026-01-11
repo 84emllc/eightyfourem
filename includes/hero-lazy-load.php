@@ -43,8 +43,8 @@ function is_hero_block( array $block ): bool {
 
 	$name = strtolower( $block['attrs']['metadata']['name'] );
 
-	// Match "hero" or "84em hero" (case-insensitive)
-	return 'hero' === $name || '84em hero' === $name;
+	// Match any block name containing "hero" (case-insensitive)
+	return str_contains( $name, 'hero' );
 }
 
 /**
@@ -58,26 +58,12 @@ function is_hero_block( array $block ): bool {
 			return $block_content;
 		}
 
-		// Try to extract background URL from this block
-		$bg_url = extract_background_url( $block_content );
-
-		// If no background on outer block, check inner blocks (nested group with bg)
-		if ( ! $bg_url && ! empty( $block['innerBlocks'] ) ) {
-			foreach ( $block['innerBlocks'] as $inner_block ) {
-				if ( 'core/group' === $inner_block['blockName'] ) {
-					$inner_html = \render_block( $inner_block );
-					$bg_url     = extract_background_url( $inner_html );
-					if ( $bg_url ) {
-						break;
-					}
-				}
-			}
-		}
-
-		// No background image found, return unchanged
-		if ( ! $bg_url ) {
-			return $block_content;
-		}
+		// Use centralized hero background URL for all hero blocks site-wide
+		// Uses the homepage hero image (378267091-huge.jpg) across all pages
+		$bg_url = \apply_filters(
+			'eightyfourem_hero_background_url',
+			\content_url( '/uploads/2020/02/378267091-huge.jpg' )
+		);
 
 		// Add data attributes to the first wp-block-group element
 		$block_content = preg_replace(

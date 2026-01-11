@@ -19,6 +19,7 @@ defined( 'ABSPATH' ) || exit;
     callback: function () {
         $_84em_seo_description = get_post_meta( get_the_ID(), '_84em_seo_description', true );
         if ( ! empty( $_84em_seo_description ) ) {
+            $_84em_seo_description = do_shortcode( $_84em_seo_description );
             echo sprintf( '<meta name="description" content="%s"/>', esc_attr( wp_strip_all_tags( $_84em_seo_description ) ) ) . PHP_EOL;
         }
 
