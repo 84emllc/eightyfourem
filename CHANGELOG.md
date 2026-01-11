@@ -5,6 +5,16 @@ All notable changes to the 84EM Block Theme will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.42.0] - 2026-01-10
+
+### Changed
+- **Hero Lazy Load - Site-Wide Support** - Extended deferred hero background loading to work on any hero block (`includes/hero-lazy-load.php`)
+  - Detects hero blocks by metadata name ("hero" or "84EM Hero") via `render_block_core/group` filter
+  - Adds `data-lazy-hero` and `data-hero-bg` data attributes for dynamic targeting
+  - Supports multiple heroes per page
+  - Loads site-wide (script self-disables if no heroes found)
+  - Fixed HTML entity decoding for `&apos;` quotes in WordPress block styles
+
 ## [2.41.0] - 2026-01-10
 
 ### Added

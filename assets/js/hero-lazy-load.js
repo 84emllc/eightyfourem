@@ -4,6 +4,7 @@
  * Defers hero background image loading until user interaction.
  * Works with critical CSS that hides the hero background initially.
  * Loads the actual image on scroll, click, mousemove, touchstart, or keydown.
+ * Supports multiple heroes per page via data attributes.
  *
  * @package EightyFourEM
  */
@@ -11,40 +12,55 @@
 	'use strict';
 
 	var loaded = false;
-	var hero = null;
-	var imageUrl = null;
+	var heroes = [];
 
 	/**
-	 * Initialize - find hero element and get stored image URL
+	 * Initialize - find all hero elements with data attributes
 	 */
 	function init() {
-		hero = document.querySelector('.hero-lazy-load[data-hero-bg]');
-		if (!hero) {
-			// Fallback: try to find by style attribute
-			hero = document.querySelector('[style*="378267091-huge.jpg"]');
-			if (hero) {
-				var style = hero.getAttribute('style');
-				var match = style.match(/background-image\s*:\s*url\(['"]?([^'")]+)['"]?\)/i);
-				if (match) {
-					imageUrl = match[1];
-					hero.setAttribute('data-hero-bg', imageUrl);
-					hero.classList.add('hero-lazy-load');
-				}
-			}
-		} else {
-			imageUrl = hero.getAttribute('data-hero-bg');
-		}
-
-		if (!hero || !imageUrl) {
+		var elements = document.querySelectorAll('[data-lazy-hero="true"][data-hero-bg]');
+		if (!elements.length) {
 			return false;
 		}
-		return true;
+
+		elements.forEach(function(hero) {
+			var bgUrl = hero.getAttribute('data-hero-bg');
+			if (bgUrl) {
+				heroes.push({
+					element: hero,
+					url: bgUrl
+				});
+			}
+		});
+
+		return heroes.length > 0;
+	}
+
+	/**
+	 * Find the element with the actual background-image style
+	 * Could be the hero itself or a nested child
+	 */
+	function findBgElement(hero, url) {
+		// Check if hero itself has the background
+		var style = hero.getAttribute('style') || '';
+		if (style.indexOf('background-image') !== -1) {
+			return hero;
+		}
+
+		// Check nested groups for background
+		var nested = hero.querySelectorAll('.wp-block-group[style*="background-image"]');
+		if (nested.length) {
+			return nested[0];
+		}
+
+		// Fallback to hero itself
+		return hero;
 	}
 
 	/**
 	 * Preload and apply the background image with fade transition
 	 */
-	function loadHeroImage() {
+	function loadHeroImages() {
 		if (loaded) {
 			return;
 		}
@@ -53,25 +69,26 @@
 		// Remove event listeners immediately
 		removeListeners();
 
-		if (!hero || !imageUrl) {
-			if (!init()) {
-				return;
-			}
-		}
+		heroes.forEach(function(heroData) {
+			var hero = heroData.element;
+			var imageUrl = heroData.url;
+			var bgElement = findBgElement(hero, imageUrl);
 
-		// Preload the image
-		var img = new Image();
-		img.onload = function() {
-			// Add loaded class for transition
-			hero.classList.add('hero-bg-loaded');
+			// Preload the image
+			var img = new Image();
+			img.onload = function() {
+				// Add loaded class for transition
+				bgElement.classList.add('hero-bg-loaded');
 
-			// Apply the background image with !important to override critical CSS
-			hero.style.setProperty('background-image', 'url(' + imageUrl + ')', 'important');
+				// Apply the background image with !important to override critical CSS
+				bgElement.style.setProperty('background-image', 'url(' + imageUrl + ')', 'important');
 
-			// Clean up data attribute
-			hero.removeAttribute('data-hero-bg');
-		};
-		img.src = imageUrl;
+				// Clean up data attributes
+				hero.removeAttribute('data-hero-bg');
+				hero.removeAttribute('data-lazy-hero');
+			};
+			img.src = imageUrl;
+		});
 	}
 
 	/**
@@ -80,7 +97,17 @@
 	function removeListeners() {
 		var events = ['scroll', 'click', 'mousemove', 'touchstart', 'keydown'];
 		events.forEach(function(event) {
-			window.removeEventListener(event, loadHeroImage, { passive: true });
+			window.removeEventListener(event, loadHeroImages, { passive: true });
+		});
+	}
+
+	/**
+	 * Add interaction listeners
+	 */
+	function addListeners() {
+		var events = ['scroll', 'click', 'mousemove', 'touchstart', 'keydown'];
+		events.forEach(function(event) {
+			window.addEventListener(event, loadHeroImages, { passive: true });
 		});
 	}
 
@@ -88,20 +115,12 @@
 	if (document.readyState === 'loading') {
 		document.addEventListener('DOMContentLoaded', function() {
 			if (init()) {
-				// Add event listeners for user interaction
-				var events = ['scroll', 'click', 'mousemove', 'touchstart', 'keydown'];
-				events.forEach(function(event) {
-					window.addEventListener(event, loadHeroImage, { passive: true });
-				});
+				addListeners();
 			}
 		});
 	} else {
 		if (init()) {
-			// Add event listeners for user interaction
-			var events = ['scroll', 'click', 'mousemove', 'touchstart', 'keydown'];
-			events.forEach(function(event) {
-				window.addEventListener(event, loadHeroImage, { passive: true });
-			});
+			addListeners();
 		}
 	}
 })();
