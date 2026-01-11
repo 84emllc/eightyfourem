@@ -3,6 +3,17 @@
  * Reusable utility classes, layout adjustments, and general styles
  */
 
+/* Hero CSS Variables */
+:root {
+  --hero-min-height: 250px;
+  --hero-overlay-bg: #1e1e1e8c;
+  --hero-content-width: 1280px;
+  --hero-bg-position: 60% 45%;
+  --hero-text-color: #ffffff;
+  --hero-btn-radius-small: 0px;
+  --hero-btn-radius-large: 30px;
+}
+
 /* Mobile hero heading padding */
 @media (max-width: 781px) {
   .is-hero-block h1,

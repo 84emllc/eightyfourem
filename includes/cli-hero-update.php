@@ -128,6 +128,9 @@ class HeroUpdateCLI {
 	 * [--post-id=<id>]
 	 * : Update a specific page by ID.
 	 *
+	 * [--include-homepage]
+	 * : Include the homepage in updates (normally excluded).
+	 *
 	 * ## EXAMPLES
 	 *
 	 *     # Preview all changes
@@ -139,6 +142,9 @@ class HeroUpdateCLI {
 	 *     # Update a specific page
 	 *     wp 84em hero-update run --post-id=4041
 	 *
+	 *     # Update all pages including homepage
+	 *     wp 84em hero-update run --include-homepage
+	 *
 	 * @subcommand run
 	 * @when after_wp_load
 	 *
@@ -146,8 +152,9 @@ class HeroUpdateCLI {
 	 * @param array $assoc_args Associative arguments.
 	 */
 	public function run( $_args, $assoc_args ): void {
-		$dry_run = isset( $assoc_args['dry-run'] );
-		$post_id = isset( $assoc_args['post-id'] ) ? (int) $assoc_args['post-id'] : null;
+		$dry_run          = isset( $assoc_args['dry-run'] );
+		$post_id          = isset( $assoc_args['post-id'] ) ? (int) $assoc_args['post-id'] : null;
+		$include_homepage = isset( $assoc_args['include-homepage'] );
 
 		if ( $dry_run ) {
 			\WP_CLI::log( 'DRY RUN: No changes will be saved.' );
@@ -155,11 +162,14 @@ class HeroUpdateCLI {
 		}
 
 		\WP_CLI::log( '=== Hero Block Update ===' );
+		if ( $include_homepage ) {
+			\WP_CLI::log( 'Homepage INCLUDED in updates.' );
+		}
 		\WP_CLI::log( '' );
 
 		if ( $post_id ) {
-			if ( $post_id === $this->homepage_id ) {
-				\WP_CLI::error( 'Cannot update homepage hero block. Homepage is excluded from updates.' );
+			if ( $post_id === $this->homepage_id && ! $include_homepage ) {
+				\WP_CLI::error( 'Cannot update homepage hero block. Use --include-homepage flag to include it.' );
 				return;
 			}
 			$pages = [ \get_post( $post_id ) ];
@@ -181,8 +191,8 @@ class HeroUpdateCLI {
 		$error_count   = 0;
 
 		foreach ( $pages as $page ) {
-			// Skip homepage.
-			if ( (int) $page->ID === $this->homepage_id ) {
+			// Skip homepage unless --include-homepage flag is set.
+			if ( (int) $page->ID === $this->homepage_id && ! $include_homepage ) {
 				\WP_CLI::log( sprintf( '[SKIP] Page ID %d: %s (homepage)', $page->ID, $page->post_title ) );
 				$skipped_count++;
 				continue;
@@ -450,11 +460,14 @@ class HeroUpdateCLI {
 	}
 
 	/**
-	 * Check if hero block has the target structure.
+	 * Check if hero block has the target structure with CSS variables.
+	 *
+	 * Validates that all hero styling uses CSS variables for maintainability:
+	 * --hero-min-height, --hero-overlay-bg, --hero-content-width, --hero-bg-position, --hero-text-color
 	 *
 	 * @param array $block Hero block.
 	 *
-	 * @return bool True if has target structure.
+	 * @return bool True if has target structure with CSS variables.
 	 */
 	private function has_target_structure( array $block ): bool {
 		$attrs = $block['attrs'] ?? [];
@@ -478,14 +491,20 @@ class HeroUpdateCLI {
 		$middle_attrs = $middle_group['attrs'] ?? [];
 
 		// Middle group must have background-image (not gradient).
-		$has_bg_image   = isset( $middle_attrs['style']['background']['backgroundImage'] );
-		$has_min_height = isset( $middle_attrs['style']['dimensions']['minHeight'] );
+		$has_bg_image = isset( $middle_attrs['style']['background']['backgroundImage'] );
+		$min_height   = $middle_attrs['style']['dimensions']['minHeight'] ?? '';
+		$bg_position  = $middle_attrs['style']['background']['backgroundPosition'] ?? '';
 
 		if ( ! $has_bg_image ) {
 			return false;
 		}
 
-		if ( ! $has_min_height ) {
+		// Must use CSS variables for min-height and background-position.
+		if ( strpos( $min_height, '--hero-min-height' ) === false ) {
+			return false;
+		}
+
+		if ( strpos( $bg_position, '--hero-bg-position' ) === false ) {
 			return false;
 		}
 
@@ -498,15 +517,15 @@ class HeroUpdateCLI {
 		$overlay_group = $overlay_blocks[0] ?? [];
 		$overlay_attrs = $overlay_group['attrs'] ?? [];
 
-		// Overlay group must have the specific background color.
+		// Overlay group must use CSS variable for background color.
 		$overlay_color = $overlay_attrs['style']['color']['background'] ?? '';
-		if ( $overlay_color !== '#1e1e1e8c' ) {
+		if ( strpos( $overlay_color, '--hero-overlay-bg' ) === false ) {
 			return false;
 		}
 
-		// Overlay group must have contentSize 1280px.
+		// Overlay group must use CSS variable for contentSize.
 		$content_size = $overlay_attrs['layout']['contentSize'] ?? '';
-		if ( $content_size !== '1280px' ) {
+		if ( strpos( $content_size, '--hero-content-width' ) === false ) {
 			return false;
 		}
 
@@ -551,6 +570,10 @@ class HeroUpdateCLI {
 	/**
 	 * Build updated hero block markup.
 	 *
+	 * Uses CSS variables defined in utilities.css for maintainability:
+	 * --hero-min-height, --hero-overlay-bg, --hero-content-width,
+	 * --hero-bg-position, --hero-text-color, --hero-btn-radius-small, --hero-btn-radius-large
+	 *
 	 * @param array $hero_info Hero info.
 	 *
 	 * @return string New hero block markup.
@@ -568,8 +591,8 @@ class HeroUpdateCLI {
 		if ( $h2_text ) {
 			$h2_block = <<<BLOCK
 
-<!-- wp:heading {"className":"is-glow is-style-default","style":{"elements":{"link":{"color":{"text":"#ffffff"}}},"typography":{"fontStyle":"normal","fontWeight":"600","lineHeight":"1.3"},"color":{"text":"#ffffff"},"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|10"}}},"fontSize":"large","fontFamily":"heading"} -->
-<h2 class="wp-block-heading is-glow is-style-default has-text-color has-link-color has-heading-font-family has-large-font-size" style="color:#ffffff;padding-top:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--10);font-style:normal;font-weight:600;line-height:1.3">{$h2_escaped}</h2>
+<!-- wp:heading {"className":"is-glow is-style-default","style":{"elements":{"link":{"color":{"text":"var(--hero-text-color, #ffffff)"}}},"typography":{"fontStyle":"normal","fontWeight":"600","lineHeight":"1.3"},"color":{"text":"var(--hero-text-color, #ffffff)"},"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|10"}}},"fontSize":"large","fontFamily":"heading"} -->
+<h2 class="wp-block-heading is-glow is-style-default has-text-color has-link-color has-heading-font-family has-large-font-size" style="color:var(--hero-text-color, #ffffff);padding-top:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--10);font-style:normal;font-weight:600;line-height:1.3">{$h2_escaped}</h2>
 <!-- /wp:heading -->
 BLOCK;
 		}
@@ -581,8 +604,8 @@ BLOCK;
 			$button_block     = <<<BLOCK
 
 <!-- wp:buttons {"style":{"spacing":{"margin":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20"}}},"fontSize":"medium","layout":{"type":"flex","justifyContent":"left"}} -->
-<div class="wp-block-buttons has-custom-font-size has-medium-font-size" style="margin-top:var(--wp--preset--spacing--20);margin-bottom:var(--wp--preset--spacing--20)"><!-- wp:button {"style":{"border":{"radius":{"topLeft":"0px","topRight":"30px","bottomLeft":"30px","bottomRight":"0px"}},"shadow":"var:preset|shadow|crisp"},"fontSize":"large"} -->
-<div class="wp-block-button"><a class="wp-block-button__link has-large-font-size has-custom-font-size wp-element-button" href="{$btn_href_escaped}" style="border-top-left-radius:0px;border-top-right-radius:30px;border-bottom-left-radius:30px;border-bottom-right-radius:0px;box-shadow:var(--wp--preset--shadow--crisp)">{$btn_text_escaped}</a></div>
+<div class="wp-block-buttons has-custom-font-size has-medium-font-size" style="margin-top:var(--wp--preset--spacing--20);margin-bottom:var(--wp--preset--spacing--20)"><!-- wp:button {"style":{"border":{"radius":{"topLeft":"var(--hero-btn-radius-small, 0px)","topRight":"var(--hero-btn-radius-large, 30px)","bottomLeft":"var(--hero-btn-radius-large, 30px)","bottomRight":"var(--hero-btn-radius-small, 0px)"}},"shadow":"var:preset|shadow|crisp"},"fontSize":"large"} -->
+<div class="wp-block-button"><a class="wp-block-button__link has-large-font-size has-custom-font-size wp-element-button" href="{$btn_href_escaped}" style="border-top-left-radius:var(--hero-btn-radius-small, 0px);border-top-right-radius:var(--hero-btn-radius-large, 30px);border-bottom-left-radius:var(--hero-btn-radius-large, 30px);border-bottom-right-radius:var(--hero-btn-radius-small, 0px);box-shadow:var(--wp--preset--shadow--crisp)">{$btn_text_escaped}</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons -->
 BLOCK;
@@ -592,11 +615,13 @@ BLOCK;
 		$bg_image_url = \content_url( '/uploads/2026/01/84em-home-hero-background-scaled.jpg' );
 
 		// Build complete hero block with new structure.
+		// Note: JSON attributes use fallback values for WordPress editor compatibility.
+		// Inline styles use CSS variables for runtime flexibility.
 		$hero = <<<HERO
 <!-- wp:group {"metadata":{"name":"hero"},"align":"full","style":{"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"},"margin":{"top":"0","bottom":"0"}}},"backgroundColor":"contrast","layout":{"type":"default"}} -->
-<div class="wp-block-group alignfull has-contrast-background-color has-background" style="margin-top:0;margin-bottom:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:group {"style":{"background":{"backgroundImage":{"url":"{$bg_image_url}","id":12601,"source":"file","title":"84em-home-hero-background"},"backgroundSize":"cover","backgroundPosition":"60% 45%"},"dimensions":{"minHeight":"500px"},"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|30","right":"var:preset|spacing|30"}}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group" style="min-height:500px;padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--30)"><!-- wp:group {"align":"wide","style":{"color":{"background":"#1e1e1e8c"},"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40","left":"var:preset|spacing|40","right":"var:preset|spacing|40"}}},"layout":{"type":"constrained","contentSize":"1280px","justifyContent":"left"}} -->
-<div class="wp-block-group alignwide has-background" style="background-color:#1e1e1e8c;padding-top:var(--wp--preset--spacing--40);padding-right:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--40);padding-left:var(--wp--preset--spacing--40)"><!-- wp:post-title {"level":1,"className":"is-style-default is-glow","style":{"elements":{"link":{"color":{"text":"#ffffff"}}},"typography":{"fontStyle":"normal","fontWeight":"600"},"color":{"text":"#ffffff"},"spacing":{"padding":{"top":"0","bottom":"0"}}},"fontSize":"xx-large","fontFamily":"heading"} /-->{$h2_block}{$button_block}</div>
+<div class="wp-block-group alignfull has-contrast-background-color has-background" style="margin-top:0;margin-bottom:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:group {"style":{"background":{"backgroundImage":{"url":"{$bg_image_url}","id":12601,"source":"file","title":"84em-home-hero-background"},"backgroundSize":"cover","backgroundPosition":"var(--hero-bg-position, 60% 45%)"},"dimensions":{"minHeight":"var(--hero-min-height, 250px)"},"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|30","right":"var:preset|spacing|30"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group" style="min-height:var(--hero-min-height, 250px);padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--30);background-position:var(--hero-bg-position, 60% 45%)"><!-- wp:group {"align":"wide","style":{"color":{"background":"var(--hero-overlay-bg, #1e1e1e8c)"},"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40","left":"var:preset|spacing|40","right":"var:preset|spacing|40"}}},"layout":{"type":"constrained","contentSize":"var(--hero-content-width, 1280px)","justifyContent":"left"}} -->
+<div class="wp-block-group alignwide has-background" style="background-color:var(--hero-overlay-bg, #1e1e1e8c);padding-top:var(--wp--preset--spacing--40);padding-right:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--40);padding-left:var(--wp--preset--spacing--40)"><!-- wp:post-title {"level":1,"className":"is-style-default is-glow","style":{"elements":{"link":{"color":{"text":"var(--hero-text-color, #ffffff)"}}},"typography":{"fontStyle":"normal","fontWeight":"600"},"color":{"text":"var(--hero-text-color, #ffffff)"},"spacing":{"padding":{"top":"0","bottom":"0"}}},"fontSize":"xx-large","fontFamily":"heading"} /-->{$h2_block}{$button_block}</div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->
