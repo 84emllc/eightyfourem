@@ -243,6 +243,7 @@ When preparing a release with version bump:
    - PATCH: Bug fixes (backwards compatible)
 
 ## Commit & Pull Request Guidelines
+- **NEVER push directly to main.** All changes must go through a pull request, even small fixes.
 - Use imperative, scope-first commit subjects under 72 chars (e.g., `Enqueue: add critical CSS preload`). Group related edits into a single commit.
 - Reference Jira/GitHub issues in the body when available and describe testing performed (e.g., "Tested locally on WP 6.8.3").
 - Pull requests should summarize the change, outline manual verification, and include before/after screenshots for visual updates. Request design review for pattern tweaks.
