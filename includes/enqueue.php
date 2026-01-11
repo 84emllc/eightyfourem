@@ -133,19 +133,18 @@ defined( 'ABSPATH' ) || exit;
 			]
 		);
 
-		// Hero lazy load JS - only on front page
+		// Hero lazy load JS - site-wide for any hero block with metadata name
 		// Note: CSS is inline in wp_head via hero-lazy-load.php for critical rendering
-		if ( \is_front_page() ) {
-			\wp_enqueue_script(
-				handle: 'eightyfourem-hero-lazy-load',
-				src: \get_theme_file_uri( "assets/js/hero-lazy-load{$suffix}.js" ),
-				ver: $version,
-				args: [
-					'strategy'  => 'defer',
-					'in_footer' => true,
-				]
-			);
-		}
+		// Script self-disables if no [data-lazy-hero] elements found
+		\wp_enqueue_script(
+			handle: 'eightyfourem-hero-lazy-load',
+			src: \get_theme_file_uri( "assets/js/hero-lazy-load{$suffix}.js" ),
+			ver: $version,
+			args: [
+				'strategy'  => 'defer',
+				'in_footer' => true,
+			]
+		);
 	}
 );
 
