@@ -364,6 +364,18 @@ function extract_testimonials_from_page( int $page_id ): array {
                                         '@type'       => 'Offer',
                                         'itemOffered' => [
                                             '@type'    => 'Service',
+                                            'name'     => 'AI Integration & Development',
+                                            'url'      => $site_url . '/services/ai-integration-development/',
+                                            'provider' => [
+                                                '@type' => 'Organization',
+                                                '@id'   => $site_url . '/#organization',
+                                            ],
+                                        ],
+                                    ],
+                                    [
+                                        '@type'       => 'Offer',
+                                        'itemOffered' => [
+                                            '@type'    => 'Service',
                                             'name'     => 'Data Migrations & Platform Transfers',
                                             'url'      => $site_url . '/services/',
                                             'provider' => [
@@ -541,6 +553,26 @@ function extract_testimonials_from_page( int $page_id ): array {
                                         '@type'              => 'Offer',
                                         'itemOffered'        => [
                                             '@type'       => 'Service',
+                                            'name'        => 'AI Integration & Development',
+                                            'description' => 'Custom AI integrations, automations, and tools that solve real business problems',
+                                            'url'         => $site_url . '/services/ai-integration-development/',
+                                            'provider'    => [
+                                                '@type' => 'Organization',
+                                                '@id'   => $site_url . '/#organization',
+                                            ],
+                                        ],
+                                        'priceSpecification' => [
+                                            '@type'        => 'UnitPriceSpecification',
+                                            'price'        => '150',
+                                            'priceCurrency' => 'USD',
+                                            'unitText'     => 'HOUR',
+                                        ],
+                                        'availability'       => 'https://schema.org/InStock',
+                                    ],
+                                    [
+                                        '@type'              => 'Offer',
+                                        'itemOffered'        => [
+                                            '@type'       => 'Service',
                                             'name'        => 'After-Hours WordPress Development',
                                             'description' => 'After-hours and emergency WordPress development services',
                                             'provider'    => [
@@ -695,6 +727,53 @@ function extract_testimonials_from_page( int $page_id ): array {
                                     '@type'              => 'Offer',
                                     'name'               => 'After-Hours Rate',
                                     'description'        => 'After-hours and emergency WordPress development services',
+                                    'priceSpecification' => [
+                                        '@type'         => 'UnitPriceSpecification',
+                                        'price'         => '225',
+                                        'priceCurrency' => 'USD',
+                                        'unitText'      => 'HOUR',
+                                    ],
+                                    'availability'       => 'https://schema.org/InStock',
+                                ],
+                            ],
+                        ];
+                        $schema['about'] = [
+                            '@id' => $post_url . '#service',
+                        ];
+                        break;
+
+                    case 'ai-integration-development':
+                        $schema['mainEntity'] = [
+                            '@type'              => 'Service',
+                            '@id'                => $post_url . '#service',
+                            'serviceType'        => 'AI Integration & Development',
+                            'name'               => 'AI Integration & Development',
+                            'description'        => 'Custom AI integrations, automations, and tools that solve real business problems',
+                            'provider'           => [
+                                '@type' => 'Organization',
+                                '@id'   => $site_url . '/#organization',
+                                'name'  => '84EM',
+                                'url'   => $site_url,
+                            ],
+                            'areaServed'         => [
+                                '@type' => 'Country',
+                                'name'  => 'United States',
+                            ],
+                            'offers'             => [
+                                [
+                                    '@type'              => 'Offer',
+                                    'name'               => 'Standard Rate',
+                                    'priceSpecification' => [
+                                        '@type'         => 'UnitPriceSpecification',
+                                        'price'         => '150',
+                                        'priceCurrency' => 'USD',
+                                        'unitText'      => 'HOUR',
+                                    ],
+                                    'availability'       => 'https://schema.org/InStock',
+                                ],
+                                [
+                                    '@type'              => 'Offer',
+                                    'name'               => 'After-Hours Rate',
                                     'priceSpecification' => [
                                         '@type'         => 'UnitPriceSpecification',
                                         'price'         => '225',

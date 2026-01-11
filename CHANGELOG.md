@@ -5,6 +5,14 @@ All notable changes to the 84EM Block Theme will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.43.0] - 2026-01-11
+
+### Added
+- **AI Integration & Development Service** - New service page schema and deployment script (`includes/schema.php`, `deploy-ai-integration-page.sh`)
+  - Schema.org Service markup for `/services/ai-integration-development/`
+  - Added to homepage OfferCatalog and pricing offers
+  - WP-CLI deployment script for production page creation
+
 ## [2.42.2] - 2026-01-11
 
 ### Fixed
