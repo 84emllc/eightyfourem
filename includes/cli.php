@@ -820,9 +820,299 @@ class ThemeCLI {
 
 		\WP_CLI::success( 'Cleanup complete' );
 	}
+
+	/**
+	 * List all block patterns with usage and sync status
+	 *
+	 * ## OPTIONS
+	 *
+	 * [--status=<status>]
+	 * : Filter by usage status (used or unused)
+	 * ---
+	 * options:
+	 *   - used
+	 *   - unused
+	 * ---
+	 *
+	 * [--sync=<sync>]
+	 * : Filter by sync status (synced or standard)
+	 * ---
+	 * options:
+	 *   - synced
+	 *   - standard
+	 * ---
+	 *
+	 * [--category=<slug>]
+	 * : Filter by pattern category slug
+	 *
+	 * [--format=<format>]
+	 * : Output format (table, csv, or json)
+	 * ---
+	 * default: table
+	 * options:
+	 *   - table
+	 *   - csv
+	 *   - json
+	 * ---
+	 *
+	 * [--file=<filepath>]
+	 * : Save CSV output to file instead of stdout (only applies to csv format)
+	 *
+	 * ## EXAMPLES
+	 *
+	 *     # List all patterns with colored table output
+	 *     wp 84em list-patterns
+	 *
+	 *     # List only unused patterns
+	 *     wp 84em list-patterns --status=unused
+	 *
+	 *     # List synced patterns in a specific category
+	 *     wp 84em list-patterns --sync=synced --category=featured
+	 *
+	 *     # Export all patterns to CSV
+	 *     wp 84em list-patterns --format=csv
+	 *
+	 *     # Export unused patterns to a file
+	 *     wp 84em list-patterns --status=unused --format=csv --file=/tmp/unused-patterns.csv
+	 *
+	 *     # Get JSON output for scripting
+	 *     wp 84em list-patterns --format=json
+	 *
+	 * @subcommand list-patterns
+	 * @when after_wp_load
+	 *
+	 * @param array $_args      Positional arguments (unused).
+	 * @param array $assoc_args Associative arguments.
+	 */
+	public function list_patterns( $_args, $assoc_args ) {
+		global $wpdb;
+
+		// Get all patterns
+		$patterns = $wpdb->get_results(
+			"SELECT ID, post_title FROM {$wpdb->posts} WHERE post_type = 'wp_block' AND post_status = 'publish' ORDER BY post_title"
+		);
+
+		if ( empty( $patterns ) ) {
+			\WP_CLI::warning( 'No block patterns found.' );
+			return;
+		}
+
+		// Find all used pattern references
+		$results = $wpdb->get_results(
+			"SELECT post_content FROM {$wpdb->posts} WHERE post_status = 'publish' AND post_content LIKE '%wp:block%'"
+		);
+
+		$used_refs = [];
+		foreach ( $results as $row ) {
+			\preg_match_all( '/"ref":(\d+)/', $row->post_content, $matches );
+			foreach ( $matches[1] as $ref ) {
+				$used_refs[ $ref ] = true;
+			}
+		}
+
+		// Parse filter options
+		$filter_status   = isset( $assoc_args['status'] ) ? $assoc_args['status'] : null;
+		$filter_sync     = isset( $assoc_args['sync'] ) ? $assoc_args['sync'] : null;
+		$filter_category = isset( $assoc_args['category'] ) ? $assoc_args['category'] : null;
+		$format          = isset( $assoc_args['format'] ) ? $assoc_args['format'] : 'table';
+		$file_path       = isset( $assoc_args['file'] ) ? $assoc_args['file'] : null;
+
+		// Build pattern data with filters
+		$pattern_data   = [];
+		$used_count     = 0;
+		$unused_count   = 0;
+		$synced_count   = 0;
+		$standard_count = 0;
+
+		foreach ( $patterns as $p ) {
+			$sync_status = \get_post_meta( $p->ID, 'wp_pattern_sync_status', true );
+			$is_synced   = ( $sync_status !== 'unsynced' );
+			$is_used     = isset( $used_refs[ $p->ID ] );
+
+			// Get categories
+			$cats     = \wp_get_object_terms( $p->ID, 'wp_pattern_category', [ 'fields' => 'slugs' ] );
+			$cat_names = \wp_get_object_terms( $p->ID, 'wp_pattern_category', [ 'fields' => 'names' ] );
+			$cat_text = empty( $cat_names ) ? '(none)' : implode( ', ', $cat_names );
+
+			// Apply filters
+			if ( $filter_status === 'used' && ! $is_used ) {
+				continue;
+			}
+			if ( $filter_status === 'unused' && $is_used ) {
+				continue;
+			}
+			if ( $filter_sync === 'synced' && ! $is_synced ) {
+				continue;
+			}
+			if ( $filter_sync === 'standard' && $is_synced ) {
+				continue;
+			}
+			if ( $filter_category && ! in_array( $filter_category, $cats, true ) ) {
+				continue;
+			}
+
+			// Update counts
+			if ( $is_used ) {
+				$used_count++;
+			} else {
+				$unused_count++;
+			}
+			if ( $is_synced ) {
+				$synced_count++;
+			} else {
+				$standard_count++;
+			}
+
+			$pattern_data[] = [
+				'id'       => $p->ID,
+				'title'    => $p->post_title,
+				'status'   => $is_used ? 'used' : 'unused',
+				'sync'     => $is_synced ? 'synced' : 'standard',
+				'category' => $cat_text,
+			];
+		}
+
+		if ( empty( $pattern_data ) ) {
+			\WP_CLI::warning( 'No patterns match the specified filters.' );
+			return;
+		}
+
+		// Output based on format
+		if ( $format === 'table' ) {
+			$this->output_patterns_table( $pattern_data, $used_count, $unused_count, $synced_count, $standard_count );
+		} elseif ( $format === 'csv' || $format === 'json' ) {
+			if ( $file_path && $format === 'csv' ) {
+				$this->output_patterns_csv_file( $pattern_data, $file_path );
+			} else {
+				\WP_CLI\Utils\format_items( $format, $pattern_data, [ 'id', 'title', 'status', 'sync', 'category' ] );
+			}
+		}
+	}
+
+	/**
+	 * Output patterns as a colored terminal table
+	 *
+	 * @param array $patterns       Pattern data array.
+	 * @param int   $used_count     Count of used patterns.
+	 * @param int   $unused_count   Count of unused patterns.
+	 * @param int   $synced_count   Count of synced patterns.
+	 * @param int   $standard_count Count of standard patterns.
+	 */
+	private function output_patterns_table( $patterns, $used_count, $unused_count, $synced_count, $standard_count ) {
+		// Colors
+		$green   = "\033[32m";
+		$red     = "\033[31m";
+		$yellow  = "\033[33m";
+		$cyan    = "\033[36m";
+		$magenta = "\033[35m";
+		$reset   = "\033[0m";
+		$bold    = "\033[1m";
+		$dim     = "\033[2m";
+
+		// Column widths
+		$col_status   = 8;
+		$col_sync     = 8;
+		$col_id       = 5;
+		$col_category = 12;
+		$col_title    = 40;
+
+		// Header
+		$header = sprintf(
+			"{$bold}%-{$col_status}s | %-{$col_sync}s | %{$col_id}s | %-{$col_category}s | %-{$col_title}s{$reset}",
+			'STATUS',
+			'SYNC',
+			'ID',
+			'CATEGORY',
+			'TITLE'
+		);
+		$line = str_repeat( '-', $col_status ) . '-+-' .
+				str_repeat( '-', $col_sync ) . '-+-' .
+				str_repeat( '-', $col_id ) . '-+-' .
+				str_repeat( '-', $col_category ) . '-+-' .
+				str_repeat( '-', $col_title );
+
+		\WP_CLI::log( "\n{$bold}PATTERNS{$reset}" );
+		\WP_CLI::log( $line );
+		\WP_CLI::log( $header );
+		\WP_CLI::log( $line );
+
+		foreach ( $patterns as $p ) {
+			if ( $p['sync'] === 'synced' ) {
+				$sync_color = $cyan;
+				$sync_text  = 'SYNCED';
+			} else {
+				$sync_color = $yellow;
+				$sync_text  = 'STANDARD';
+			}
+
+			if ( $p['status'] === 'used' ) {
+				$status_color = $green;
+				$status_text  = '✓ USED  ';
+			} else {
+				$status_color = $red;
+				$status_text  = '✗ UNUSED';
+			}
+
+			$cat_text = mb_substr( $p['category'], 0, $col_category );
+			$title    = mb_substr( $p['title'], 0, $col_title );
+
+			// Pad manually to avoid unicode width issues
+			$sync_padded  = str_pad( $sync_text, $col_sync );
+			$id_padded    = str_pad( $p['id'], $col_id, ' ', STR_PAD_LEFT );
+			$cat_padded   = str_pad( $cat_text, $col_category );
+			$title_padded = str_pad( $title, $col_title );
+
+			\WP_CLI::log( "{$status_color}{$status_text}{$reset} | {$sync_color}{$sync_padded}{$reset} | {$dim}{$id_padded}{$reset} | {$magenta}{$cat_padded}{$reset} | {$title_padded}" );
+		}
+
+		\WP_CLI::log( $line );
+		\WP_CLI::log( sprintf(
+			"%sUsed: %d%s | %sUnused: %d%s | %sSynced: %d%s | %sStandard: %d%s | Total: %d\n",
+			$green,
+			$used_count,
+			$reset,
+			$red,
+			$unused_count,
+			$reset,
+			$cyan,
+			$synced_count,
+			$reset,
+			$yellow,
+			$standard_count,
+			$reset,
+			count( $patterns )
+		) );
+	}
+
+	/**
+	 * Output patterns as CSV to a file
+	 *
+	 * @param array  $patterns  Pattern data array.
+	 * @param string $file_path Path to output file.
+	 */
+	private function output_patterns_csv_file( $patterns, $file_path ) {
+		$handle = fopen( $file_path, 'w' );
+
+		if ( ! $handle ) {
+			\WP_CLI::error( "Could not open file for writing: {$file_path}" );
+			return;
+		}
+
+		// Write header
+		fputcsv( $handle, [ 'id', 'title', 'status', 'sync', 'category' ] );
+
+		// Write data
+		foreach ( $patterns as $p ) {
+			fputcsv( $handle, [ $p['id'], $p['title'], $p['status'], $p['sync'], $p['category'] ] );
+		}
+
+		fclose( $handle );
+		\WP_CLI::success( "CSV saved to: {$file_path}" );
+	}
 }
 
 // Register the commands
 \WP_CLI::add_command( '84em regenerate-schema', [ new ThemeCLI(), 'regenerate_schema' ] );
 \WP_CLI::add_command( '84em test-og-images', [ new ThemeCLI(), 'test_og_images' ] );
 \WP_CLI::add_command( '84em migrate-separators', [ new ThemeCLI(), 'migrate_separators' ] );
+\WP_CLI::add_command( '84em list-patterns', [ new ThemeCLI(), 'list_patterns' ] );

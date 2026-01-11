@@ -5,6 +5,20 @@ All notable changes to the 84EM Block Theme will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.42.1] - 2026-01-11
+
+### Added
+- **WP-CLI List Patterns Command** - New command to list all block patterns with filtering (`includes/cli.php`)
+  - `wp 84em list-patterns` displays patterns with usage status, sync status, and category
+  - Filter options: `--status=<used|unused>`, `--sync=<synced|standard>`, `--category=<slug>`
+  - Output formats: `--format=<table|csv|json>`, default is colored table
+  - Export option: `--file=<path>` saves CSV to file
+
+### Fixed
+- **Image Duotone Filter** - Removed global duotone filter from `core/image` blocks (`theme.json`)
+  - Images now display in true color by default instead of forced duotone
+  - Client logos and other images render with original colors
+
 ## [2.42.0] - 2026-01-10
 
 ### Changed

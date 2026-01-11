@@ -513,9 +513,6 @@
 				}
 			},
 			"core/image": {
-				"filter": {
-					"duotone": "var(--wp--preset--duotone--duotone-2)"
-				},
 				"variations": {
 					"rounded": {
 						"border": {
