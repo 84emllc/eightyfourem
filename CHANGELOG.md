@@ -5,6 +5,14 @@ All notable changes to the 84EM Block Theme will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.48.3] - 2026-01-15
+
+### Changed
+- **Case Study Filter Animations** - Grid items now appear immediately on initial page load (`assets/js/case-study-filter.js`)
+  - Removed lazy-load fade-in animation on initial render
+  - Animations now initialize only after first filter button click
+  - Improves perceived performance and reduces unnecessary motion
+
 ## [2.48.1] - 2026-01-11
 
 ### Fixed

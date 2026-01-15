@@ -17,10 +17,10 @@
 		const resultCounter = document.querySelector('.case-study-result-count');
 		const totalItems = caseStudyItems.length;
 
-		if (!filterButtons.length || !caseStudyItems.length) return;
+		// Track if animations have been initialized (only init after first filter click)
+		let animationsInitialized = false;
 
-		// Initialize lazy load animations
-		initLazyLoadAnimations(caseStudyItems);
+		if (!filterButtons.length || !caseStudyItems.length) return;
 
 		// Function to update result counter
 		function updateCounter(visibleCount) {
@@ -129,6 +129,12 @@
 		filterButtons.forEach(function (button) {
 			button.addEventListener('click', function (e) {
 				e.preventDefault();
+
+				// Initialize animations on first filter click (not on page load)
+				if (!animationsInitialized) {
+					initLazyLoadAnimations(caseStudyItems);
+					animationsInitialized = true;
+				}
 
 				const filter = this.dataset.filter;
 
