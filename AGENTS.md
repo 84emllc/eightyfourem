@@ -12,6 +12,7 @@ The 84EM Block Theme is a custom WordPress FSE theme optimized for business webs
 - **Modal Search** - Accessible modal search with keyboard navigation and ARIA support
 - **FAQ Search** - On-page filtering for FAQ page with WCAG 2.1 accessibility support
 - **Simple Analytics** - Privacy-focused analytics via external CDN (scripts.simpleanalyticscdn.com)
+- **Columns Reverse on Mobile** - Block editor toggle to reverse column order when stacked on mobile (`assets/js/columns-reverse-mobile.js`)
 
 ## Project Structure & Module Organization
 - `assets/css|js|fonts/` hold front-end sources; compiled files inherit the same path with `.min.(css|js)` suffixes. Keep Google Reviews block assets inside `assets/google-reviews-block/`.
@@ -57,11 +58,12 @@ Files in `includes/` directory provide modular functionality:
 - `open-graph-images.php` - Open Graph image management with fallback logic
 
 **UI & Navigation:**
-- `enqueue.php` - Script/style enqueuing for sticky header, modal search, case study filters, animations
+- `enqueue.php` - Script/style enqueuing for sticky header, modal search, case study filters, animations, columns reverse mobile
 - `block-styles.php` - Custom block style registration
 - `block-stylesheets.php` - Block-specific stylesheet loading
 - `animations.css` - CSS animations for block editor (replaces blocks-animation plugin)
 - `animations.js` - Intersection Observer for scroll-triggered animations
+- `columns-reverse-mobile.js` - Extends Columns block with "Reverse on mobile" toggle in block editor
 
 **Dynamic Content:**
 - `dynamic-years.php` - Shortcodes for dynamic year calculations: `[dev_years]` (programming since 1995), `[wp_years]` (WordPress since 2012), `[years_since year="XXXX"]` (custom year)
@@ -224,6 +226,16 @@ add_shortcode( 'case_study_filters', 'EightyFourEM\CaseStudyFilters\render_filte
   - After migration, verify pages display correct calculated years
   - Edit a migrated page in block editor to confirm shortcode appears as text
   - Clear caches after migration (FlyingPress, Cloudflare)
+
+- **Columns Reverse on Mobile** (`assets/js/columns-reverse-mobile.js`, `assets/css/utilities.css`)
+  - Select a Columns block in the block editor
+  - In the Settings panel, find the "Reverse on mobile" toggle (below "Stack on mobile")
+  - Enable the toggle and save the page
+  - View the page on mobile (or use Chrome DevTools device mode at <782px width)
+  - Verify columns appear in reverse order when stacked
+  - Confirm the `is-reverse-on-mobile` class is added to the columns block
+  - Test that the toggle only affects blocks with "Stack on mobile" enabled (blocks with `is-not-stacked-on-mobile` class are unaffected)
+  - Verify the toggle state persists after saving and reopening the page
 
 ## Release Process
 When preparing a release with version bump:

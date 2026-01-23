@@ -323,3 +323,25 @@ defined( 'ABSPATH' ) || exit;
         );
     }
 );
+
+/**
+ * Enqueue columns reverse on mobile editor script
+ * Adds a toggle to reverse column order on mobile devices
+ */
+\add_action(
+	hook_name: 'enqueue_block_editor_assets',
+	callback: function () {
+		$suffix  = ( ! \defined( 'WP_DEBUG' ) || ! WP_DEBUG ) ? '.min' : '';
+		$version = \wp_get_theme()->get( 'Version' );
+
+		\wp_enqueue_script(
+			handle: 'eightyfourem-columns-reverse-mobile',
+			src: \get_theme_file_uri( "assets/js/columns-reverse-mobile{$suffix}.js" ),
+			deps: [ 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-compose', 'wp-hooks', 'wp-i18n' ],
+			ver: $version,
+			args: [
+				'in_footer' => true,
+			]
+		);
+	}
+);

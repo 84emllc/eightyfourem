@@ -121,3 +121,10 @@ main a:hover:not(.wp-element-button, .wp-block-button__link) {
   height: auto;
   object-fit: contain;
 }
+
+/* Columns: Reverse order on mobile */
+@media (max-width: 781px) {
+  .wp-block-columns.is-reverse-on-mobile:not(.is-not-stacked-on-mobile) {
+    flex-direction: column-reverse;
+  }
+}
