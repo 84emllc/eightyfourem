@@ -5,6 +5,15 @@ All notable changes to the 84EM Block Theme will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.49.0] - 2026-01-22
+
+### Added
+- **Columns Reverse on Mobile** - New block editor toggle to reverse column order when stacked on mobile (`assets/js/columns-reverse-mobile.js`, `assets/css/utilities.css`)
+  - Toggle appears in Columns block Settings panel below "Stack on mobile"
+  - Adds `.is-reverse-on-mobile` class for CSS `flex-direction: column-reverse`
+  - Only affects blocks with "Stack on mobile" enabled
+  - Editor script with proper block dependencies via `includes/enqueue.php`
+
 ## [2.48.3] - 2026-01-15
 
 ### Changed

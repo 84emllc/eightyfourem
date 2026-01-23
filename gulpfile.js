@@ -51,7 +51,8 @@ const paths = {
       './assets/js/modal-search.js',
       './assets/js/faq-search.js',
       './assets/js/animations.js',
-      './assets/js/hero-lazy-load.js'
+      './assets/js/hero-lazy-load.js',
+      './assets/js/columns-reverse-mobile.js'
     ],
     googleReviews: './blocks/google-reviews/index.js',
     calendlyBooking: './blocks/calendly-booking-details/index.js',
