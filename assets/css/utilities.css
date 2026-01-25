@@ -82,16 +82,6 @@ footer {
   padding-bottom: 1rem;
 }
 
-/* Main content link colors */
-main a:not(.wp-element-button, .wp-block-button__link) {
-  color: var(--wp--preset--color--custom-color-1) !important;
-}
-
-/* WCAG AAA compliant: #595959 provides 7:1 contrast ratio against white */
-main a:hover:not(.wp-element-button, .wp-block-button__link) {
-  color: #595959 !important;
-}
-
 /* Standard list indentation */
 .wp-block-list:not(.is-style-checkmark-list) {
   padding-left: 2em;
