@@ -5,6 +5,16 @@ All notable changes to the 84EM Block Theme will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.49.1] - 2026-01-25
+
+### Added
+- **White Link Utility** - New `.white-link` CSS class for forcing white link color (`assets/css/utilities.css`)
+
+### Removed
+- **Main Content Link Styling** - Removed custom link color definitions from main content area (`assets/css/utilities.css`)
+  - Eliminates forced color scheme for links to allow design refinement
+  - CSS structure preserved for easy restoration when new colors are finalized
+
 ## [2.49.0] - 2026-01-22
 
 ### Added

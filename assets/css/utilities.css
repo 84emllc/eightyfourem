@@ -118,3 +118,7 @@ footer {
     flex-direction: column-reverse;
   }
 }
+
+.white-link {
+  color: white!important;
+}
