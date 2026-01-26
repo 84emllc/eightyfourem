@@ -8,10 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [2.49.2] - 2026-01-26
 
 ### Changed
-- **Hero Lazy Load** - Restricted to homepage only (`includes/hero-lazy-load.php`, `includes/enqueue.php`)
-  - Added `is_front_page()` checks to filter, critical CSS, and script enqueue
-  - Updated fallback image URL to 2025 desktop background
-  - Reduces unnecessary processing on non-homepage pages
+- **Hero Lazy Load** - Updated fallback image to 2025 desktop background (`includes/hero-lazy-load.php`)
+- **CLI Hero Update** - Updated hero image URL to 2025 desktop background (`includes/cli-hero-update.php`)
 
 ## [2.49.1] - 2026-01-25
 
