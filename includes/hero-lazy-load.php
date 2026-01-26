@@ -59,10 +59,9 @@ function is_hero_block( array $block ): bool {
 		}
 
 		// Use centralized hero background URL for all hero blocks site-wide
-		// Uses the homepage hero image (378267091-huge.jpg) across all pages
 		$bg_url = \apply_filters(
 			'eightyfourem_hero_background_url',
-			\content_url( '/uploads/2020/02/378267091-huge.jpg' )
+			'https://84em.com/wp-content/uploads/2025/10/84em-desktop-background-scaled.jpg'
 		);
 
 		// Add data attributes to the first wp-block-group element
