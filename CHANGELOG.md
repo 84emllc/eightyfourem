@@ -5,6 +5,12 @@ All notable changes to the 84EM Block Theme will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.49.2] - 2026-01-26
+
+### Changed
+- **Hero Lazy Load** - Updated fallback image to 2025 desktop background (`includes/hero-lazy-load.php`)
+- **CLI Hero Update** - Updated hero image URL to 2025 desktop background (`includes/cli-hero-update.php`)
+
 ## [2.49.1] - 2026-01-25
 
 ### Added
