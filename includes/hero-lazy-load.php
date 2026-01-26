@@ -2,7 +2,7 @@
 /**
  * Hero Lazy Load
  * Defers hero background image loading until user interaction
- * Only applies to homepage hero blocks with metadata name containing "hero"
+ * Applies site-wide to any block with metadata name containing "hero"
  *
  * @package EightyFourEM
  */
@@ -49,25 +49,20 @@ function is_hero_block( array $block ): bool {
 
 /**
  * Filter group block rendering to add lazy load data attributes to heroes
- * Only applies to the homepage (front page)
  */
 \add_filter(
 	hook_name: 'render_block_core/group',
 	callback: function ( string $block_content, array $block ): string {
-		// Only run on the homepage
-		if ( ! \is_front_page() ) {
-			return $block_content;
-		}
-
 		// Check if this is a hero block
 		if ( ! is_hero_block( $block ) ) {
 			return $block_content;
 		}
 
-		// Use centralized hero background URL for homepage hero
+		// Use centralized hero background URL for all hero blocks site-wide
+		// Uses the homepage hero image (378267091-huge.jpg) across all pages
 		$bg_url = \apply_filters(
 			'eightyfourem_hero_background_url',
-			'https://84em.com/wp-content/uploads/2025/10/84em-desktop-background-scaled.jpg'
+			\content_url( '/uploads/2020/02/378267091-huge.jpg' )
 		);
 
 		// Add data attributes to the first wp-block-group element
@@ -87,16 +82,10 @@ function is_hero_block( array $block ): bool {
 /**
  * Output critical inline CSS in head to immediately replace hero backgrounds
  * This runs before hero images can start loading, preventing the initial request
- * Only outputs on homepage where hero lazy load is active
  */
 \add_action(
 	hook_name: 'wp_head',
 	callback: function (): void {
-		// Only output critical CSS on homepage
-		if ( ! \is_front_page() ) {
-			return;
-		}
-
 		$gradient = 'linear-gradient(185deg, rgb(17, 17, 17) 0%, rgb(51, 51, 51) 100%)';
 		?>
 		<style id="hero-lazy-load-critical">

@@ -134,25 +134,9 @@ defined( 'ABSPATH' ) || exit;
 			]
 		);
 
-	}
-);
-
-/**
- * Enqueue hero lazy load script
- * Only loads on homepage (front page)
- */
-\add_action(
-	hook_name: 'wp_enqueue_scripts',
-	callback: function () {
-		if ( ! \is_front_page() ) {
-			return;
-		}
-
-		$suffix  = ( ! \defined( 'WP_DEBUG' ) || ! WP_DEBUG ) ? '.min' : '';
-		$version = \wp_get_theme()->get( 'Version' );
-
-		// Hero lazy load JS - homepage only
+		// Hero lazy load JS - site-wide for any hero block with metadata name
 		// Note: CSS is inline in wp_head via hero-lazy-load.php for critical rendering
+		// Script self-disables if no [data-lazy-hero] elements found
 		\wp_enqueue_script(
 			handle: 'eightyfourem-hero-lazy-load',
 			src: \get_theme_file_uri( "assets/js/hero-lazy-load{$suffix}.js" ),
