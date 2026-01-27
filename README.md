@@ -6,6 +6,7 @@
 [![Check Internal Links](https://github.com/84emllc/eightyfourem/actions/workflows/check-links.yml/badge.svg)](https://github.com/84emllc/eightyfourem/actions/workflows/check-links.yml)
 [![Check External Links](https://github.com/84emllc/eightyfourem/actions/workflows/check-external-links.yml/badge.svg)](https://github.com/84emllc/eightyfourem/actions/workflows/check-external-links.yml)
 [![Security Review](https://github.com/84emllc/eightyfourem/actions/workflows/security-review.yml/badge.svg)](https://github.com/84emllc/eightyfourem/actions/workflows/security-review.yml)
+![Ghost Inspector Status](https://api.ghostinspector.com/v1/suites/696976d965fd97d14e9b14aa/status-badge)
 
 A modern WordPress block theme for 84EM, based on Twenty Twenty-Four with custom enhancements and styling.
 
