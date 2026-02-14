@@ -5,6 +5,17 @@ All notable changes to the 84EM Block Theme will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.50.0] - 2026-02-14
+
+### Changed
+- **Schema.org Repositioning**: Broadened 17 structured data strings across services, pricing, consulting, privacy policy, and testimonials schemas from WordPress-only to web engineering positioning
+- **HTML Sitemap**: Added new title prefixes to `sanitize_local_title()` for "Web Development & WordPress Services in" format
+- **Local Page CTA**: Updated single-local.html button text from "Start Your WordPress Project" to "Start Your Project"
+
+### Fixed
+- **CLI Schema Regeneration**: Fixed wrong slug for agencies page (`white-label-wordpress-development-for-agencies` to `wordpress-development-for-agencies`)
+- **CLI Schema Regeneration**: Added 3 missing service pages to `--service-pages` list (ai-integration-development, data-migrations, security-troubleshooting)
+
 ## [2.49.3] - 2026-01-27
 
 ### Added

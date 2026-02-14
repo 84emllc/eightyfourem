@@ -45,6 +45,8 @@ function permalink_to_title( int $post_id ): string {
  */
 function sanitize_local_title( string $title, bool $strip_state = false ): string {
 	$prefixes = [
+		'Web Development & WordPress Services in the ',
+		'Web Development & WordPress Services in ',
 		'Custom WordPress Plugin Development, Consulting, and White-Label services in the ',
 		'Custom WordPress Plugin Development, Consulting, and White-Label services in ',
 		'WordPress Development, Plugins, Consulting, White-Label in ',
