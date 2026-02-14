@@ -34,7 +34,6 @@ jobs:
             --verbose \
             --no-progress \
             --include '84em\.com' \
-            --exclude 'xmlrpc\.php' \
             --max-concurrency 2 \
             --max-retries 3 \
             --timeout 30 \
@@ -42,8 +41,16 @@ jobs:
             --output /tmp/lychee-out.md \
             $(cat /tmp/urls.txt)
 
-      - name: Create issue if broken links found
+      - name: Check for real errors
+        id: errors
         if: steps.lychee.outcome == 'failure'
+        run: |
+          if grep -P '^\* \[\d+\]' /tmp/lychee-out.md | grep -v 'xmlrpc\.php' | grep -q .; then
+            echo "has_errors=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create issue if broken links found
+        if: steps.errors.outputs.has_errors == 'true'
         uses: actions/github-script@v7
         with:
           script: |
@@ -61,7 +68,8 @@ jobs:
             body += 'The daily link check found broken internal links on 84em.com.\n\n';
 
             if (fs.existsSync('/tmp/lychee-out.md')) {
-              const output = fs.readFileSync('/tmp/lychee-out.md', 'utf8');
+              let output = fs.readFileSync('/tmp/lychee-out.md', 'utf8');
+              output = output.split('\n').filter(l => !l.includes('xmlrpc')).join('\n');
               body += '```\n' + output.slice(0, 60000) + '\n```\n';
             }
 
