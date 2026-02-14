@@ -20,14 +20,8 @@ jobs:
 
       - name: Fetch sitemap URLs
         run: |
-          curl -s https://84em.com/wp-sitemap.xml \
-            | grep -oP '<loc>\K[^<]+' > /tmp/sitemap_indexes.txt
-
-          > /tmp/urls.txt
-          while IFS= read -r sitemap_url; do
-            curl -s "$sitemap_url" \
-              | grep -oP '<loc>\K[^<]+' >> /tmp/urls.txt
-          done < /tmp/sitemap_indexes.txt
+          curl -sL https://84em.com/sitemap.xml \
+            | grep -oP '<loc>\K[^<]+' > /tmp/urls.txt
 
           echo "Found $(wc -l < /tmp/urls.txt) pages to check"
 
