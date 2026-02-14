@@ -34,6 +34,7 @@ jobs:
             --verbose \
             --no-progress \
             --include '84em\.com' \
+            --exclude 'xmlrpc\.php' \
             --max-concurrency 2 \
             --max-retries 3 \
             --timeout 30 \
