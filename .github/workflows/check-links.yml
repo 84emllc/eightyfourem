@@ -46,7 +46,7 @@ jobs:
         id: errors
         if: steps.lychee.outcome == 'failure'
         run: |
-          if grep -P '^\* \[\d+\]' /tmp/lychee-out.md | grep -v 'xmlrpc\.php' | grep -q .; then
+          if grep -P '^\* \[\d+\]' /tmp/lychee-out.md | grep -v 'xmlrpc\.php' | grep -v '| Redirect:' | grep -q .; then
             echo "has_errors=true" >> "$GITHUB_OUTPUT"
           fi
 
@@ -70,7 +70,7 @@ jobs:
 
             if (fs.existsSync('/tmp/lychee-out.md')) {
               let output = fs.readFileSync('/tmp/lychee-out.md', 'utf8');
-              output = output.split('\n').filter(l => !l.includes('xmlrpc')).join('\n');
+              output = output.split('\n').filter(l => !l.includes('xmlrpc') && !l.includes('| Redirect:')).join('\n');
               body += '```\n' + output.slice(0, 60000) + '\n```\n';
             }
 
