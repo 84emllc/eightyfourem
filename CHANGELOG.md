@@ -5,6 +5,15 @@ All notable changes to the 84EM Block Theme will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.50.1] - 2026-02-14
+
+### Fixed
+- **Internal Link Checker**: Replaced offline mode with live checking against 84em.com using `--base` and `--include` flags so relative paths and absolute 84em.com URLs are actually validated
+- **External Link Checker**: Added `--exclude '84em\.com'` to avoid double-checking internal links
+- **Link Checker Schedules**: Internal runs daily at 10:00 AM UTC, external runs daily at 11:00 AM UTC, both with manual dispatch
+- **Link Checker Issues**: Both workflows now create/update GitHub issues (with `broken-links` label) on failure, matched by title to prevent collisions
+- **Link Checker Triggers**: Removed push and PR triggers from internal checker to prevent automatic runs on deployments
+
 ## [2.50.0] - 2026-02-14
 
 ### Changed
