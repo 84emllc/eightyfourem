@@ -16,6 +16,7 @@ jobs:
           curl -sLO https://github.com/lycheeverse/lychee/releases/download/lychee-v0.21.0/lychee-x86_64-unknown-linux-gnu.tar.gz
           tar -xzf lychee-x86_64-unknown-linux-gnu.tar.gz lychee
           install -D lychee "$HOME/.local/bin/lychee"
+          rm -f lychee lychee-x86_64-unknown-linux-gnu.tar.gz
           echo "$HOME/.local/bin" >> "$GITHUB_PATH"
 
       - name: Fetch sitemap URLs
@@ -29,7 +30,6 @@ jobs:
         id: lychee
         continue-on-error: true
         run: |
-          mkdir -p lychee
           lychee \
             --verbose \
             --no-progress \
@@ -43,7 +43,7 @@ jobs:
             --max-retries 3 \
             --timeout 30 \
             --format markdown \
-            --output lychee/out.md \
+            --output /tmp/lychee-out.md \
             $(cat /tmp/urls.txt)
 
       - name: Create issue if broken links found
@@ -64,8 +64,8 @@ jobs:
             let body = '## Broken External Links\n\n';
             body += 'The daily link check found broken external links on 84em.com.\n\n';
 
-            if (fs.existsSync('lychee/out.md')) {
-              const output = fs.readFileSync('lychee/out.md', 'utf8');
+            if (fs.existsSync('/tmp/lychee-out.md')) {
+              const output = fs.readFileSync('/tmp/lychee-out.md', 'utf8');
               body += '```\n' + output.slice(0, 60000) + '\n```\n';
             }
 
