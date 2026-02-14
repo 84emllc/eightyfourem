@@ -34,6 +34,7 @@ jobs:
             --verbose \
             --no-progress \
             --include '84em\.com' \
+            --accept '200..=299' \
             --max-concurrency 2 \
             --max-retries 3 \
             --timeout 30 \
