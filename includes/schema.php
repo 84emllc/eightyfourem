@@ -298,7 +298,7 @@ function extract_testimonials_from_page( int $page_id ): array {
                             '@id'             => $site_url . '/#organization',
                             'hasOfferCatalog' => [
                                 '@type'           => 'OfferCatalog',
-                                'name'            => 'WordPress Development Services',
+                                'name'            => 'Web Engineering & Development Services',
                                 'itemListElement' => [
                                     [
                                         '@type'       => 'Offer',
@@ -405,24 +405,33 @@ function extract_testimonials_from_page( int $page_id ): array {
                         $schema['mainEntity'] = [
                             '@type'      => 'Person',
                             'name'       => 'Andrew Miller',
-                            'jobTitle'   => 'WordPress Developer & Consultant',
+                            'jobTitle'   => 'Principal Engineer & Consultant',
                             'worksFor'   => [
                                 '@type' => 'Organization',
                                 '@id'   => $site_url . '/#organization',
                             ],
                             'knowsAbout' => [
                                 'WordPress Plugin Development',
+                                'Custom WordPress Development',
                                 'PHP Programming',
+                                'React Development',
+                                'Python Development',
                                 'API Integration',
+                                'AI Integration',
+                                'Headless CMS Architecture',
+                                'Hugo Static Sites',
+                                'CI/CD Pipelines',
+                                'GitHub Actions',
                                 'WordPress Security',
+                                'Security Audits',
                                 'Data Migration',
                                 'Platform Transfers',
-                                'AI-Enhanced WordPress Development',
+                                'Meilisearch',
+                                'Server Provisioning',
+                                'DevOps',
                                 'White Label Development',
                                 'WordPress Maintenance',
-                                'Security Audits',
                                 'WordPress Consulting',
-                                'Custom WordPress Development',
                             ],
                         ];
                         break;
@@ -432,9 +441,9 @@ function extract_testimonials_from_page( int $page_id ): array {
                         $schema['mainEntity'] = [
                             '@type'            => 'Service',
                             '@id'              => $post_url . '#service',
-                            'serviceType'      => 'WordPress Development',
-                            'name'             => 'WordPress Development Services',
-                            'description'      => 'Professional WordPress development including custom themes, plugins, performance optimization, and maintenance',
+                            'serviceType'      => 'Web Engineering & Development',
+                            'name'             => 'Web Engineering & Development Services',
+                            'description'      => 'Professional web engineering including custom development, plugins, AI integrations, performance optimization, and maintenance',
                             'provider'         => [
                                 '@type' => 'Organization',
                                 '@id'   => $site_url . '/#organization',
@@ -447,7 +456,7 @@ function extract_testimonials_from_page( int $page_id ): array {
                             ],
                             'hasOfferCatalog'  => [
                                 '@type'           => 'OfferCatalog',
-                                'name'            => 'WordPress Development Services',
+                                'name'            => 'Web Engineering & Development Services',
                                 'itemListElement' => [
                                     [
                                         '@type'              => 'Offer',
@@ -573,8 +582,8 @@ function extract_testimonials_from_page( int $page_id ): array {
                                         '@type'              => 'Offer',
                                         'itemOffered'        => [
                                             '@type'       => 'Service',
-                                            'name'        => 'After-Hours WordPress Development',
-                                            'description' => 'After-hours and emergency WordPress development services',
+                                            'name'        => 'After-Hours Development',
+                                            'description' => 'After-hours and emergency development services',
                                             'provider'    => [
                                                 '@type' => 'Organization',
                                                 '@id'   => $site_url . '/#organization',
@@ -630,7 +639,7 @@ function extract_testimonials_from_page( int $page_id ): array {
                                 [
                                     '@type'              => 'Offer',
                                     'name'               => 'After-Hours Rate',
-                                    'description'        => 'After-hours and emergency WordPress development services',
+                                    'description'        => 'After-hours and emergency development services',
                                     'priceSpecification' => [
                                         '@type'         => 'UnitPriceSpecification',
                                         'price'         => '225',
@@ -678,7 +687,7 @@ function extract_testimonials_from_page( int $page_id ): array {
                                 [
                                     '@type'              => 'Offer',
                                     'name'               => 'After-Hours Rate',
-                                    'description'        => 'After-hours and emergency WordPress development services',
+                                    'description'        => 'After-hours and emergency development services',
                                     'priceSpecification' => [
                                         '@type'         => 'UnitPriceSpecification',
                                         'price'         => '225',
@@ -726,7 +735,7 @@ function extract_testimonials_from_page( int $page_id ): array {
                                 [
                                     '@type'              => 'Offer',
                                     'name'               => 'After-Hours Rate',
-                                    'description'        => 'After-hours and emergency WordPress development services',
+                                    'description'        => 'After-hours and emergency development services',
                                     'priceSpecification' => [
                                         '@type'         => 'UnitPriceSpecification',
                                         'price'         => '225',
@@ -793,9 +802,9 @@ function extract_testimonials_from_page( int $page_id ): array {
                         $schema['mainEntity'] = [
                             '@type'              => 'Service',
                             '@id'                => $post_url . '#service',
-                            'serviceType'        => 'WordPress Consulting',
-                            'name'               => 'WordPress Consulting & Strategy',
-                            'description'        => 'Expert WordPress consulting and strategic planning services including technical audits and architecture planning',
+                            'serviceType'        => 'Technical Consulting',
+                            'name'               => 'Technical Consulting & Strategy',
+                            'description'        => 'Expert technical consulting and strategic planning services including audits and architecture planning',
                             'provider'           => [
                                 '@type' => 'Organization',
                                 '@id'   => $site_url . '/#organization',
@@ -821,7 +830,7 @@ function extract_testimonials_from_page( int $page_id ): array {
                                 [
                                     '@type'              => 'Offer',
                                     'name'               => 'After-Hours Rate',
-                                    'description'        => 'After-hours and emergency WordPress development services',
+                                    'description'        => 'After-hours and emergency development services',
                                     'priceSpecification' => [
                                         '@type'         => 'UnitPriceSpecification',
                                         'price'         => '225',
@@ -869,7 +878,7 @@ function extract_testimonials_from_page( int $page_id ): array {
                                 [
                                     '@type'              => 'Offer',
                                     'name'               => 'After-Hours Rate',
-                                    'description'        => 'After-hours and emergency WordPress development services',
+                                    'description'        => 'After-hours and emergency development services',
                                     'priceSpecification' => [
                                         '@type'         => 'UnitPriceSpecification',
                                         'price'         => '225',
@@ -889,7 +898,7 @@ function extract_testimonials_from_page( int $page_id ): array {
                         $schema['mainEntity'] = [
                             '@type'       => 'DigitalDocument',
                             'name'        => '84EM Privacy Policy',
-                            'description' => 'Privacy policy governing WordPress development services and data protection practices',
+                            'description' => 'Privacy policy governing web engineering services and data protection practices',
                             'author'      => [
                                 '@type' => 'Organization',
                                 '@id'   => $site_url . '/#organization',
@@ -957,7 +966,7 @@ function extract_testimonials_from_page( int $page_id ): array {
                             '@type'           => 'Organization',
                             '@id'             => $site_url . '/#organization',
                             'name'            => '84EM',
-                            'description'     => 'Expert WordPress Development Services',
+                            'description'     => 'Expert Web Engineering Services',
                             'url'             => $site_url,
                             'aggregateRating' => [
                                 '@type'       => 'AggregateRating',
