@@ -64,10 +64,13 @@ class ThemeCLI {
 				'about',
 				'pricing',
 				'services/custom-wordpress-plugin-development',
-				'services/white-label-wordpress-development-for-agencies',
+				'services/wordpress-development-for-agencies',
 				'services/ai-enhanced-wordpress-development',
 				'services/wordpress-consulting-strategy',
 				'services/wordpress-maintenance-support',
+				'services/ai-integration-development',
+				'services/data-migrations',
+				'services/security-troubleshooting',
 			];
 
 			\WP_CLI::log( 'Regenerating schema for service pages and key pages...' );
