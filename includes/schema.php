@@ -304,8 +304,8 @@ function extract_testimonials_from_page( int $page_id ): array {
                                         '@type'       => 'Offer',
                                         'itemOffered' => [
                                             '@type'    => 'Service',
-                                            'name'     => 'Custom WordPress Plugin Development',
-                                            'url'      => $site_url . '/services/custom-wordpress-plugin-development/',
+                                            'name'     => 'Custom Development',
+                                            'url'      => $site_url . '/services/custom-development/',
                                             'provider' => [
                                                 '@type' => 'Organization',
                                                 '@id'   => $site_url . '/#organization',
@@ -316,44 +316,8 @@ function extract_testimonials_from_page( int $page_id ): array {
                                         '@type'       => 'Offer',
                                         'itemOffered' => [
                                             '@type'    => 'Service',
-                                            'name'     => 'White Label WordPress Development for Agencies',
-                                            'url'      => $site_url . '/services/white-label-wordpress-development-for-agencies/',
-                                            'provider' => [
-                                                '@type' => 'Organization',
-                                                '@id'   => $site_url . '/#organization',
-                                            ],
-                                        ],
-                                    ],
-                                    [
-                                        '@type'       => 'Offer',
-                                        'itemOffered' => [
-                                            '@type'    => 'Service',
-                                            'name'     => 'WordPress Consulting & Strategy',
-                                            'url'      => $site_url . '/services/wordpress-consulting-strategy/',
-                                            'provider' => [
-                                                '@type' => 'Organization',
-                                                '@id'   => $site_url . '/#organization',
-                                            ],
-                                        ],
-                                    ],
-                                    [
-                                        '@type'       => 'Offer',
-                                        'itemOffered' => [
-                                            '@type'    => 'Service',
-                                            'name'     => 'WordPress Maintenance & Support',
-                                            'url'      => $site_url . '/services/wordpress-maintenance-support/',
-                                            'provider' => [
-                                                '@type' => 'Organization',
-                                                '@id'   => $site_url . '/#organization',
-                                            ],
-                                        ],
-                                    ],
-                                    [
-                                        '@type'       => 'Offer',
-                                        'itemOffered' => [
-                                            '@type'    => 'Service',
-                                            'name'     => 'AI-Enhanced WordPress Development',
-                                            'url'      => $site_url . '/services/ai-enhanced-wordpress-development/',
+                                            'name'     => 'Agency Partnerships',
+                                            'url'      => $site_url . '/services/agency-partnerships/',
                                             'provider' => [
                                                 '@type' => 'Organization',
                                                 '@id'   => $site_url . '/#organization',
@@ -376,8 +340,8 @@ function extract_testimonials_from_page( int $page_id ): array {
                                         '@type'       => 'Offer',
                                         'itemOffered' => [
                                             '@type'    => 'Service',
-                                            'name'     => 'Data Migrations & Platform Transfers',
-                                            'url'      => $site_url . '/services/',
+                                            'name'     => 'Project Rescue',
+                                            'url'      => $site_url . '/services/project-rescue/',
                                             'provider' => [
                                                 '@type' => 'Organization',
                                                 '@id'   => $site_url . '/#organization',
@@ -389,7 +353,55 @@ function extract_testimonials_from_page( int $page_id ): array {
                                         'itemOffered' => [
                                             '@type'    => 'Service',
                                             'name'     => 'Security & Troubleshooting',
-                                            'url'      => $site_url . '/services/',
+                                            'url'      => $site_url . '/services/security-troubleshooting/',
+                                            'provider' => [
+                                                '@type' => 'Organization',
+                                                '@id'   => $site_url . '/#organization',
+                                            ],
+                                        ],
+                                    ],
+                                    [
+                                        '@type'       => 'Offer',
+                                        'itemOffered' => [
+                                            '@type'    => 'Service',
+                                            'name'     => 'Consulting & Strategy',
+                                            'url'      => $site_url . '/services/consulting-strategy/',
+                                            'provider' => [
+                                                '@type' => 'Organization',
+                                                '@id'   => $site_url . '/#organization',
+                                            ],
+                                        ],
+                                    ],
+                                    [
+                                        '@type'       => 'Offer',
+                                        'itemOffered' => [
+                                            '@type'    => 'Service',
+                                            'name'     => 'Code Cleanup & Refactoring',
+                                            'url'      => $site_url . '/services/code-cleanup-refactoring/',
+                                            'provider' => [
+                                                '@type' => 'Organization',
+                                                '@id'   => $site_url . '/#organization',
+                                            ],
+                                        ],
+                                    ],
+                                    [
+                                        '@type'       => 'Offer',
+                                        'itemOffered' => [
+                                            '@type'    => 'Service',
+                                            'name'     => 'Maintenance & Support',
+                                            'url'      => $site_url . '/services/maintenance-support/',
+                                            'provider' => [
+                                                '@type' => 'Organization',
+                                                '@id'   => $site_url . '/#organization',
+                                            ],
+                                        ],
+                                    ],
+                                    [
+                                        '@type'       => 'Offer',
+                                        'itemOffered' => [
+                                            '@type'    => 'Service',
+                                            'name'     => 'Data Migrations & Platform Transfers',
+                                            'url'      => $site_url . '/services/data-migrations/',
                                             'provider' => [
                                                 '@type' => 'Organization',
                                                 '@id'   => $site_url . '/#organization',
@@ -432,6 +444,10 @@ function extract_testimonials_from_page( int $page_id ): array {
                                 'White Label Development',
                                 'WordPress Maintenance',
                                 'WordPress Consulting',
+                                'Project Rescue',
+                                'Code Refactoring',
+                                'WooCommerce Development',
+                                'LearnDash LMS',
                             ],
                         ];
                         break;
@@ -462,9 +478,9 @@ function extract_testimonials_from_page( int $page_id ): array {
                                         '@type'              => 'Offer',
                                         'itemOffered'        => [
                                             '@type'       => 'Service',
-                                            'name'        => 'Custom WordPress Plugin Development',
-                                            'description' => 'Custom WordPress plugin development tailored to your specific needs',
-                                            'url'         => $site_url . '/services/custom-wordpress-plugin-development/',
+                                            'name'        => 'Custom Development',
+                                            'description' => 'Custom plugins, integrations, and applications tailored to specific business requirements',
+                                            'url'         => $site_url . '/services/custom-development/',
                                             'provider'    => [
                                                 '@type' => 'Organization',
                                                 '@id'   => $site_url . '/#organization',
@@ -482,69 +498,9 @@ function extract_testimonials_from_page( int $page_id ): array {
                                         '@type'              => 'Offer',
                                         'itemOffered'        => [
                                             '@type'       => 'Service',
-                                            'name'        => 'White Label WordPress Development for Agencies',
-                                            'description' => 'White label WordPress development services for agencies and resellers',
-                                            'url'         => $site_url . '/services/white-label-wordpress-development-for-agencies/',
-                                            'provider'    => [
-                                                '@type' => 'Organization',
-                                                '@id'   => $site_url . '/#organization',
-                                            ],
-                                        ],
-                                        'priceSpecification' => [
-                                            '@type'        => 'UnitPriceSpecification',
-                                            'price'        => '150',
-                                            'priceCurrency' => 'USD',
-                                            'unitText'     => 'HOUR',
-                                        ],
-                                        'availability'       => 'https://schema.org/InStock',
-                                    ],
-                                    [
-                                        '@type'              => 'Offer',
-                                        'itemOffered'        => [
-                                            '@type'       => 'Service',
-                                            'name'        => 'WordPress Consulting & Strategy',
-                                            'description' => 'Expert WordPress consulting and strategic planning services',
-                                            'url'         => $site_url . '/services/wordpress-consulting-strategy/',
-                                            'provider'    => [
-                                                '@type' => 'Organization',
-                                                '@id'   => $site_url . '/#organization',
-                                            ],
-                                        ],
-                                        'priceSpecification' => [
-                                            '@type'        => 'UnitPriceSpecification',
-                                            'price'        => '150',
-                                            'priceCurrency' => 'USD',
-                                            'unitText'     => 'HOUR',
-                                        ],
-                                        'availability'       => 'https://schema.org/InStock',
-                                    ],
-                                    [
-                                        '@type'              => 'Offer',
-                                        'itemOffered'        => [
-                                            '@type'       => 'Service',
-                                            'name'        => 'WordPress Maintenance & Support',
-                                            'description' => 'Ongoing WordPress maintenance, updates, and technical support',
-                                            'url'         => $site_url . '/services/wordpress-maintenance-support/',
-                                            'provider'    => [
-                                                '@type' => 'Organization',
-                                                '@id'   => $site_url . '/#organization',
-                                            ],
-                                        ],
-                                        'priceSpecification' => [
-                                            '@type'        => 'UnitPriceSpecification',
-                                            'price'        => '150',
-                                            'priceCurrency' => 'USD',
-                                            'unitText'     => 'HOUR',
-                                        ],
-                                        'availability'       => 'https://schema.org/InStock',
-                                    ],
-                                    [
-                                        '@type'              => 'Offer',
-                                        'itemOffered'        => [
-                                            '@type'       => 'Service',
-                                            'name'        => 'AI-Enhanced WordPress Development',
-                                            'description' => 'WordPress development enhanced with AI tools and automation',
-                                            'url'         => $site_url . '/services/ai-enhanced-wordpress-development/',
+                                            'name'        => 'Agency Partnerships',
+                                            'description' => 'Client-facing or white-label development partnerships for digital agencies',
+                                            'url'         => $site_url . '/services/agency-partnerships/',
                                             'provider'    => [
                                                 '@type' => 'Organization',
                                                 '@id'   => $site_url . '/#organization',
@@ -565,6 +521,126 @@ function extract_testimonials_from_page( int $page_id ): array {
                                             'name'        => 'AI Integration & Development',
                                             'description' => 'Custom AI integrations, automations, and tools that solve real business problems',
                                             'url'         => $site_url . '/services/ai-integration-development/',
+                                            'provider'    => [
+                                                '@type' => 'Organization',
+                                                '@id'   => $site_url . '/#organization',
+                                            ],
+                                        ],
+                                        'priceSpecification' => [
+                                            '@type'        => 'UnitPriceSpecification',
+                                            'price'        => '150',
+                                            'priceCurrency' => 'USD',
+                                            'unitText'     => 'HOUR',
+                                        ],
+                                        'availability'       => 'https://schema.org/InStock',
+                                    ],
+                                    [
+                                        '@type'              => 'Offer',
+                                        'itemOffered'        => [
+                                            '@type'       => 'Service',
+                                            'name'        => 'Project Rescue',
+                                            'description' => 'Rescue stalled builds, broken integrations, and incomplete developer handoffs',
+                                            'url'         => $site_url . '/services/project-rescue/',
+                                            'provider'    => [
+                                                '@type' => 'Organization',
+                                                '@id'   => $site_url . '/#organization',
+                                            ],
+                                        ],
+                                        'priceSpecification' => [
+                                            '@type'        => 'UnitPriceSpecification',
+                                            'price'        => '150',
+                                            'priceCurrency' => 'USD',
+                                            'unitText'     => 'HOUR',
+                                        ],
+                                        'availability'       => 'https://schema.org/InStock',
+                                    ],
+                                    [
+                                        '@type'              => 'Offer',
+                                        'itemOffered'        => [
+                                            '@type'       => 'Service',
+                                            'name'        => 'Security & Troubleshooting',
+                                            'description' => 'Security incidents, vulnerability assessments, and technical troubleshooting',
+                                            'url'         => $site_url . '/services/security-troubleshooting/',
+                                            'provider'    => [
+                                                '@type' => 'Organization',
+                                                '@id'   => $site_url . '/#organization',
+                                            ],
+                                        ],
+                                        'priceSpecification' => [
+                                            '@type'        => 'UnitPriceSpecification',
+                                            'price'        => '150',
+                                            'priceCurrency' => 'USD',
+                                            'unitText'     => 'HOUR',
+                                        ],
+                                        'availability'       => 'https://schema.org/InStock',
+                                    ],
+                                    [
+                                        '@type'              => 'Offer',
+                                        'itemOffered'        => [
+                                            '@type'       => 'Service',
+                                            'name'        => 'Consulting & Strategy',
+                                            'description' => 'Expert technical consulting, audits, and architecture planning',
+                                            'url'         => $site_url . '/services/consulting-strategy/',
+                                            'provider'    => [
+                                                '@type' => 'Organization',
+                                                '@id'   => $site_url . '/#organization',
+                                            ],
+                                        ],
+                                        'priceSpecification' => [
+                                            '@type'        => 'UnitPriceSpecification',
+                                            'price'        => '150',
+                                            'priceCurrency' => 'USD',
+                                            'unitText'     => 'HOUR',
+                                        ],
+                                        'availability'       => 'https://schema.org/InStock',
+                                    ],
+                                    [
+                                        '@type'              => 'Offer',
+                                        'itemOffered'        => [
+                                            '@type'       => 'Service',
+                                            'name'        => 'Code Cleanup & Refactoring',
+                                            'description' => 'Code audits, refactoring, documentation, and technical debt resolution',
+                                            'url'         => $site_url . '/services/code-cleanup-refactoring/',
+                                            'provider'    => [
+                                                '@type' => 'Organization',
+                                                '@id'   => $site_url . '/#organization',
+                                            ],
+                                        ],
+                                        'priceSpecification' => [
+                                            '@type'        => 'UnitPriceSpecification',
+                                            'price'        => '150',
+                                            'priceCurrency' => 'USD',
+                                            'unitText'     => 'HOUR',
+                                        ],
+                                        'availability'       => 'https://schema.org/InStock',
+                                    ],
+                                    [
+                                        '@type'              => 'Offer',
+                                        'itemOffered'        => [
+                                            '@type'       => 'Service',
+                                            'name'        => 'Maintenance & Support',
+                                            'description' => 'Ongoing maintenance, updates, security monitoring, backups, and troubleshooting',
+                                            'url'         => $site_url . '/services/maintenance-support/',
+                                            'provider'    => [
+                                                '@type' => 'Organization',
+                                                '@id'   => $site_url . '/#organization',
+                                            ],
+                                        ],
+                                        'priceSpecification' => [
+                                            '@type'        => 'UnitPriceSpecification',
+                                            'price'        => '150',
+                                            'priceCurrency' => 'USD',
+                                            'unitText'     => 'HOUR',
+                                        ],
+                                        'availability'       => 'https://schema.org/InStock',
+                                    ],
+                                    [
+                                        '@type'              => 'Offer',
+                                        'itemOffered'        => [
+                                            '@type'       => 'Service',
+                                            'name'        => 'Data Migrations & Platform Transfers',
+                                            'description' => 'Complex data migrations from blog content to customer databases and order histories',
+                                            'url'         => $site_url . '/services/data-migrations/',
                                             'provider'    => [
                                                 '@type' => 'Organization',
                                                 '@id'   => $site_url . '/#organization',
@@ -607,13 +683,13 @@ function extract_testimonials_from_page( int $page_id ): array {
                         ];
                         break;
 
-                    case 'custom-wordpress-plugin-development':
+                    case 'custom-development':
                         $schema['mainEntity'] = [
                             '@type'              => 'Service',
                             '@id'                => $post_url . '#service',
-                            'serviceType'        => 'Custom WordPress Plugin Development',
-                            'name'               => 'Custom WordPress Plugin Development',
-                            'description'        => 'Custom WordPress plugin development tailored to your specific business requirements, from simple integrations to complex multi-system architectures',
+                            'serviceType'        => 'Custom Development',
+                            'name'               => 'Custom Development',
+                            'description'        => 'Custom plugins, integrations, and applications tailored to specific business requirements',
                             'provider'           => [
                                 '@type' => 'Organization',
                                 '@id'   => $site_url . '/#organization',
@@ -655,13 +731,13 @@ function extract_testimonials_from_page( int $page_id ): array {
                         ];
                         break;
 
-                    case 'white-label-wordpress-development-for-agencies':
+                    case 'agency-partnerships':
                         $schema['mainEntity'] = [
                             '@type'              => 'Service',
                             '@id'                => $post_url . '#service',
-                            'serviceType'        => 'White Label WordPress Development',
-                            'name'               => 'White Label WordPress Development for Agencies',
-                            'description'        => 'White label WordPress development services for digital agencies and resellers, providing project-based and ongoing partnership solutions',
+                            'serviceType'        => 'Agency Partnerships',
+                            'name'               => 'Agency Partnerships',
+                            'description'        => 'Client-facing or white-label development partnerships for digital agencies',
                             'provider'           => [
                                 '@type' => 'Organization',
                                 '@id'   => $site_url . '/#organization',
@@ -703,13 +779,13 @@ function extract_testimonials_from_page( int $page_id ): array {
                         ];
                         break;
 
-                    case 'ai-enhanced-wordpress-development':
+                    case 'ai-enhanced-development':
                         $schema['mainEntity'] = [
                             '@type'              => 'Service',
                             '@id'                => $post_url . '#service',
-                            'serviceType'        => 'AI-Enhanced WordPress Development',
-                            'name'               => 'AI-Enhanced WordPress Development',
-                            'description'        => 'WordPress development enhanced with artificial intelligence tools to deliver solutions faster with better quality at reduced costs',
+                            'serviceType'        => 'AI-Enhanced Development',
+                            'name'               => 'AI-Enhanced Development',
+                            'description'        => 'Development process enhanced with AI tools for faster delivery and reduced costs',
                             'provider'           => [
                                 '@type' => 'Organization',
                                 '@id'   => $site_url . '/#organization',
@@ -798,13 +874,13 @@ function extract_testimonials_from_page( int $page_id ): array {
                         ];
                         break;
 
-                    case 'wordpress-consulting-strategy':
+                    case 'consulting-strategy':
                         $schema['mainEntity'] = [
                             '@type'              => 'Service',
                             '@id'                => $post_url . '#service',
                             'serviceType'        => 'Technical Consulting',
-                            'name'               => 'Technical Consulting & Strategy',
-                            'description'        => 'Expert technical consulting and strategic planning services including audits and architecture planning',
+                            'name'               => 'Consulting & Strategy',
+                            'description'        => 'Expert technical consulting, audits, and architecture planning',
                             'provider'           => [
                                 '@type' => 'Organization',
                                 '@id'   => $site_url . '/#organization',
@@ -846,13 +922,205 @@ function extract_testimonials_from_page( int $page_id ): array {
                         ];
                         break;
 
-                    case 'wordpress-maintenance-support':
+                    case 'maintenance-support':
                         $schema['mainEntity'] = [
                             '@type'              => 'Service',
                             '@id'                => $post_url . '#service',
                             'serviceType'        => 'WordPress Maintenance',
-                            'name'               => 'WordPress Maintenance & Support',
-                            'description'        => 'Ongoing WordPress maintenance, updates, security monitoring, backups, and troubleshooting to keep your site running reliably',
+                            'name'               => 'Maintenance & Support',
+                            'description'        => 'Ongoing maintenance, updates, security monitoring, backups, and troubleshooting',
+                            'provider'           => [
+                                '@type' => 'Organization',
+                                '@id'   => $site_url . '/#organization',
+                                'name'  => '84EM',
+                                'url'   => $site_url,
+                            ],
+                            'areaServed'         => [
+                                '@type' => 'Country',
+                                'name'  => 'United States',
+                            ],
+                            'offers'             => [
+                                [
+                                    '@type'              => 'Offer',
+                                    'name'               => 'Standard Rate',
+                                    'priceSpecification' => [
+                                        '@type'         => 'UnitPriceSpecification',
+                                        'price'         => '150',
+                                        'priceCurrency' => 'USD',
+                                        'unitText'      => 'HOUR',
+                                    ],
+                                    'availability'       => 'https://schema.org/InStock',
+                                ],
+                                [
+                                    '@type'              => 'Offer',
+                                    'name'               => 'After-Hours Rate',
+                                    'description'        => 'After-hours and emergency development services',
+                                    'priceSpecification' => [
+                                        '@type'         => 'UnitPriceSpecification',
+                                        'price'         => '225',
+                                        'priceCurrency' => 'USD',
+                                        'unitText'      => 'HOUR',
+                                    ],
+                                    'availability'       => 'https://schema.org/InStock',
+                                ],
+                            ],
+                        ];
+                        $schema['about'] = [
+                            '@id' => $post_url . '#service',
+                        ];
+                        break;
+
+                    case 'project-rescue':
+                        $schema['mainEntity'] = [
+                            '@type'              => 'Service',
+                            '@id'                => $post_url . '#service',
+                            'serviceType'        => 'Project Rescue',
+                            'name'               => 'Project Rescue',
+                            'description'        => 'Rescue stalled builds, broken integrations, and incomplete developer handoffs across any platform or stack',
+                            'provider'           => [
+                                '@type' => 'Organization',
+                                '@id'   => $site_url . '/#organization',
+                                'name'  => '84EM',
+                                'url'   => $site_url,
+                            ],
+                            'areaServed'         => [
+                                '@type' => 'Country',
+                                'name'  => 'United States',
+                            ],
+                            'offers'             => [
+                                [
+                                    '@type'              => 'Offer',
+                                    'name'               => 'Standard Rate',
+                                    'priceSpecification' => [
+                                        '@type'         => 'UnitPriceSpecification',
+                                        'price'         => '150',
+                                        'priceCurrency' => 'USD',
+                                        'unitText'      => 'HOUR',
+                                    ],
+                                    'availability'       => 'https://schema.org/InStock',
+                                ],
+                                [
+                                    '@type'              => 'Offer',
+                                    'name'               => 'After-Hours Rate',
+                                    'description'        => 'After-hours and emergency development services',
+                                    'priceSpecification' => [
+                                        '@type'         => 'UnitPriceSpecification',
+                                        'price'         => '225',
+                                        'priceCurrency' => 'USD',
+                                        'unitText'      => 'HOUR',
+                                    ],
+                                    'availability'       => 'https://schema.org/InStock',
+                                ],
+                            ],
+                        ];
+                        $schema['about'] = [
+                            '@id' => $post_url . '#service',
+                        ];
+                        break;
+
+                    case 'security-troubleshooting':
+                        $schema['mainEntity'] = [
+                            '@type'              => 'Service',
+                            '@id'                => $post_url . '#service',
+                            'serviceType'        => 'Security & Troubleshooting',
+                            'name'               => 'Security & Troubleshooting',
+                            'description'        => 'Security incident response, vulnerability assessments, and comprehensive security hardening',
+                            'provider'           => [
+                                '@type' => 'Organization',
+                                '@id'   => $site_url . '/#organization',
+                                'name'  => '84EM',
+                                'url'   => $site_url,
+                            ],
+                            'areaServed'         => [
+                                '@type' => 'Country',
+                                'name'  => 'United States',
+                            ],
+                            'offers'             => [
+                                [
+                                    '@type'              => 'Offer',
+                                    'name'               => 'Standard Rate',
+                                    'priceSpecification' => [
+                                        '@type'         => 'UnitPriceSpecification',
+                                        'price'         => '150',
+                                        'priceCurrency' => 'USD',
+                                        'unitText'      => 'HOUR',
+                                    ],
+                                    'availability'       => 'https://schema.org/InStock',
+                                ],
+                                [
+                                    '@type'              => 'Offer',
+                                    'name'               => 'After-Hours Rate',
+                                    'description'        => 'After-hours and emergency development services',
+                                    'priceSpecification' => [
+                                        '@type'         => 'UnitPriceSpecification',
+                                        'price'         => '225',
+                                        'priceCurrency' => 'USD',
+                                        'unitText'      => 'HOUR',
+                                    ],
+                                    'availability'       => 'https://schema.org/InStock',
+                                ],
+                            ],
+                        ];
+                        $schema['about'] = [
+                            '@id' => $post_url . '#service',
+                        ];
+                        break;
+
+                    case 'code-cleanup-refactoring':
+                        $schema['mainEntity'] = [
+                            '@type'              => 'Service',
+                            '@id'                => $post_url . '#service',
+                            'serviceType'        => 'Code Cleanup & Refactoring',
+                            'name'               => 'Code Cleanup & Refactoring',
+                            'description'        => 'Code audits, refactoring, documentation, and technical debt resolution for maintainable codebases',
+                            'provider'           => [
+                                '@type' => 'Organization',
+                                '@id'   => $site_url . '/#organization',
+                                'name'  => '84EM',
+                                'url'   => $site_url,
+                            ],
+                            'areaServed'         => [
+                                '@type' => 'Country',
+                                'name'  => 'United States',
+                            ],
+                            'offers'             => [
+                                [
+                                    '@type'              => 'Offer',
+                                    'name'               => 'Standard Rate',
+                                    'priceSpecification' => [
+                                        '@type'         => 'UnitPriceSpecification',
+                                        'price'         => '150',
+                                        'priceCurrency' => 'USD',
+                                        'unitText'      => 'HOUR',
+                                    ],
+                                    'availability'       => 'https://schema.org/InStock',
+                                ],
+                                [
+                                    '@type'              => 'Offer',
+                                    'name'               => 'After-Hours Rate',
+                                    'description'        => 'After-hours and emergency development services',
+                                    'priceSpecification' => [
+                                        '@type'         => 'UnitPriceSpecification',
+                                        'price'         => '225',
+                                        'priceCurrency' => 'USD',
+                                        'unitText'      => 'HOUR',
+                                    ],
+                                    'availability'       => 'https://schema.org/InStock',
+                                ],
+                            ],
+                        ];
+                        $schema['about'] = [
+                            '@id' => $post_url . '#service',
+                        ];
+                        break;
+
+                    case 'data-migrations':
+                        $schema['mainEntity'] = [
+                            '@type'              => 'Service',
+                            '@id'                => $post_url . '#service',
+                            'serviceType'        => 'Data Migrations',
+                            'name'               => 'Data Migrations & Platform Transfers',
+                            'description'        => 'Complex data migrations including content, customer databases, and order histories across platforms',
                             'provider'           => [
                                 '@type' => 'Organization',
                                 '@id'   => $site_url . '/#organization',
