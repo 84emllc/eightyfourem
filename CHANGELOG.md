@@ -5,6 +5,13 @@ All notable changes to the 84EM Block Theme will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.50.4] - 2026-02-15
+
+### Changed
+- **Schema**: Update JSON-LD structured data to align with current service names, URLs, and page slugs
+- **Schema**: Add new service case statements for Project Rescue, Security & Troubleshooting, Code Cleanup & Refactoring, and Data Migrations
+- **Schema**: Add Project Rescue, Code Refactoring, WooCommerce Development, and LearnDash LMS to about page knowsAbout
+
 ## [2.50.3] - 2026-02-14
 
 ### Fixed
