@@ -57,6 +57,10 @@ function get_filters(): array {
                     'label'    => 'AI & Automation',
                     'keywords' => [ 'ai', 'ai-powered', 'ai analysis', 'claude', 'openai', 'chatgpt', 'machine learning', 'artificial intelligence', 'automation', 'automated', 'automatic', 'automatically', 'intelligent' ],
             ],
+            'rescue'     => [
+                    'label'    => 'Project Rescue',
+                    'keywords' => [ 'project rescue', 'rescue', 'remediation', 'gap analysis', 'stalled', 'incomplete', 'vendor', 'handoff', 'developer handoff', 'broken integration' ],
+            ],
 	];
 }
 
