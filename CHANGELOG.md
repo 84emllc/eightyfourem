@@ -5,6 +5,11 @@ All notable changes to the 84EM Block Theme will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.50.6] - 2026-02-24
+
+### Changed
+- **Schema**: Switch all service pricing from fixed `price` to `minPrice` in schema.org structured data to support "from $150/hour" positioning
+
 ## [2.50.5] - 2026-02-15
 
 ### Added
