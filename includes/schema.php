@@ -488,7 +488,7 @@ function extract_testimonials_from_page( int $page_id ): array {
                                         ],
                                         'priceSpecification' => [
                                             '@type'        => 'UnitPriceSpecification',
-                                            'price'        => '150',
+                                            'minPrice'     => '150',
                                             'priceCurrency' => 'USD',
                                             'unitText'     => 'HOUR',
                                         ],
@@ -508,7 +508,7 @@ function extract_testimonials_from_page( int $page_id ): array {
                                         ],
                                         'priceSpecification' => [
                                             '@type'        => 'UnitPriceSpecification',
-                                            'price'        => '150',
+                                            'minPrice'     => '150',
                                             'priceCurrency' => 'USD',
                                             'unitText'     => 'HOUR',
                                         ],
@@ -528,7 +528,7 @@ function extract_testimonials_from_page( int $page_id ): array {
                                         ],
                                         'priceSpecification' => [
                                             '@type'        => 'UnitPriceSpecification',
-                                            'price'        => '150',
+                                            'minPrice'     => '150',
                                             'priceCurrency' => 'USD',
                                             'unitText'     => 'HOUR',
                                         ],
@@ -548,7 +548,7 @@ function extract_testimonials_from_page( int $page_id ): array {
                                         ],
                                         'priceSpecification' => [
                                             '@type'        => 'UnitPriceSpecification',
-                                            'price'        => '150',
+                                            'minPrice'     => '150',
                                             'priceCurrency' => 'USD',
                                             'unitText'     => 'HOUR',
                                         ],
@@ -568,7 +568,7 @@ function extract_testimonials_from_page( int $page_id ): array {
                                         ],
                                         'priceSpecification' => [
                                             '@type'        => 'UnitPriceSpecification',
-                                            'price'        => '150',
+                                            'minPrice'     => '150',
                                             'priceCurrency' => 'USD',
                                             'unitText'     => 'HOUR',
                                         ],
@@ -588,7 +588,7 @@ function extract_testimonials_from_page( int $page_id ): array {
                                         ],
                                         'priceSpecification' => [
                                             '@type'        => 'UnitPriceSpecification',
-                                            'price'        => '150',
+                                            'minPrice'     => '150',
                                             'priceCurrency' => 'USD',
                                             'unitText'     => 'HOUR',
                                         ],
@@ -608,7 +608,7 @@ function extract_testimonials_from_page( int $page_id ): array {
                                         ],
                                         'priceSpecification' => [
                                             '@type'        => 'UnitPriceSpecification',
-                                            'price'        => '150',
+                                            'minPrice'     => '150',
                                             'priceCurrency' => 'USD',
                                             'unitText'     => 'HOUR',
                                         ],
@@ -628,7 +628,7 @@ function extract_testimonials_from_page( int $page_id ): array {
                                         ],
                                         'priceSpecification' => [
                                             '@type'        => 'UnitPriceSpecification',
-                                            'price'        => '150',
+                                            'minPrice'     => '150',
                                             'priceCurrency' => 'USD',
                                             'unitText'     => 'HOUR',
                                         ],
@@ -648,7 +648,7 @@ function extract_testimonials_from_page( int $page_id ): array {
                                         ],
                                         'priceSpecification' => [
                                             '@type'        => 'UnitPriceSpecification',
-                                            'price'        => '150',
+                                            'minPrice'     => '150',
                                             'priceCurrency' => 'USD',
                                             'unitText'     => 'HOUR',
                                         ],
@@ -667,7 +667,7 @@ function extract_testimonials_from_page( int $page_id ): array {
                                         ],
                                         'priceSpecification' => [
                                             '@type'        => 'UnitPriceSpecification',
-                                            'price'        => '225',
+                                            'minPrice'     => '225',
                                             'priceCurrency' => 'USD',
                                             'unitText'     => 'HOUR',
                                         ],
@@ -706,7 +706,7 @@ function extract_testimonials_from_page( int $page_id ): array {
                                     'name'               => 'Standard Rate',
                                     'priceSpecification' => [
                                         '@type'         => 'UnitPriceSpecification',
-                                        'price'         => '150',
+                                        'minPrice'      => '150',
                                         'priceCurrency' => 'USD',
                                         'unitText'      => 'HOUR',
                                     ],
@@ -718,7 +718,7 @@ function extract_testimonials_from_page( int $page_id ): array {
                                     'description'        => 'After-hours and emergency development services',
                                     'priceSpecification' => [
                                         '@type'         => 'UnitPriceSpecification',
-                                        'price'         => '225',
+                                        'minPrice'      => '225',
                                         'priceCurrency' => 'USD',
                                         'unitText'      => 'HOUR',
                                     ],
@@ -754,7 +754,7 @@ function extract_testimonials_from_page( int $page_id ): array {
                                     'name'               => 'Standard Rate',
                                     'priceSpecification' => [
                                         '@type'         => 'UnitPriceSpecification',
-                                        'price'         => '150',
+                                        'minPrice'      => '150',
                                         'priceCurrency' => 'USD',
                                         'unitText'      => 'HOUR',
                                     ],
@@ -766,7 +766,7 @@ function extract_testimonials_from_page( int $page_id ): array {
                                     'description'        => 'After-hours and emergency development services',
                                     'priceSpecification' => [
                                         '@type'         => 'UnitPriceSpecification',
-                                        'price'         => '225',
+                                        'minPrice'      => '225',
                                         'priceCurrency' => 'USD',
                                         'unitText'      => 'HOUR',
                                     ],
@@ -802,7 +802,7 @@ function extract_testimonials_from_page( int $page_id ): array {
                                     'name'               => 'Standard Rate',
                                     'priceSpecification' => [
                                         '@type'         => 'UnitPriceSpecification',
-                                        'price'         => '150',
+                                        'minPrice'      => '150',
                                         'priceCurrency' => 'USD',
                                         'unitText'      => 'HOUR',
                                     ],
@@ -814,7 +814,7 @@ function extract_testimonials_from_page( int $page_id ): array {
                                     'description'        => 'After-hours and emergency development services',
                                     'priceSpecification' => [
                                         '@type'         => 'UnitPriceSpecification',
-                                        'price'         => '225',
+                                        'minPrice'      => '225',
                                         'priceCurrency' => 'USD',
                                         'unitText'      => 'HOUR',
                                     ],
@@ -850,7 +850,7 @@ function extract_testimonials_from_page( int $page_id ): array {
                                     'name'               => 'Standard Rate',
                                     'priceSpecification' => [
                                         '@type'         => 'UnitPriceSpecification',
-                                        'price'         => '150',
+                                        'minPrice'      => '150',
                                         'priceCurrency' => 'USD',
                                         'unitText'      => 'HOUR',
                                     ],
@@ -861,7 +861,7 @@ function extract_testimonials_from_page( int $page_id ): array {
                                     'name'               => 'After-Hours Rate',
                                     'priceSpecification' => [
                                         '@type'         => 'UnitPriceSpecification',
-                                        'price'         => '225',
+                                        'minPrice'      => '225',
                                         'priceCurrency' => 'USD',
                                         'unitText'      => 'HOUR',
                                     ],
@@ -897,7 +897,7 @@ function extract_testimonials_from_page( int $page_id ): array {
                                     'name'               => 'Standard Rate',
                                     'priceSpecification' => [
                                         '@type'         => 'UnitPriceSpecification',
-                                        'price'         => '150',
+                                        'minPrice'      => '150',
                                         'priceCurrency' => 'USD',
                                         'unitText'      => 'HOUR',
                                     ],
@@ -909,7 +909,7 @@ function extract_testimonials_from_page( int $page_id ): array {
                                     'description'        => 'After-hours and emergency development services',
                                     'priceSpecification' => [
                                         '@type'         => 'UnitPriceSpecification',
-                                        'price'         => '225',
+                                        'minPrice'      => '225',
                                         'priceCurrency' => 'USD',
                                         'unitText'      => 'HOUR',
                                     ],
@@ -945,7 +945,7 @@ function extract_testimonials_from_page( int $page_id ): array {
                                     'name'               => 'Standard Rate',
                                     'priceSpecification' => [
                                         '@type'         => 'UnitPriceSpecification',
-                                        'price'         => '150',
+                                        'minPrice'      => '150',
                                         'priceCurrency' => 'USD',
                                         'unitText'      => 'HOUR',
                                     ],
@@ -957,7 +957,7 @@ function extract_testimonials_from_page( int $page_id ): array {
                                     'description'        => 'After-hours and emergency development services',
                                     'priceSpecification' => [
                                         '@type'         => 'UnitPriceSpecification',
-                                        'price'         => '225',
+                                        'minPrice'      => '225',
                                         'priceCurrency' => 'USD',
                                         'unitText'      => 'HOUR',
                                     ],
@@ -993,7 +993,7 @@ function extract_testimonials_from_page( int $page_id ): array {
                                     'name'               => 'Standard Rate',
                                     'priceSpecification' => [
                                         '@type'         => 'UnitPriceSpecification',
-                                        'price'         => '150',
+                                        'minPrice'      => '150',
                                         'priceCurrency' => 'USD',
                                         'unitText'      => 'HOUR',
                                     ],
@@ -1005,7 +1005,7 @@ function extract_testimonials_from_page( int $page_id ): array {
                                     'description'        => 'After-hours and emergency development services',
                                     'priceSpecification' => [
                                         '@type'         => 'UnitPriceSpecification',
-                                        'price'         => '225',
+                                        'minPrice'      => '225',
                                         'priceCurrency' => 'USD',
                                         'unitText'      => 'HOUR',
                                     ],
@@ -1041,7 +1041,7 @@ function extract_testimonials_from_page( int $page_id ): array {
                                     'name'               => 'Standard Rate',
                                     'priceSpecification' => [
                                         '@type'         => 'UnitPriceSpecification',
-                                        'price'         => '150',
+                                        'minPrice'      => '150',
                                         'priceCurrency' => 'USD',
                                         'unitText'      => 'HOUR',
                                     ],
@@ -1053,7 +1053,7 @@ function extract_testimonials_from_page( int $page_id ): array {
                                     'description'        => 'After-hours and emergency development services',
                                     'priceSpecification' => [
                                         '@type'         => 'UnitPriceSpecification',
-                                        'price'         => '225',
+                                        'minPrice'      => '225',
                                         'priceCurrency' => 'USD',
                                         'unitText'      => 'HOUR',
                                     ],
@@ -1089,7 +1089,7 @@ function extract_testimonials_from_page( int $page_id ): array {
                                     'name'               => 'Standard Rate',
                                     'priceSpecification' => [
                                         '@type'         => 'UnitPriceSpecification',
-                                        'price'         => '150',
+                                        'minPrice'      => '150',
                                         'priceCurrency' => 'USD',
                                         'unitText'      => 'HOUR',
                                     ],
@@ -1101,7 +1101,7 @@ function extract_testimonials_from_page( int $page_id ): array {
                                     'description'        => 'After-hours and emergency development services',
                                     'priceSpecification' => [
                                         '@type'         => 'UnitPriceSpecification',
-                                        'price'         => '225',
+                                        'minPrice'      => '225',
                                         'priceCurrency' => 'USD',
                                         'unitText'      => 'HOUR',
                                     ],
@@ -1137,7 +1137,7 @@ function extract_testimonials_from_page( int $page_id ): array {
                                     'name'               => 'Standard Rate',
                                     'priceSpecification' => [
                                         '@type'         => 'UnitPriceSpecification',
-                                        'price'         => '150',
+                                        'minPrice'      => '150',
                                         'priceCurrency' => 'USD',
                                         'unitText'      => 'HOUR',
                                     ],
@@ -1149,7 +1149,7 @@ function extract_testimonials_from_page( int $page_id ): array {
                                     'description'        => 'After-hours and emergency development services',
                                     'priceSpecification' => [
                                         '@type'         => 'UnitPriceSpecification',
-                                        'price'         => '225',
+                                        'minPrice'      => '225',
                                         'priceCurrency' => 'USD',
                                         'unitText'      => 'HOUR',
                                     ],
