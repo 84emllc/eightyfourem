@@ -352,56 +352,8 @@ function extract_testimonials_from_page( int $page_id ): array {
                                         '@type'       => 'Offer',
                                         'itemOffered' => [
                                             '@type'    => 'Service',
-                                            'name'     => 'Security & Troubleshooting',
-                                            'url'      => $site_url . '/services/security-troubleshooting/',
-                                            'provider' => [
-                                                '@type' => 'Organization',
-                                                '@id'   => $site_url . '/#organization',
-                                            ],
-                                        ],
-                                    ],
-                                    [
-                                        '@type'       => 'Offer',
-                                        'itemOffered' => [
-                                            '@type'    => 'Service',
-                                            'name'     => 'Consulting & Strategy',
-                                            'url'      => $site_url . '/services/consulting-strategy/',
-                                            'provider' => [
-                                                '@type' => 'Organization',
-                                                '@id'   => $site_url . '/#organization',
-                                            ],
-                                        ],
-                                    ],
-                                    [
-                                        '@type'       => 'Offer',
-                                        'itemOffered' => [
-                                            '@type'    => 'Service',
-                                            'name'     => 'Code Cleanup & Refactoring',
-                                            'url'      => $site_url . '/services/code-cleanup-refactoring/',
-                                            'provider' => [
-                                                '@type' => 'Organization',
-                                                '@id'   => $site_url . '/#organization',
-                                            ],
-                                        ],
-                                    ],
-                                    [
-                                        '@type'       => 'Offer',
-                                        'itemOffered' => [
-                                            '@type'    => 'Service',
-                                            'name'     => 'Maintenance & Support',
-                                            'url'      => $site_url . '/services/maintenance-support/',
-                                            'provider' => [
-                                                '@type' => 'Organization',
-                                                '@id'   => $site_url . '/#organization',
-                                            ],
-                                        ],
-                                    ],
-                                    [
-                                        '@type'       => 'Offer',
-                                        'itemOffered' => [
-                                            '@type'    => 'Service',
-                                            'name'     => 'Data Migrations & Platform Transfers',
-                                            'url'      => $site_url . '/services/data-migrations/',
+                                            'name'     => 'Maintenance, Security & Support',
+                                            'url'      => $site_url . '/services/maintenance-security-support/',
                                             'provider' => [
                                                 '@type' => 'Organization',
                                                 '@id'   => $site_url . '/#organization',
@@ -558,89 +510,9 @@ function extract_testimonials_from_page( int $page_id ): array {
                                         '@type'              => 'Offer',
                                         'itemOffered'        => [
                                             '@type'       => 'Service',
-                                            'name'        => 'Security & Troubleshooting',
-                                            'description' => 'Security incidents, vulnerability assessments, and technical troubleshooting',
-                                            'url'         => $site_url . '/services/security-troubleshooting/',
-                                            'provider'    => [
-                                                '@type' => 'Organization',
-                                                '@id'   => $site_url . '/#organization',
-                                            ],
-                                        ],
-                                        'priceSpecification' => [
-                                            '@type'        => 'UnitPriceSpecification',
-                                            'minPrice'     => '150',
-                                            'priceCurrency' => 'USD',
-                                            'unitText'     => 'HOUR',
-                                        ],
-                                        'availability'       => 'https://schema.org/InStock',
-                                    ],
-                                    [
-                                        '@type'              => 'Offer',
-                                        'itemOffered'        => [
-                                            '@type'       => 'Service',
-                                            'name'        => 'Consulting & Strategy',
-                                            'description' => 'Expert technical consulting, audits, and architecture planning',
-                                            'url'         => $site_url . '/services/consulting-strategy/',
-                                            'provider'    => [
-                                                '@type' => 'Organization',
-                                                '@id'   => $site_url . '/#organization',
-                                            ],
-                                        ],
-                                        'priceSpecification' => [
-                                            '@type'        => 'UnitPriceSpecification',
-                                            'minPrice'     => '150',
-                                            'priceCurrency' => 'USD',
-                                            'unitText'     => 'HOUR',
-                                        ],
-                                        'availability'       => 'https://schema.org/InStock',
-                                    ],
-                                    [
-                                        '@type'              => 'Offer',
-                                        'itemOffered'        => [
-                                            '@type'       => 'Service',
-                                            'name'        => 'Code Cleanup & Refactoring',
-                                            'description' => 'Code audits, refactoring, documentation, and technical debt resolution',
-                                            'url'         => $site_url . '/services/code-cleanup-refactoring/',
-                                            'provider'    => [
-                                                '@type' => 'Organization',
-                                                '@id'   => $site_url . '/#organization',
-                                            ],
-                                        ],
-                                        'priceSpecification' => [
-                                            '@type'        => 'UnitPriceSpecification',
-                                            'minPrice'     => '150',
-                                            'priceCurrency' => 'USD',
-                                            'unitText'     => 'HOUR',
-                                        ],
-                                        'availability'       => 'https://schema.org/InStock',
-                                    ],
-                                    [
-                                        '@type'              => 'Offer',
-                                        'itemOffered'        => [
-                                            '@type'       => 'Service',
-                                            'name'        => 'Maintenance & Support',
+                                            'name'        => 'Maintenance, Security & Support',
                                             'description' => 'Ongoing maintenance, updates, security monitoring, backups, and troubleshooting',
-                                            'url'         => $site_url . '/services/maintenance-support/',
-                                            'provider'    => [
-                                                '@type' => 'Organization',
-                                                '@id'   => $site_url . '/#organization',
-                                            ],
-                                        ],
-                                        'priceSpecification' => [
-                                            '@type'        => 'UnitPriceSpecification',
-                                            'minPrice'     => '150',
-                                            'priceCurrency' => 'USD',
-                                            'unitText'     => 'HOUR',
-                                        ],
-                                        'availability'       => 'https://schema.org/InStock',
-                                    ],
-                                    [
-                                        '@type'              => 'Offer',
-                                        'itemOffered'        => [
-                                            '@type'       => 'Service',
-                                            'name'        => 'Data Migrations & Platform Transfers',
-                                            'description' => 'Complex data migrations from blog content to customer databases and order histories',
-                                            'url'         => $site_url . '/services/data-migrations/',
+                                            'url'         => $site_url . '/services/maintenance-security-support/',
                                             'provider'    => [
                                                 '@type' => 'Organization',
                                                 '@id'   => $site_url . '/#organization',
@@ -779,54 +651,6 @@ function extract_testimonials_from_page( int $page_id ): array {
                         ];
                         break;
 
-                    case 'ai-enhanced-development':
-                        $schema['mainEntity'] = [
-                            '@type'              => 'Service',
-                            '@id'                => $post_url . '#service',
-                            'serviceType'        => 'AI-Enhanced Development',
-                            'name'               => 'AI-Enhanced Development',
-                            'description'        => 'Development process enhanced with AI tools for faster delivery and reduced costs',
-                            'provider'           => [
-                                '@type' => 'Organization',
-                                '@id'   => $site_url . '/#organization',
-                                'name'  => '84EM',
-                                'url'   => $site_url,
-                            ],
-                            'areaServed'         => [
-                                '@type' => 'Country',
-                                'name'  => 'United States',
-                            ],
-                            'offers'             => [
-                                [
-                                    '@type'              => 'Offer',
-                                    'name'               => 'Standard Rate',
-                                    'priceSpecification' => [
-                                        '@type'         => 'UnitPriceSpecification',
-                                        'minPrice'      => '150',
-                                        'priceCurrency' => 'USD',
-                                        'unitText'      => 'HOUR',
-                                    ],
-                                    'availability'       => 'https://schema.org/InStock',
-                                ],
-                                [
-                                    '@type'              => 'Offer',
-                                    'name'               => 'After-Hours Rate',
-                                    'description'        => 'After-hours and emergency development services',
-                                    'priceSpecification' => [
-                                        '@type'         => 'UnitPriceSpecification',
-                                        'minPrice'      => '225',
-                                        'priceCurrency' => 'USD',
-                                        'unitText'      => 'HOUR',
-                                    ],
-                                    'availability'       => 'https://schema.org/InStock',
-                                ],
-                            ],
-                        ];
-                        $schema['about'] = [
-                            '@id' => $post_url . '#service',
-                        ];
-                        break;
-
                     case 'ai-integration-development':
                         $schema['mainEntity'] = [
                             '@type'              => 'Service',
@@ -874,60 +698,12 @@ function extract_testimonials_from_page( int $page_id ): array {
                         ];
                         break;
 
-                    case 'consulting-strategy':
+                    case 'maintenance-security-support':
                         $schema['mainEntity'] = [
                             '@type'              => 'Service',
                             '@id'                => $post_url . '#service',
-                            'serviceType'        => 'Technical Consulting',
-                            'name'               => 'Consulting & Strategy',
-                            'description'        => 'Expert technical consulting, audits, and architecture planning',
-                            'provider'           => [
-                                '@type' => 'Organization',
-                                '@id'   => $site_url . '/#organization',
-                                'name'  => '84EM',
-                                'url'   => $site_url,
-                            ],
-                            'areaServed'         => [
-                                '@type' => 'Country',
-                                'name'  => 'United States',
-                            ],
-                            'offers'             => [
-                                [
-                                    '@type'              => 'Offer',
-                                    'name'               => 'Standard Rate',
-                                    'priceSpecification' => [
-                                        '@type'         => 'UnitPriceSpecification',
-                                        'minPrice'      => '150',
-                                        'priceCurrency' => 'USD',
-                                        'unitText'      => 'HOUR',
-                                    ],
-                                    'availability'       => 'https://schema.org/InStock',
-                                ],
-                                [
-                                    '@type'              => 'Offer',
-                                    'name'               => 'After-Hours Rate',
-                                    'description'        => 'After-hours and emergency development services',
-                                    'priceSpecification' => [
-                                        '@type'         => 'UnitPriceSpecification',
-                                        'minPrice'      => '225',
-                                        'priceCurrency' => 'USD',
-                                        'unitText'      => 'HOUR',
-                                    ],
-                                    'availability'       => 'https://schema.org/InStock',
-                                ],
-                            ],
-                        ];
-                        $schema['about'] = [
-                            '@id' => $post_url . '#service',
-                        ];
-                        break;
-
-                    case 'maintenance-support':
-                        $schema['mainEntity'] = [
-                            '@type'              => 'Service',
-                            '@id'                => $post_url . '#service',
-                            'serviceType'        => 'WordPress Maintenance',
-                            'name'               => 'Maintenance & Support',
+                            'serviceType'        => 'Maintenance, Security & Support',
+                            'name'               => 'Maintenance, Security & Support',
                             'description'        => 'Ongoing maintenance, updates, security monitoring, backups, and troubleshooting',
                             'provider'           => [
                                 '@type' => 'Organization',
@@ -977,150 +753,6 @@ function extract_testimonials_from_page( int $page_id ): array {
                             'serviceType'        => 'Project Rescue',
                             'name'               => 'Project Rescue',
                             'description'        => 'Rescue stalled builds, broken integrations, and incomplete developer handoffs across any platform or stack',
-                            'provider'           => [
-                                '@type' => 'Organization',
-                                '@id'   => $site_url . '/#organization',
-                                'name'  => '84EM',
-                                'url'   => $site_url,
-                            ],
-                            'areaServed'         => [
-                                '@type' => 'Country',
-                                'name'  => 'United States',
-                            ],
-                            'offers'             => [
-                                [
-                                    '@type'              => 'Offer',
-                                    'name'               => 'Standard Rate',
-                                    'priceSpecification' => [
-                                        '@type'         => 'UnitPriceSpecification',
-                                        'minPrice'      => '150',
-                                        'priceCurrency' => 'USD',
-                                        'unitText'      => 'HOUR',
-                                    ],
-                                    'availability'       => 'https://schema.org/InStock',
-                                ],
-                                [
-                                    '@type'              => 'Offer',
-                                    'name'               => 'After-Hours Rate',
-                                    'description'        => 'After-hours and emergency development services',
-                                    'priceSpecification' => [
-                                        '@type'         => 'UnitPriceSpecification',
-                                        'minPrice'      => '225',
-                                        'priceCurrency' => 'USD',
-                                        'unitText'      => 'HOUR',
-                                    ],
-                                    'availability'       => 'https://schema.org/InStock',
-                                ],
-                            ],
-                        ];
-                        $schema['about'] = [
-                            '@id' => $post_url . '#service',
-                        ];
-                        break;
-
-                    case 'security-troubleshooting':
-                        $schema['mainEntity'] = [
-                            '@type'              => 'Service',
-                            '@id'                => $post_url . '#service',
-                            'serviceType'        => 'Security & Troubleshooting',
-                            'name'               => 'Security & Troubleshooting',
-                            'description'        => 'Security incident response, vulnerability assessments, and comprehensive security hardening',
-                            'provider'           => [
-                                '@type' => 'Organization',
-                                '@id'   => $site_url . '/#organization',
-                                'name'  => '84EM',
-                                'url'   => $site_url,
-                            ],
-                            'areaServed'         => [
-                                '@type' => 'Country',
-                                'name'  => 'United States',
-                            ],
-                            'offers'             => [
-                                [
-                                    '@type'              => 'Offer',
-                                    'name'               => 'Standard Rate',
-                                    'priceSpecification' => [
-                                        '@type'         => 'UnitPriceSpecification',
-                                        'minPrice'      => '150',
-                                        'priceCurrency' => 'USD',
-                                        'unitText'      => 'HOUR',
-                                    ],
-                                    'availability'       => 'https://schema.org/InStock',
-                                ],
-                                [
-                                    '@type'              => 'Offer',
-                                    'name'               => 'After-Hours Rate',
-                                    'description'        => 'After-hours and emergency development services',
-                                    'priceSpecification' => [
-                                        '@type'         => 'UnitPriceSpecification',
-                                        'minPrice'      => '225',
-                                        'priceCurrency' => 'USD',
-                                        'unitText'      => 'HOUR',
-                                    ],
-                                    'availability'       => 'https://schema.org/InStock',
-                                ],
-                            ],
-                        ];
-                        $schema['about'] = [
-                            '@id' => $post_url . '#service',
-                        ];
-                        break;
-
-                    case 'code-cleanup-refactoring':
-                        $schema['mainEntity'] = [
-                            '@type'              => 'Service',
-                            '@id'                => $post_url . '#service',
-                            'serviceType'        => 'Code Cleanup & Refactoring',
-                            'name'               => 'Code Cleanup & Refactoring',
-                            'description'        => 'Code audits, refactoring, documentation, and technical debt resolution for maintainable codebases',
-                            'provider'           => [
-                                '@type' => 'Organization',
-                                '@id'   => $site_url . '/#organization',
-                                'name'  => '84EM',
-                                'url'   => $site_url,
-                            ],
-                            'areaServed'         => [
-                                '@type' => 'Country',
-                                'name'  => 'United States',
-                            ],
-                            'offers'             => [
-                                [
-                                    '@type'              => 'Offer',
-                                    'name'               => 'Standard Rate',
-                                    'priceSpecification' => [
-                                        '@type'         => 'UnitPriceSpecification',
-                                        'minPrice'      => '150',
-                                        'priceCurrency' => 'USD',
-                                        'unitText'      => 'HOUR',
-                                    ],
-                                    'availability'       => 'https://schema.org/InStock',
-                                ],
-                                [
-                                    '@type'              => 'Offer',
-                                    'name'               => 'After-Hours Rate',
-                                    'description'        => 'After-hours and emergency development services',
-                                    'priceSpecification' => [
-                                        '@type'         => 'UnitPriceSpecification',
-                                        'minPrice'      => '225',
-                                        'priceCurrency' => 'USD',
-                                        'unitText'      => 'HOUR',
-                                    ],
-                                    'availability'       => 'https://schema.org/InStock',
-                                ],
-                            ],
-                        ];
-                        $schema['about'] = [
-                            '@id' => $post_url . '#service',
-                        ];
-                        break;
-
-                    case 'data-migrations':
-                        $schema['mainEntity'] = [
-                            '@type'              => 'Service',
-                            '@id'                => $post_url . '#service',
-                            'serviceType'        => 'Data Migrations',
-                            'name'               => 'Data Migrations & Platform Transfers',
-                            'description'        => 'Complex data migrations including content, customer databases, and order histories across platforms',
                             'provider'           => [
                                 '@type' => 'Organization',
                                 '@id'   => $site_url . '/#organization',
