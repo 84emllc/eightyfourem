@@ -5,6 +5,19 @@ All notable changes to the 84EM Block Theme will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.51.0] - 2026-02-25
+
+### Changed
+- **Services**: Consolidate 9 service pages to 5 (remove Security & Troubleshooting, Code Cleanup, Data Migrations, Consulting & Strategy)
+- **Schema**: Update services and pricing OfferCatalog to reflect 5 consolidated services
+- **Schema**: Remove case blocks for retired service page slugs, add maintenance-security-support
+- **CLI**: Update service-pages slug list to 5 consolidated pages
+- **404**: Add 9 redirect rules for retired and renamed service URLs
+- **Homepage**: Update service list reusable block from 9 items to 5
+
+### Fixed
+- **Redirects**: Remove duplicate old permalink meta that caused incorrect redirect for custom-wordpress-plugin-development
+
 ## [2.50.6] - 2026-02-24
 
 ### Changed
