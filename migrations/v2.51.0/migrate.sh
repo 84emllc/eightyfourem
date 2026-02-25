@@ -20,7 +20,7 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-CONTENT_DIR="${SCRIPT_DIR}/content"
+CONTENT_DIR=""
 DRY_RUN=true
 WP_PATH=""
 WP_CMD="wp"
@@ -29,8 +29,13 @@ for arg in "$@"; do
     case "$arg" in
         --execute) DRY_RUN=false ;;
         --path=*) WP_PATH="${arg#*=}" ;;
+        --content-dir=*) CONTENT_DIR="${arg#*=}" ;;
     esac
 done
+
+if [ -z "$CONTENT_DIR" ]; then
+    CONTENT_DIR="${SCRIPT_DIR}/content"
+fi
 
 if [ -n "$WP_PATH" ]; then
     WP_CMD="wp --path=${WP_PATH}"
